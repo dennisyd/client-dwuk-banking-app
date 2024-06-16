@@ -8,7 +8,7 @@ async function fetchTransactions(url: string): Promise<TransactionProps[]> {
     toast.error("An error occurred while fetching the transactions.");
   }
   const resBody = await res.json();
-  const transactions: TransactionProps[] = await JSON.parse(resBody)
+  const transactions: TransactionProps[] = await JSON.parse(resBody);
   return transactions;
 }
 
