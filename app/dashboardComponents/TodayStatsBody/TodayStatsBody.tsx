@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import TransactionProps from "@/app/lib/definitions/TransactionProps";
 import Stat from "../Stat";
-import getTodaysTransactions from "@/app/lib/utils/getTodaysTransactions";
+import getTodaysTransactions from "@/app/lib/utils/transactions/getTodaysTransactions";
+import getTotalTransferredToday from "@/app/lib/utils/transactions/getTotalTransferredToday";
+import getTopTransactionAmount from "@/app/lib/utils/transactions/getTopTransactionAmount";
 
 const Wrapper = styled.div``;
 
@@ -12,20 +14,10 @@ interface TodayStatsBodyProps {
 export default function TodayStatsBody({ transactions }: TodayStatsBodyProps) {
   const todaysTransactions = getTodaysTransactions(transactions);
 
-  const todayTotalFundsTransferred = todaysTransactions.reduce(
-    (total, transaction) => {
-      return total + transaction.amount;
-    },
-    0
-  );
+  const todayTotalFundsTransferred = getTotalTransferredToday(transactions);
 
-  const topTransactionAmount = todaysTransactions.reduce(
-    (amount, transaction) => {
-      if (transaction.amount > amount) return transaction.amount;
-      else return amount;
-    },
-    0
-  );
+  const topTransactionAmount = getTopTransactionAmount(todaysTransactions);
+
   return (
     <Wrapper>
       <Stat
