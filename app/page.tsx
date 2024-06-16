@@ -1,5 +1,5 @@
 "use client";
-import API_URL from "@/env";
+import API_URL from "@/apiSetup";
 import useFetchAccounts from "./lib/hooks/useFetchAccounts";
 
 export default function Dashboard() {
