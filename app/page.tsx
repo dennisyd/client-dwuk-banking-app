@@ -1,17 +1,18 @@
 "use client";
-// import API_URL from "@/env";
+import API_URL from "@/env";
 import useFetchAccounts from "./lib/hooks/useFetchAccounts";
 
 export default function Dashboard() {
-  const herokuURL =
-    "https://api-dwuk-banking-app-2c5a96dde0e1.herokuapp.com/accounts";
-  // const localURL = "http://locahost:4000/accounts";
+  const url = API_URL + "/accounts";
+  // const url =
+  //   "https://api-dwuk-banking-app-2c5a96dde0e1.herokuapp.com/accounts";
+  // const url = "http://locahost:4000/accounts";
 
-  const { accounts, setAccounts } = useFetchAccounts(herokuURL);
+  const { accounts, setAccounts } = useFetchAccounts(url);
   return (
     <>
       <h1>Dashboard</h1>
-      {accounts.length}
+      {accounts}
     </>
   );
 }
