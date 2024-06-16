@@ -8,7 +8,7 @@ const Wrapper = styled.div`
 `;
 const DuoStatsWrapper = styled.div`
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: 0.5rem;
 `;
