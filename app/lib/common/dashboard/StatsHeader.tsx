@@ -5,6 +5,7 @@ const Wrapper = styled.div``;
 const StatsTitle = styled.div`
   border-bottom: 4px solid ${colours.black};
   font-size: 2rem;
+  text-align: center;
 `;
 
 interface StatsHeaderProps {

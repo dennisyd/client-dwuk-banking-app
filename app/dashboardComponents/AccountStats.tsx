@@ -1,13 +1,16 @@
 import styled from "styled-components";
 import useFetchAccounts from "../lib/hooks/useFetchAccounts";
 import StatsHeader from "../lib/common/dashboard/StatsHeader";
+import AccountStatsBody from "./AccountStatsBody/AccountStatsBody";
 import colours from "../lib/constants/colors";
 import dimensions from "../lib/constants/dimensions";
 
 const Wrapper = styled.div`
   border: 3px solid ${colours.black};
   border-radius: ${dimensions.borderRadius};
-  padding: 2rem;
+  padding: 1rem;
+  height: auto;
+  width: ${dimensions.dashboardStatWidth};
 `;
 
 export default function AccountStats() {
@@ -18,6 +21,7 @@ export default function AccountStats() {
   return (
     <Wrapper>
       <StatsHeader title="Accounts" />
+      <AccountStatsBody accounts={accounts} />
     </Wrapper>
   );
 }

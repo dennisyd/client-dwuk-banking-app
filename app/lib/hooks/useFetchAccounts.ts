@@ -7,7 +7,8 @@ async function fetchAccounts(url: string): Promise<AccountProps[]> {
   if (!res.ok) {
     toast.error("An error occurred while fetching the authors.");
   }
-  const accounts: AccountProps[] = await res.json();
+  const resBody = await res.json();
+  const accounts: AccountProps[] = await JSON.parse(resBody)
   return accounts;
 }
 
