@@ -20,7 +20,14 @@ export default function TodayStatsBody({ transactions }: TodayStatsBodyProps) {
   );
   return (
     <Wrapper>
-      <Stat title="Funds Transferred:" score={`£ ${todayTotalFundsTransferred.toLocaleString()}`} />
+      <Stat
+        title="Funds Transferred:"
+        score={`£ ${todayTotalFundsTransferred.toLocaleString()}`}
+      />
+      <Stat
+        title="Total Transactions:"
+        score={`${todaysTransactions.length.toLocaleString()}`}
+      />
     </Wrapper>
   );
 }
