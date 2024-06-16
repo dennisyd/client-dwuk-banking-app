@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import AccountProps from "@/app/lib/definitions/AuthorProps";
-import FrozenAccounts from "./FrozenAccounts/FrozenAccounts";
+import Stat from "../Stat";
 
 const Wrapper = styled.div``;
 
@@ -21,7 +21,10 @@ export default function AccountStatsBody({ accounts }: AccountStatsBodyProps) {
     .length.toString();
   return (
     <Wrapper>
-      <FrozenAccounts frozenAccounts={frozenAccounts} />
+      <Stat title="Active" score={activeAccounts} />
+      <Stat title="Frozen" score={frozenAccounts} />
+      <Stat title="Closed" score={closedAccounts} />
+      <Stat title="Total" score={accounts.length.toString()} />
     </Wrapper>
   );
 }
