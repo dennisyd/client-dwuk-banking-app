@@ -1,5 +1,4 @@
 import LinkWrapper from "./LinkWrapper";
-import colours from "../../utils/colors";
 
 export default function NavBar() {
   return (
