@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import AccountProps from "@/app/lib/definitions/AuthorProps";
 import Stat from "../Stat";
+import getHigherBalanceAccount from "@/app/lib/utils/balances/getHigherBalanceAccount";
+import getLowerBalanceAccount from "@/app/lib/utils/balances/getLowerBalanceAccount";
 
 const Wrapper = styled.div``;
 
@@ -9,15 +11,9 @@ interface BalanceStatsBodyProps {
 }
 
 export default function BalanceStatsBody({ accounts }: BalanceStatsBodyProps) {
-  const higherBalance = accounts.reduce((balance, account) => {
-    if (account.balance > balance) return account.balance;
-    else return balance;
-  }, 0);
+  const higherBalance = getHigherBalanceAccount(accounts);
 
-  const loweBalance = accounts.reduce((balance, account) => {
-    if (account.balance < balance) return account.balance;
-    else return balance;
-  }, Infinity);
+  const loweBalance = getLowerBalanceAccount(accounts);
 
   const totalMoney = accounts.reduce(
     (balance, account) => balance + account.balance,
@@ -37,10 +33,7 @@ export default function BalanceStatsBody({ accounts }: BalanceStatsBodyProps) {
         score={`£ ${loweBalance.toLocaleString()}`}
       />
       <Stat title="Average:" score={`£ ${averageBalance.toLocaleString()}`} />
-      <Stat
-        title="Bank Total:"
-        score={`£ ${totalMoney.toLocaleString()}`}
-      />
+      <Stat title="Bank Total:" score={`£ ${totalMoney.toLocaleString()}`} />
     </Wrapper>
   );
 }
