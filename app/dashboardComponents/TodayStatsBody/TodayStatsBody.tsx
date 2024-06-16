@@ -18,10 +18,22 @@ export default function TodayStatsBody({ transactions }: TodayStatsBodyProps) {
     },
     0
   );
+
+  const topTransactionAmount = todaysTransactions.reduce(
+    (amount, transaction) => {
+      if (transaction.amount > amount) return transaction.amount;
+      else return amount;
+    },
+    0
+  );
   return (
     <Wrapper>
       <Stat
-        title="Funds Transferred:"
+        title="Top Transaction:"
+        score={`£ ${topTransactionAmount.toLocaleString()}`}
+      />
+      <Stat
+        title="Total Transferred:"
         score={`£ ${todayTotalFundsTransferred.toLocaleString()}`}
       />
       <Stat
