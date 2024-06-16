@@ -9,29 +9,38 @@ interface BalanceStatsBodyProps {
 }
 
 export default function BalanceStatsBody({ accounts }: BalanceStatsBodyProps) {
-  const higherBalance = accounts
-    .reduce((balance, account) => {
-      if (account.balance > balance) return account.balance;
-      else return balance;
-    }, 0)
-    .toString();
+  const higherBalance = accounts.reduce((balance, account) => {
+    if (account.balance > balance) return account.balance;
+    else return balance;
+  }, 0);
 
-  const loweBalance = accounts
-    .reduce((balance, account) => {
-      if (account.balance < balance) return account.balance;
-      else return balance;
-    }, Infinity)
-    .toString();
+  const loweBalance = accounts.reduce((balance, account) => {
+    if (account.balance < balance) return account.balance;
+    else return balance;
+  }, Infinity);
 
-  const totalMoney = accounts
-    .reduce((balance, account) => balance + account.balance, 0)
-    .toLocaleString();
+  const totalMoney = accounts.reduce(
+    (balance, account) => balance + account.balance,
+    0
+  );
+
+  const averageBalance = totalMoney / accounts.length;
 
   return (
     <Wrapper>
-      <Stat title="Higher Account Balance:" score={`£ ${higherBalance}`} />
-      <Stat title="Lower Account Balance:" score={`£${loweBalance}`} />
-      <Stat title="Total Money in the Bank:" score={`£${totalMoney}`} />
+      <Stat
+        title="Top Balance:"
+        score={`£ ${higherBalance.toLocaleString()}`}
+      />
+      <Stat
+        title="Lower Balance:"
+        score={`£ ${loweBalance.toLocaleString()}`}
+      />
+      <Stat title="Average:" score={`£ ${averageBalance.toLocaleString()}`} />
+      <Stat
+        title="Bank Total:"
+        score={`£ ${totalMoney.toLocaleString()}`}
+      />
     </Wrapper>
   );
 }
