@@ -2,6 +2,7 @@
 import styled from "styled-components";
 import AccountStats from "./dashboardComponents/AccountStats";
 import BalanceStats from "./dashboardComponents/BalanceStats";
+import TodayStats from "./dashboardComponents/TodayStats";
 
 const Wrapper = styled.div`
   border: 3px solid green;
@@ -19,6 +20,10 @@ export default function Dashboard() {
       <DuoStatsWrapper>
         <AccountStats />
         <BalanceStats />
+      </DuoStatsWrapper>
+
+      <DuoStatsWrapper>
+        <TodayStats />
       </DuoStatsWrapper>
     </Wrapper>
   );
