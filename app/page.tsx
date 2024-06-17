@@ -5,13 +5,14 @@ import BalanceStats from "./dashboardComponents/BalanceStats";
 import TodayStats from "./dashboardComponents/TodayStats";
 
 const Wrapper = styled.div`
-  border: 3px solid green;
+  margin-top: 3rem;
 `;
 const DuoStatsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 0.5rem;
+  margin-bottom: 0.5rem;
 `;
 
 export default function Dashboard() {

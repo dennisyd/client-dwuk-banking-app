@@ -4,8 +4,7 @@ import Stat from "../Stat";
 import getTodaysTransactions from "@/app/lib/utils/transactions/getTodaysTransactions";
 import getTotalTransferredToday from "@/app/lib/utils/transactions/getTotalTransferredToday";
 import getTopTransactionAmount from "@/app/lib/utils/transactions/getTopTransactionAmount";
-
-const Wrapper = styled.div``;
+import ScoresWrapper from "@/app/lib/common/dashboard/ScoresWrapper";
 
 interface TodayStatsBodyProps {
   transactions: TransactionProps[];
@@ -19,19 +18,19 @@ export default function TodayStatsBody({ transactions }: TodayStatsBodyProps) {
   const topTransactionAmount = getTopTransactionAmount(todaysTransactions);
 
   return (
-    <Wrapper>
+    <ScoresWrapper>
       <Stat
-        title="Top Transaction:"
+        title="Top Transaction"
         score={`£ ${topTransactionAmount.toLocaleString()}`}
       />
       <Stat
-        title="Total Transferred:"
+        title="Total Transferred"
         score={`£ ${todayTotalFundsTransferred.toLocaleString()}`}
       />
       <Stat
-        title="Total Transactions:"
+        title="Total Transactions"
         score={`${todaysTransactions.length.toLocaleString()}`}
       />
-    </Wrapper>
+    </ScoresWrapper>
   );
 }
