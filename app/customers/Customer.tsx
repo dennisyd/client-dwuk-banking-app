@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 import colours from "@/app/lib/constants/colors";
 import { useState } from "react";
 import CustomerProps from "@/app/lib/definitions/CustomerProps";
-import Input from "@/app/lib/common/customers/Input";
+import Input from "@/app/lib/common/formComponents/Input";
 
 const CustomersWrapper = styled.div<{ $isEditing?: boolean }>`
   display: flex;

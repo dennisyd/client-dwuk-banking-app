@@ -2,7 +2,7 @@
 import styled from "styled-components";
 import useFetchCustomers from "../lib/hooks/useFetchCustomers";
 import { useState } from "react";
-import Customer from "./accountsComponents/Customer";
+import Customer from "./Customer";
 import colours from "../lib/constants/colors";
 import dimensions from "../lib/constants/dimensions";
 import CustomerProps from "../lib/definitions/CustomerProps";
