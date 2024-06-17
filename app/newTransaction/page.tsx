@@ -9,6 +9,9 @@ import {
   FieldsWrapper,
   Input
 } from "@/app/lib/common/formComponents/formComponents";
+import useFetchCustomers from "../lib/hooks/useFetchCustomers";
+import SelectCustomer from "./SelectCustomer";
+import { useState } from "react";
 
 interface NewTransactionFormProps {
   first_name: string;
@@ -22,6 +25,14 @@ export default function NewTransaction() {
     last_name: "",
     email: ""
   };
+  const apiBaseUrl = "https://api-dwuk-banking-app-2c5a96dde0e1.herokuapp.com";
+  const fetchAllCustomersUrl = apiBaseUrl + "/customers";
+
+  const { customers } = useFetchCustomers(fetchAllCustomersUrl);
+  const [fromCustomerID, setFromCustomerID] = useState(0);
+  const [toCustomerID, setToCustomerID] = useState(0);
+  console.log("fromCustomerID", fromCustomerID);
+  console.log("toCustomerID", toCustomerID);
 
   return (
     <div>
@@ -55,15 +66,21 @@ export default function NewTransaction() {
       >
         <Form>
           <FormWrapper>
-            <Header>New Customer</Header>
+            <Header>New Transaction</Header>
             <FieldsWrapper>
-              <Input
-                id="first_name"
-                name="first_name"
-                placeholder="First Name"
+              <SelectCustomer
+                selectedCustomer={fromCustomerID}
+                customers={customers}
+                defaultOption="From Account"
+                onChange={setFromCustomerID}
               />
-              <Input id="last_name" name="last_name" placeholder="Last Name" />
-              <Input id="email" name="email" placeholder="Email" />
+              <SelectCustomer
+                selectedCustomer={toCustomerID}
+                customers={customers}
+                defaultOption="To Account"
+                onChange={setToCustomerID}
+              />
+              <Input id="amount" name="amount" placeholder="£ Amount" />
             </FieldsWrapper>
             <Button
               type="submit"
