@@ -7,7 +7,7 @@ export default function AccountStats() {
   const apiBaseUrl = "https://api-dwuk-banking-app-2c5a96dde0e1.herokuapp.com";
   const fetchAllAccountsUrl = apiBaseUrl + "/accounts";
 
-  const { accounts, setAccounts } = useFetchAccounts(fetchAllAccountsUrl);
+  const { accounts } = useFetchAccounts(fetchAllAccountsUrl);
   return (
     <StatsWrapper>
       <StatsHeader title="Accounts" />
