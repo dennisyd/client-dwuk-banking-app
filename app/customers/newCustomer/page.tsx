@@ -1,73 +1,52 @@
 "use client";
-import officerID from "@/app/lib/constants/officerID";
-import Button from "@/app/lib/common/Button";
 import {
-  FormWrapper,
-  ImageAndText,
-  StyledImage,
-  Text,
-  StyledForm
-} from "@/app/lib/common/formComponents/formComponents";
-import { Formik, FormikValues, FormikErrors } from "formik";
-import robotImage from "@/app/assets/robot-image.png";
+  Formik,
+  FormikHelpers,
+  FormikProps,
+  Form,
+  Field,
+  FieldProps
+} from "formik";
 import toast from "react-hot-toast";
-import InputGroup from "@/app/lib/common/formComponents/InputGroup";
 
 interface NewCustomerFormProps {
   first_name: string;
   last_name: string;
   email: string;
-  officer_id: number;
 }
 
-const initialValues: NewCustomerFormProps = {
-  first_name: "",
-  last_name: "",
-  email: "",
-  officer_id: officerID
-};
-
 export default function NewCustomer() {
+  const initialValues: NewCustomerFormProps = {
+    first_name: "",
+    last_name: "",
+    email: ""
+  };
+
   return (
-    <FormWrapper>
-      <ImageAndText>
-        <StyledImage
-          alt="white robot with blue googles"
-          src={robotImage}
-          sizes="600vw"
-          style={{ width: "100%", height: "auto" }}
-        />
-        <Text>
-          <p>Ready to add new customers? </p>
-          <p>{`Just drop in their first name, last name and email address, and we're good to go!`}</p>
-          <p>{`New customers are always good news.`}</p>
-        </Text>
-      </ImageAndText>
+    <div>
+      <h1>New Customer</h1>
       <Formik
         initialValues={initialValues}
-        validate={(values) => {
-          const errors: FormikErrors<FormikValues> = {};
-
-          if (!values.first_name) errors.first_name = "Required";
-          if (!values.last_name) errors.last_name = "Required";
-          if (!values.email) errors.last_name = "Required";
-          return errors;
-        }}
-        onSubmit={async (values, { setSubmitting, resetForm }) => {
-          setSubmitting(false);
-
+        onSubmit={async (values, actions) => {
+          const apiBaseUrl =
+            "https://api-dwuk-banking-app-2c5a96dde0e1.herokuapp.com";
+          // "https://api-dwuk-banking-app-2c5a96dde0e1.herokuapp.com/customers"
           try {
-            const req = await fetch("/api/authors/new", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json"
-              },
-              body: JSON.stringify(values)
-            });
+            const req = await fetch(
+              "https://api-dwuk-banking-app-2c5a96dde0e1.herokuapp.com/customers",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  Accept: "application/json"
+                },
+                body: JSON.stringify(values)
+              }
+            );
 
             if (req.ok) {
               toast.success(`${values.first_name} added successfully.`);
-              resetForm();
+              actions.resetForm();
             } else {
               throw new Error();
             }
@@ -76,40 +55,22 @@ export default function NewCustomer() {
               toast.error("Something went wrong.");
             }
           }
+          console.log("values", values);
         }}
       >
-        {({ isSubmitting }) => (
-          <StyledForm>
-            <InputGroup
-              label="First Name"
-              name="first_name"
-              autoComplete="given-name"
-              required
-            />
+        <Form>
+          <label htmlFor="first_name">First Name</label>
+          <Field id="first_name" name="first_name" placeholder="First Name" />
 
-            <InputGroup
-              label="Last Name"
-              name="last_name"
-              autoComplete="family-name"
-              required
-            />
+          <label htmlFor="last_name">Last Name</label>
+          <Field id="last_name" name="last_name" placeholder="Last Name" />
 
-            <InputGroup
-              label="Email"
-              name="email"
-              autoComplete="email"
-              required
-            />
+          <label htmlFor="email">Email</label>
+          <Field id="email" name="email" placeholder="Email" />
 
-            <Button
-              type="submit"
-              text="Add New Author"
-              onClick={() => {}}
-              disabled={isSubmitting}
-            ></Button>
-          </StyledForm>
-        )}
+          <button type="submit">Submit</button>
+        </Form>
       </Formik>
-    </FormWrapper>
+    </div>
   );
 }
