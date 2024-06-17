@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Field } from "formik";
 import inputStyle from "./inputStyle";
 
-export const Wrapper = styled.div`
+export const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,6 +21,6 @@ export const Input = styled(Field)`
   ${inputStyle}
 `;
 
-const Header = styled.h1`
+export const Header = styled.h1`
   font-size: 6vw;
 `;
