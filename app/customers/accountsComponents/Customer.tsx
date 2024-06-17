@@ -3,8 +3,9 @@ import styled, { css } from "styled-components";
 import colours from "@/app/lib/constants/colors";
 import { useState } from "react";
 import CustomerProps from "@/app/lib/definitions/CustomerProps";
+import Input from "@/app/lib/common/customers/Input";
 
-const Wrapper = styled.div<{ $isEditing?: boolean }>`
+const CustomersWrapper = styled.div<{ $isEditing?: boolean }>`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -31,29 +32,21 @@ const Email = styled.div``;
 const ContactDetails = styled.div``;
 const EditButton = styled.div``;
 
-// background-color: ${colors.gray};
-const Input = styled.input`
-  margin-bottom: 0.5em;
-  border-radius: 7px;
-  border: 0.15em solid ${colours.darkRed};
-  padding: 0.5em;
-  &:focus {
-    outline: none;
-    box-shadow: 0px 0px 3px ${colours.darkRed};
-  }
-`;
+const Wrapper = styled.div``;
 
 interface CustomerComponentProps {
   customer: CustomerProps;
   onEditCustomer: (editedAuthor: CustomerProps) => void;
+  onSearchCustomer: (searchTerm: string) => void;
 }
 export default function Customer({
   customer,
-  onEditCustomer
+  onEditCustomer,
+  onSearchCustomer
 }: CustomerComponentProps) {
   const [isEditing, setIsEditing] = useState(false);
   return isEditing ? (
-    <Wrapper $isEditing={isEditing}>
+    <CustomersWrapper $isEditing={isEditing}>
       <FirstName>
         <Input
           name="first_name"
@@ -89,26 +82,28 @@ export default function Customer({
         secondary
         secondaryColor={colours.black}
       />
-    </Wrapper>
+    </CustomersWrapper>
   ) : (
     <Wrapper>
-      <ContactDetails>
-        <FirstAndLastName>
-          <FirstName>{customer.first_name}</FirstName>
-          <LastName>{customer.last_name}</LastName>
-        </FirstAndLastName>
-        <Email>{customer.email}</Email>
-      </ContactDetails>
-      <EditButton>
-        <Button
-          type="button"
-          text="Edit"
-          onClick={() => {
-            setIsEditing(!isEditing);
-          }}
-          primaryColor={colours.black}
-        />
-      </EditButton>
+      <CustomersWrapper>
+        <ContactDetails>
+          <FirstAndLastName>
+            <FirstName>{customer.first_name}</FirstName>
+            <LastName>{customer.last_name}</LastName>
+          </FirstAndLastName>
+          <Email>{customer.email}</Email>
+        </ContactDetails>
+        <EditButton>
+          <Button
+            type="button"
+            text="Edit"
+            onClick={() => {
+              setIsEditing(!isEditing);
+            }}
+            primaryColor={colours.black}
+          />
+        </EditButton>
+      </CustomersWrapper>
     </Wrapper>
   );
 }
