@@ -1,39 +1,14 @@
 "use client";
-import {
-  Formik,
-  FormikHelpers,
-  FormikProps,
-  Form,
-  Field,
-  FieldProps
-} from "formik";
+import { Formik, Form } from "formik";
 import toast from "react-hot-toast";
-import styled from "styled-components";
-import inputStyle from "@/app/lib/common/formComponents/inputStyle";
 import Button from "@/app/lib/common/Button";
 import colours from "@/app/lib/constants/colors";
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 3rem;
-`;
-const FieldsWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  max-width: 50vw;
-  margin: 1rem 0;
-`;
-
-const Input = styled(Field)`
-  ${inputStyle}
-`;
-
-const Header = styled.h1`
-  font-size: 6vw;
-`;
+import {
+  FormWrapper,
+  Header,
+  FieldsWrapper,
+  Input
+} from "@/app/lib/common/formComponents/formComponents";
 
 interface NewCustomerFormProps {
   first_name: string;
@@ -79,7 +54,7 @@ export default function NewCustomer() {
         }}
       >
         <Form>
-          <Wrapper>
+          <FormWrapper>
             <Header>New Customer</Header>
             <FieldsWrapper>
               <Input
@@ -96,7 +71,7 @@ export default function NewCustomer() {
               onClick={() => {}}
               primaryColor={colours.black}
             />
-          </Wrapper>
+          </FormWrapper>
         </Form>
       </Formik>
     </div>
