@@ -1,4 +1,6 @@
-# Frontend Module
+# DWUK Banking Web Application
+
+## Frontend Module
 
 The DWUK Banking App is divided into 2 repositories:
 
@@ -18,7 +20,7 @@ Please have a look at the [live link here](https://client-dwuk-banking-app.verce
 
 ## Getting Started
 
-To run the project locally, please run the following command in a terminal:
+To run the project locally, please execute the following command in a terminal:
 
 `git clone https://github.com/Cat4848/client-dwuk-banking-app`
 
@@ -33,4 +35,6 @@ pnpm dev
 # or
 bun dev
 ```
+
 ### Enjoy
+Created with ❤️ in Kent, UK.
