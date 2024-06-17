@@ -1,4 +1,4 @@
-import TransactionProps from "../definitions/TransactionProps";
+import TransactionProps from "../../definitions/TransactionProps";
 
 export default function getTodaysTransactions(
   transactions: TransactionProps[]
