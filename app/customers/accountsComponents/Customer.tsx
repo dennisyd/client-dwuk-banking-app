@@ -37,12 +37,10 @@ const Wrapper = styled.div``;
 interface CustomerComponentProps {
   customer: CustomerProps;
   onEditCustomer: (editedAuthor: CustomerProps) => void;
-  onSearchCustomer: (searchTerm: string) => void;
 }
 export default function Customer({
   customer,
-  onEditCustomer,
-  onSearchCustomer
+  onEditCustomer
 }: CustomerComponentProps) {
   const [isEditing, setIsEditing] = useState(false);
   return isEditing ? (

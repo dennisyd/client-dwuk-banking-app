@@ -7,7 +7,6 @@ import colours from "../lib/constants/colors";
 import dimensions from "../lib/constants/dimensions";
 import CustomerProps from "../lib/definitions/CustomerProps";
 import Input from "../lib/common/customers/Input";
-import Button from "../lib/common/Button";
 
 const Wrapper = styled.div`
   display: flex;
@@ -18,10 +17,6 @@ const Wrapper = styled.div`
 `;
 
 const Search = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  align-items: center;
   margin-bottom: 0.5rem;
 `;
 
@@ -48,15 +43,11 @@ export default function Customers() {
     setCustomers(editedCustomers);
   }
 
-  function handleSearchCustomer(searchTerm: string) {
-    if (searchTerm === "") {
-      setCustomers(customers);
-    }
-    const matchingCustomers = customers.filter(
-      (customer) => customer.first_name === searchTerm
-    );
-    setCustomers(matchingCustomers);
-  }
+  const filteredCustomers = customers.filter((customer) =>
+    `${customer.first_name} ${customer.last_name}`
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase())
+  );
 
   return (
     <Wrapper>
@@ -66,21 +57,13 @@ export default function Customers() {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <Button
-          type="button"
-          primary
-          primaryColor={colours.gray}
-          text="Find"
-          onClick={() => handleSearchCustomer(searchTerm)}
-        />
       </Search>
       <CustomersWrapper>
-        {customers.slice(0, 5).map((customer) => (
+        {filteredCustomers.slice(0, 5).map((customer) => (
           <Customer
             key={customer.customer_id}
             customer={customer}
             onEditCustomer={handleEditCustomer}
-            onSearchCustomer={handleSearchCustomer}
           />
         ))}
       </CustomersWrapper>
