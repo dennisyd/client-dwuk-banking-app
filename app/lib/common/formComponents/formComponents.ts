@@ -1,61 +1,26 @@
-import Image from "next/image";
-import { Form, Field } from "formik";
 import styled from "styled-components";
-import colours from "../../constants/colors";
+import { Field } from "formik";
+import inputStyle from "./inputStyle";
 
-export const FormWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: start;
-  gap: 1em;
-`;
-
-export const ImageAndText = styled.div`
+export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  width: 100%;
-  max-width: 20em;
-`;
-
-export const StyledImage = styled(Image)`
-  border-radius: 15px;
-`;
-
-export const Text = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding: 0.5rem;
-  border-radius: 15px;
-  box-shadow: inset 60px 0 120px ${colours.darkRed},
-    inset -60px -50px 120px ${colours.darkRed};
-`;
-
-export const StyledForm = styled(Form)`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  gap: 0.5rem;
-  width: 100%;
-  max-width: 20em;
+  margin-top: 3rem;
 `;
 
-export const RequiredField = styled.span`
-  color: red;
+export const FieldsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 50vw;
+  margin: 1rem 0;
 `;
 
 export const Input = styled(Field)`
-  appearance: none;
-  background-color: transparent;
-  border: none;
-  padding: 0 1em 0 0;
-  margin: 0;
-  width: 100%;
-  font-family: inherit;
-  font-size: inherit;
-  cursor: inherit;
-  line-height: inherit;
-  outline: none;
+  ${inputStyle}
+`;
+
+const Header = styled.h1`
+  font-size: 6vw;
 `;
