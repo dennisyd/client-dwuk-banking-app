@@ -5,5 +5,6 @@ const ScoresWrapper = styled.div`
   flex-direction: column;
   gap: 0.5rem;
   margin-top: 1rem;
+  align-items: center;
 `;
 export default ScoresWrapper;
