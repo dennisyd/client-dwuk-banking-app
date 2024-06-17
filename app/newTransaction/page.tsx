@@ -9,7 +9,7 @@ import {
   FieldsWrapper
 } from "@/app/lib/common/formComponents/formComponents";
 import useFetchCustomers from "../lib/hooks/useFetchCustomers";
-import SelectCustomer from "./SelectCustomer";
+import SelectCustomer from "../lib/common/formComponents/SelectCustomer";
 import React, { useState } from "react";
 import AccountProps from "../lib/definitions/AuthorProps";
 
