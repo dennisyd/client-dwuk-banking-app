@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import CustomerProps from "../lib/definitions/CustomerProps";
-import inputStyle from "../lib/common/formComponents/inputStyle";
-import colours from "../lib/constants/colors";
+import CustomerProps from "../../definitions/CustomerProps";
+import inputStyle from "./inputStyle";
 
 interface SelectCustomerProps {
   customers: CustomerProps[];

@@ -1,8 +1,6 @@
-import styled from "styled-components";
 import AccountProps from "@/app/lib/definitions/AuthorProps";
 import Stat from "../Stat";
-
-const Wrapper = styled.div``;
+import ScoresWrapper from "@/app/lib/common/dashboard/ScoresWrapper";
 
 interface AccountStatsBodyProps {
   accounts: AccountProps[];
@@ -20,11 +18,11 @@ export default function AccountStatsBody({ accounts }: AccountStatsBodyProps) {
     .filter((account) => account.status === "CLOSED")
     .length.toString();
   return (
-    <Wrapper>
+    <ScoresWrapper>
       <Stat title="Active" score={activeAccounts} />
       <Stat title="Frozen" score={frozenAccounts} />
       <Stat title="Closed" score={closedAccounts} />
       <Stat title="Total" score={accounts.length.toString()} />
-    </Wrapper>
+    </ScoresWrapper>
   );
 }

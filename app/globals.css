@@ -33,7 +33,7 @@ a {
   color: aliceblue;
   background-color: black;
   height: 5rem;
-  font-size: large;
+  font-size: 2vw -1rem;
   @media (max-width: 450px) {
     height: auto;
   }

@@ -13,7 +13,7 @@ interface StatProps {
 export default function Stat({ title, score }: StatProps) {
   return (
     <Wrapper>
-      <Title>{title}</Title>
+      <Title>{`${title}:`}</Title>
       <Score>{score}</Score>
     </Wrapper>
   );
