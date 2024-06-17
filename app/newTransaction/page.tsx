@@ -6,62 +6,78 @@ import colours from "@/app/lib/constants/colors";
 import {
   FormWrapper,
   Header,
-  FieldsWrapper,
-  Input
+  FieldsWrapper
 } from "@/app/lib/common/formComponents/formComponents";
 import useFetchCustomers from "../lib/hooks/useFetchCustomers";
 import SelectCustomer from "./SelectCustomer";
-import { useState } from "react";
+import React, { useState } from "react";
+import AccountProps from "../lib/definitions/AuthorProps";
 
 interface NewTransactionFormProps {
-  first_name: string;
-  last_name: string;
-  email: string;
+  from_customer: string;
+  to_customer: string;
+  amount: string;
 }
 
 export default function NewTransaction() {
   const initialValues: NewTransactionFormProps = {
-    first_name: "",
-    last_name: "",
-    email: ""
+    from_customer: "",
+    to_customer: "",
+    amount: ""
   };
   const apiBaseUrl = "https://api-dwuk-banking-app-2c5a96dde0e1.herokuapp.com";
   const fetchAllCustomersUrl = apiBaseUrl + "/customers";
 
   const { customers } = useFetchCustomers(fetchAllCustomersUrl);
-  const [fromCustomerID, setFromCustomerID] = useState(0);
-  const [toCustomerID, setToCustomerID] = useState(0);
-  console.log("fromCustomerID", fromCustomerID);
-  console.log("toCustomerID", toCustomerID);
+  const [fromCustomerID, setFromCustomerID] = useState("");
+  const [toCustomerID, setToCustomerID] = useState("");
+  const [transactionValue, setTransactionValue] = useState("");
+
+  async function submitForm(e: React.SyntheticEvent) {
+    e.preventDefault();
+    const target = e.target as typeof e.target & {
+      from_customer: { value: string };
+      to_customer: { value: string };
+      amount: { value: string };
+    };
+    const fromCustomerID = target.from_customer.value;
+    const toCustomerID = target.to_customer.value;
+    const amount = target.amount.value;
+
+    const fromCustomerUrl = `https://api-dwuk-banking-app-2c5a96dde0e1.herokuapp.com/accounts/${fromCustomerID}`;
+    const toCustomerUrl = `https://api-dwuk-banking-app-2c5a96dde0e1.herokuapp.com/accounts/${toCustomerID}`;
+
+    try {
+      const [fromCustomerResponse, toCustomerResponse] = await Promise.all([
+        fetch(fromCustomerUrl),
+        fetch(toCustomerUrl)
+      ]);
+
+      const fromCustomerString = await fromCustomerResponse.json();
+      const toCustomerString = await toCustomerResponse.json();
+
+      const [fromCustomer] = (await JSON.parse(
+        fromCustomerString
+      )) as AccountProps[];
+      const [toCustomer] = (await JSON.parse(
+        toCustomerString
+      )) as AccountProps[];
+
+      const fromCustomerID = fromCustomer.customer_id;
+      const toCustomerID = toCustomer.customer_id;
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.error("Something went wrong.");
+      }
+    }
+  }
 
   return (
     <div>
       <Formik
         initialValues={initialValues}
         onSubmit={async (values, actions) => {
-          const apiBaseUrl =
-            "https://api-dwuk-banking-app-2c5a96dde0e1.herokuapp.com";
-          try {
-            const req = await fetch(apiBaseUrl + "/customers", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json"
-              },
-              body: JSON.stringify(values)
-            });
-
-            if (req.ok) {
-              toast.success(`${values.first_name} added successfully.`);
-              actions.resetForm();
-            } else {
-              throw new Error();
-            }
-          } catch (error) {
-            if (error instanceof Error) {
-              toast.error("Something went wrong.");
-            }
-          }
+          toast.success("Transaction Added.");
         }}
       >
         <Form>
@@ -69,18 +85,27 @@ export default function NewTransaction() {
             <Header>New Transaction</Header>
             <FieldsWrapper>
               <SelectCustomer
+                name={"from_customer"}
                 selectedCustomer={fromCustomerID}
                 customers={customers}
                 defaultOption="From Account"
                 onChange={setFromCustomerID}
               />
               <SelectCustomer
+                name="to_customer"
                 selectedCustomer={toCustomerID}
                 customers={customers}
                 defaultOption="To Account"
                 onChange={setToCustomerID}
               />
-              <Input id="amount" name="amount" placeholder="£ Amount" />
+              <input
+                className="input-element"
+                type="number"
+                value={transactionValue}
+                name="amount"
+                placeholder="£ Amount"
+                onChange={(e) => setTransactionValue(e.target.value)}
+              />
             </FieldsWrapper>
             <Button
               type="submit"

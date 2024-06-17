@@ -1,29 +1,36 @@
 import styled from "styled-components";
 import CustomerProps from "../lib/definitions/CustomerProps";
+import inputStyle from "../lib/common/formComponents/inputStyle";
+import colours from "../lib/constants/colors";
 
 interface SelectCustomerProps {
   customers: CustomerProps[];
-  onChange: (customerID: number) => void;
-  selectedCustomer: number;
+  onChange: (customerID: string) => void;
+  selectedCustomer: string;
   defaultOption: string;
+  name: string;
 }
 
 const Wrapper = styled.div``;
-const Select = styled.select``;
+const Select = styled.select`
+  ${inputStyle}
+`;
 const Option = styled.option``;
 export default function SelectCustomer({
   customers,
   onChange,
   selectedCustomer,
-  defaultOption
+  defaultOption,
+  name
 }: SelectCustomerProps) {
   return (
     <Wrapper>
       <Select
+        name={name}
         value={selectedCustomer}
-        onChange={(e) => onChange(Number(e.target.value))}
+        onChange={(e) => onChange(e.target.value)}
       >
-        <Option>{defaultOption}</Option>
+        <Option disabled>{defaultOption} </Option>
         {customers.map((customer, i) => (
           <Option
             key={i}
