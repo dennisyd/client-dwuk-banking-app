@@ -1,3 +1,3 @@
 export default function NewAccount() {
-  return <h1>New Account Page</h1>;
+  return <h1>New Account</h1>;
 }

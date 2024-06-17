@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   padding: 1rem;
 `;
 
-export default function Accounts() {
+export default function customers() {
   const apiBaseUrl = "https://api-dwuk-banking-app-2c5a96dde0e1.herokuapp.com";
   const fetchAllCustomersUrl = apiBaseUrl + "/customers";
   const { customers, setCustomers } = useFetchCustomers(fetchAllCustomersUrl);
