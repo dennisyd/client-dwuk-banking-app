@@ -3,20 +3,21 @@ import { screen, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Chance from "chance";
 
-const some = new Chance();
-const someValues = Array.from(
+const name = new Chance();
+const someNames = Array.from(
   { length: 10 },
-  () => `${some.first()} ${some.last()}`
+  () => `${name.first()} ${name.last()}`
 );
 
-test.each(someValues)("if the input value changes correctly", async (value) => {
+test.each(someNames)("if the input value changes correctly", async (name) => {
   const placeholder = "First Name";
-  const name = "first_name";
-  render(<Input id={name} name={name} placeholder={placeholder} />);
+  const identifier = "first_name";
+
+  render(<Input id={name} name={identifier} placeholder={placeholder} />);
   const input = screen.getByPlaceholderText(placeholder);
 
   const user = userEvent.setup();
-  await user.type(input, value);
+  await user.type(input, name);
 
-  expect(input).toHaveValue(value);
+  expect(input).toHaveValue(name);
 });
