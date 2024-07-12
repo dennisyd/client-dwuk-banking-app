@@ -4,7 +4,7 @@ import AccountStatsBody from "./AccountStatsBody/AccountStatsBody";
 import StatsWrapper from "../lib/common/dashboard/StatsWrapper";
 
 export default function AccountStats() {
-  const apiBaseUrl = "https://api-dwuk-banking-app-2c5a96dde0e1.herokuapp.com";
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
   const fetchAllAccountsUrl = apiBaseUrl + "/accounts";
 
   const { accounts } = useFetchAccounts(fetchAllAccountsUrl);

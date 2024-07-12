@@ -28,8 +28,7 @@ export default function NewCustomer() {
       <Formik
         initialValues={initialValues}
         onSubmit={async (values, actions) => {
-          const apiBaseUrl =
-            "https://api-dwuk-banking-app-2c5a96dde0e1.herokuapp.com";
+          const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
           try {
             const req = await fetch(apiBaseUrl + "/customers", {
               method: "POST",

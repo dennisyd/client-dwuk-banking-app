@@ -27,7 +27,7 @@ const CustomersWrapper = styled.div`
 `;
 
 export default function Customers() {
-  const apiBaseUrl = "https://api-dwuk-banking-app-2c5a96dde0e1.herokuapp.com";
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
   const fetchAllCustomersUrl = apiBaseUrl + "/customers";
   const { customers, setCustomers } = useFetchCustomers(fetchAllCustomersUrl);
   const [searchTerm, setSearchTerm] = useState("");
