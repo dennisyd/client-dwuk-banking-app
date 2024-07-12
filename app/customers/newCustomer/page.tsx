@@ -6,8 +6,7 @@ import colours from "@/app/lib/constants/colors";
 import {
   FormWrapper,
   Header,
-  FieldsWrapper,
-  Input
+  FieldsWrapper
 } from "@/app/lib/common/formComponents/formComponents";
 import DynamicForm from "./DynamicForm/DynamicForm";
 
