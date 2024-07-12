@@ -4,14 +4,14 @@ import StatsWrapper from "../lib/common/dashboard/StatsWrapper";
 import BalanceStatsBody from "./BalanceStatsBody/BalanceStatsBody";
 
 export default function BalanceStats() {
-  const apiBaseUrl = "https://api-dwuk-banking-app-2c5a96dde0e1.herokuapp.com";
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
   const fetchAllAccountsUrl = apiBaseUrl + "/accounts";
 
   const { accounts, setAccounts } = useFetchAccounts(fetchAllAccountsUrl);
   return (
     <StatsWrapper>
       <StatsHeader title="Balances" />
-      <BalanceStatsBody accounts={accounts}/>
+      <BalanceStatsBody accounts={accounts} />
     </StatsWrapper>
   );
 }
