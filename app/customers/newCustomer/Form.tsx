@@ -8,6 +8,13 @@ import { Form } from "formik";
 import Button from "@/app/lib/common/Button";
 import colours from "@/app/lib/constants/colors";
 import { useState } from "react";
+import styled from "styled-components";
+
+const ButtonsWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+`;
 
 const firstName = (
   <Input id="first_name" name="first_name" placeholder="First Name" />
@@ -32,12 +39,20 @@ export default function DynamicForm() {
 
   let display: JSX.Element;
   display = form[formSlide];
+
+  const forwards = () => setFormSlide(formSlide + 1);
+  const backwards = () => setFormSlide(formSlide - 1);
   return (
     <Form>
       <FormWrapper>
         <Header>New Customer</Header>
         <FieldsWrapper>{display}</FieldsWrapper>
-        
+
+        <ButtonsWrapper>
+          <Button type="button" text="Previous" secondary onClick={backwards} />
+          <Button type="button" text="Next" onClick={forwards} />
+        </ButtonsWrapper>
+
         <Button
           type="submit"
           text="Submit"
