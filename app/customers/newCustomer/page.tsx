@@ -9,7 +9,7 @@ import {
   FieldsWrapper,
   Input
 } from "@/app/lib/common/formComponents/formComponents";
-import DynamicForm from "./Form";
+import DynamicForm from "./DynamicForm/DynamicForm";
 
 interface NewCustomerFormProps {
   first_name: string;
