@@ -1,4 +1,10 @@
-import { Input } from "@/app/lib/common/formComponents/formComponents";
+import {
+  Input,
+  FormWrapper,
+  Header,
+  FieldsWrapper
+} from "@/app/lib/common/formComponents/formComponents";
+import { Form } from "formik";
 import Button from "@/app/lib/common/Button";
 import colours from "@/app/lib/constants/colors";
 import { useState } from "react";
@@ -21,9 +27,24 @@ const submitButton = (
 
 const form = [firstName, lastName, email];
 
-export default function Form() {
+export default function DynamicForm() {
   const [formSlide, setFormSlide] = useState(0);
 
-  
-
+  let display: JSX.Element;
+  display = form[formSlide];
+  return (
+    <Form>
+      <FormWrapper>
+        <Header>New Customer</Header>
+        <FieldsWrapper>{display}</FieldsWrapper>
+        
+        <Button
+          type="submit"
+          text="Submit"
+          onClick={() => {}}
+          primaryColor={colours.black}
+        />
+      </FormWrapper>
+    </Form>
+  );
 }

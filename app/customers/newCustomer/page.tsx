@@ -1,5 +1,5 @@
 "use client";
-import { Formik, Form } from "formik";
+import { Formik } from "formik";
 import toast from "react-hot-toast";
 import Button from "@/app/lib/common/Button";
 import colours from "@/app/lib/constants/colors";
@@ -9,6 +9,7 @@ import {
   FieldsWrapper,
   Input
 } from "@/app/lib/common/formComponents/formComponents";
+import DynamicForm from "./Form";
 
 interface NewCustomerFormProps {
   first_name: string;
@@ -52,26 +53,7 @@ export default function NewCustomer() {
           }
         }}
       >
-        <Form>
-          <FormWrapper>
-            <Header>New Customer</Header>
-            <FieldsWrapper>
-              <Input
-                id="first_name"
-                name="first_name"
-                placeholder="First Name"
-              />
-              <Input id="last_name" name="last_name" placeholder="Last Name" />
-              <Input id="email" name="email" placeholder="Email" />
-            </FieldsWrapper>
-            <Button
-              type="submit"
-              text="Submit"
-              onClick={() => {}}
-              primaryColor={colours.black}
-            />
-          </FormWrapper>
-        </Form>
+        <DynamicForm />
       </Formik>
     </div>
   );
