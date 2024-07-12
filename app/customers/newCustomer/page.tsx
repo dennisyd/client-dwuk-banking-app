@@ -1,13 +1,6 @@
 "use client";
 import { Form, Formik } from "formik";
 import toast from "react-hot-toast";
-import Button from "@/app/lib/common/Button";
-import colours from "@/app/lib/constants/colors";
-import {
-  FormWrapper,
-  Header,
-  FieldsWrapper
-} from "@/app/lib/common/formComponents/formComponents";
 import DynamicForm from "./DynamicForm/DynamicForm";
 
 interface NewCustomerFormProps {
