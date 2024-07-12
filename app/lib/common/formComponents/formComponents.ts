@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { Field } from "formik";
 import inputStyle from "./inputStyle";
+import Input from "../Input/Input";
 
 export const FormWrapper = styled.div`
   display: flex;
@@ -17,7 +17,7 @@ export const FieldsWrapper = styled.div`
   margin: 1rem 0;
 `;
 
-export const Input = styled(Field)`
+export const InputField = styled(Input)`
   ${inputStyle}
 `;
 

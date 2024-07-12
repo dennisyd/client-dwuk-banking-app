@@ -1,5 +1,5 @@
 import {
-  Input,
+  InputField,
   FormWrapper,
   Header,
   FieldsWrapper

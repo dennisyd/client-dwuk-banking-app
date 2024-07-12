@@ -11,7 +11,8 @@ const someValues = Array.from(
 
 test.each(someValues)("if the input value changes correctly", async (value) => {
   const placeholder = "First Name";
-  render(<Input name="first_name" placeholder={placeholder} />);
+  const name = "first_name";
+  render(<Input id={name} name={name} placeholder={placeholder} />);
   const input = screen.getByPlaceholderText(placeholder);
 
   const user = userEvent.setup();
