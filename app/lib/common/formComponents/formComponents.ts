@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import inputStyle from "./inputStyle";
-import Input from "../Input/Input";
+import colours from "../../constants/colors";
 
 export const FormWrapper = styled.div`
   display: flex;
@@ -17,10 +16,17 @@ export const FieldsWrapper = styled.div`
   margin: 1rem 0;
 `;
 
-export const InputField = styled(Input)`
-  ${inputStyle}
-`;
-
 export const Header = styled.h1`
   font-size: 6vw;
+`;
+
+export const InputField = styled.input`
+  margin-bottom: 0.5em;
+  border-radius: 7px;
+  border: 0.15em solid ${colours.darkRed};
+  padding: 0.5em;
+  &:focus {
+    outline: none;
+    box-shadow: 0px 0px 3px ${colours.darkRed};
+  }
 `;

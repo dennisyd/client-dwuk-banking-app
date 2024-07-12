@@ -1,9 +1,9 @@
 import {
-  InputField,
   FormWrapper,
   Header,
   FieldsWrapper
 } from "@/app/lib/common/formComponents/formComponents";
+import Input from "@/app/lib/common/formComponents/Input/Input";
 import Button from "@/app/lib/common/Button";
 import colours from "@/app/lib/constants/colors";
 import { useState } from "react";
@@ -16,12 +16,12 @@ const ButtonsWrapper = styled.div`
 `;
 
 const firstName = (
-  <InputField id="first_name" name="first_name" placeholder="First Name" />
+  <Input id="first_name" name="first_name" placeholder="First Name" />
 );
 const lastName = (
-  <InputField id="last_name" name="last_name" placeholder="Last Name" />
+  <Input id="last_name" name="last_name" placeholder="Last Name" />
 );
-const email = <InputField id="email" name="email" placeholder="Email" />;
+const email = <Input id="email" name="email" placeholder="Email" />;
 const submitButton = (
   <Button
     type="submit"

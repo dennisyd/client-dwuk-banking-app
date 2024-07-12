@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { InputField } from "../formComponents";
 
 interface Input {
   id: string;
@@ -9,7 +10,7 @@ interface Input {
 export default function Input({ id, name, placeholder }: Input) {
   const [value, setValue] = useState("");
   return (
-    <input
+    <InputField
       id={id}
       name={name}
       value={value}
