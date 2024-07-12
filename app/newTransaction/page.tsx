@@ -25,7 +25,7 @@ export default function NewTransaction() {
     to_customer: "",
     amount: ""
   };
-  const apiBaseUrl = "https://api-dwuk-banking-app-2c5a96dde0e1.herokuapp.com";
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
   const fetchAllCustomersUrl = apiBaseUrl + "/customers";
 
   const { customers } = useFetchCustomers(fetchAllCustomersUrl);
@@ -44,8 +44,8 @@ export default function NewTransaction() {
     const toCustomerID = target.to_customer.value;
     const amount = target.amount.value;
 
-    const fromCustomerUrl = `https://api-dwuk-banking-app-2c5a96dde0e1.herokuapp.com/accounts/${fromCustomerID}`;
-    const toCustomerUrl = `https://api-dwuk-banking-app-2c5a96dde0e1.herokuapp.com/accounts/${toCustomerID}`;
+    const fromCustomerUrl = `${process.env.NEXT_PUBLIC_API_URL}/accounts/${fromCustomerID}`;
+    const toCustomerUrl = `${process.env.NEXT_PUBLIC_API_URL}/accounts/${toCustomerID}`;
 
     try {
       const [fromCustomerResponse, toCustomerResponse] = await Promise.all([

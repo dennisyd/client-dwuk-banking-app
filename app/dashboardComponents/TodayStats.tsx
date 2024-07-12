@@ -4,7 +4,7 @@ import StatsHeader from "../lib/common/dashboard/StatsHeader";
 import TodayStatsBody from "./TodayStatsBody/TodayStatsBody";
 
 export default function TodayStats() {
-  const apiBaseUrl = "https://api-dwuk-banking-app-2c5a96dde0e1.herokuapp.com";
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
   const fetchAllTransactionsUrl = apiBaseUrl + "/transactions";
 
   const { transactions } = useFetchTransactions(fetchAllTransactionsUrl);
