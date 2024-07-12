@@ -43,23 +43,21 @@ export default function DynamicForm() {
   const forwards = () => setFormSlide(formSlide + 1);
   const backwards = () => setFormSlide(formSlide - 1);
   return (
-    <Form>
-      <FormWrapper>
-        <Header>New Customer</Header>
-        <FieldsWrapper>{display}</FieldsWrapper>
+    <FormWrapper>
+      <Header>New Customer</Header>
+      <FieldsWrapper>{display}</FieldsWrapper>
 
-        <ButtonsWrapper>
-          <Button type="button" text="Previous" secondary onClick={backwards} />
-          <Button type="button" text="Next" onClick={forwards} />
-        </ButtonsWrapper>
+      <ButtonsWrapper>
+        <Button type="button" text="Previous" secondary onClick={backwards} />
+        <Button type="button" text="Next" onClick={forwards} />
+      </ButtonsWrapper>
 
-        <Button
-          type="submit"
-          text="Submit"
-          onClick={() => {}}
-          primaryColor={colours.black}
-        />
-      </FormWrapper>
-    </Form>
+      <Button
+        type="submit"
+        text="Submit"
+        onClick={() => {}}
+        primaryColor={colours.black}
+      />
+    </FormWrapper>
   );
 }

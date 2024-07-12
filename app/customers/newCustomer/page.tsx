@@ -1,5 +1,5 @@
 "use client";
-import { Formik } from "formik";
+import { Form, Formik } from "formik";
 import toast from "react-hot-toast";
 import Button from "@/app/lib/common/Button";
 import colours from "@/app/lib/constants/colors";
@@ -53,7 +53,9 @@ export default function NewCustomer() {
           }
         }}
       >
-        <DynamicForm />
+        <Form>
+          <DynamicForm />
+        </Form>
       </Formik>
     </div>
   );
