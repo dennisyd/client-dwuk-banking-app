@@ -39,8 +39,8 @@ export default function DynamicForm() {
   let display: JSX.Element;
   display = form[formSlide];
 
-  const forwards = () => setFormSlide(formSlide + 1);
-  const backwards = () => setFormSlide(formSlide - 1);
+  // const forwards = () => setFormSlide(formSlide + 1);
+  // const backwards = () => setFormSlide(formSlide - 1);
   return (
     <FormWrapper>
       <Header>New Customer</Header>
