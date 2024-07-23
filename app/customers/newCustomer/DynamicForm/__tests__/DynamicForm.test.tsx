@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import DynamicForm from "../DynamicForm";
 import Chance from "chance";
 import userEvent from "@testing-library/user-event";
-import { CustomerPropsWithoutID } from "@/app/lib/definitions/customer/CustomerProps";
+import { CustomerPropsWithoutID } from "@/app/lib/definitions/customer/types/CustomerProps";
 
 const some = new Chance();
 

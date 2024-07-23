@@ -5,7 +5,7 @@ import { useState } from "react";
 import Customer from "./Customer";
 import colours from "../lib/constants/colors";
 import dimensions from "../lib/constants/dimensions";
-import { CustomerProps } from "../lib/definitions/customer/CustomerProps";
+import { CustomerProps } from "../lib/definitions/customer/types/CustomerProps";
 import Input from "../lib/common/formComponents/Input";
 
 const Wrapper = styled.div`
