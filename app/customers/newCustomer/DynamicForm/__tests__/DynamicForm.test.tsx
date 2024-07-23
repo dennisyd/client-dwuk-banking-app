@@ -10,4 +10,8 @@ const testing = new RenderWithUserEvent();
 
 test.each(inputs)("3 part form", async (values: CustomerPropsWithoutID) => {
   testing.setup();
+
+  const firstName = screen.getByPlaceholderText("First Name");
+  const lastName = screen.getByPlaceholderText("Last Name");
+  const email = screen.getByPlaceholderText("Email");
 });

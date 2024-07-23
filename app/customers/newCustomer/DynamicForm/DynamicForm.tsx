@@ -15,6 +15,11 @@ const ButtonsWrapper = styled.div`
   justify-content: space-evenly;
 `;
 
+const Visible = styled.div``;
+const Hidden = styled.div`
+  display: none;
+`;
+
 const firstName = (
   <Input id="first_name" name="first_name" placeholder="First Name" />
 );
@@ -45,7 +50,15 @@ export default function DynamicForm() {
   return (
     <FormWrapper>
       <Header>New Customer</Header>
-      <FieldsWrapper>{display}</FieldsWrapper>
+      <FieldsWrapper>
+        {form.map((input, i) =>
+          i === formSlide ? (
+            <Visible key={i}>{input}</Visible>
+          ) : (
+            <Hidden key={i}>{input}</Hidden>
+          )
+        )}
+      </FieldsWrapper>
 
       <ButtonsWrapper>
         <Button type="button" text="Previous" secondary onClick={backwards} />
