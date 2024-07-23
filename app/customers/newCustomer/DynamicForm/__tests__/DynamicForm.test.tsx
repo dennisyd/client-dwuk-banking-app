@@ -9,10 +9,25 @@ const inputs = random.create();
 const testing = new RenderWithUserEvent();
 
 test.each(inputs)("3 part form", async (values: CustomerPropsWithoutID) => {
-  testing.setup();
+  const user = testing.setup();
+
+  const previousButton = screen.getByRole("button", { name: "Previous" });
+  const nextButton = screen.getByRole("button", { name: "Next" });
 
   const firstName = screen.getByPlaceholderText("First Name");
+  await user.type(firstName, values.first_name);
+  await user.click(nextButton);
+  
   const lastName = screen.getByPlaceholderText("Last Name");
+  await user.type(lastName, values.last_name);
+  await user.click(nextButton);
+  
   const email = screen.getByPlaceholderText("Email");
-  screen.debug();
+  await user.type(email, values.email);
+  
+  expect(firstName).toHaveValue(values.first_name);
+  expect(lastName).toHaveValue(values.last_name);
+  expect(email).toHaveValue(values.email);
+
+
 });
