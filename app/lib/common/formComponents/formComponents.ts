@@ -13,6 +13,7 @@ export const FieldsWrapper = styled.div`
   flex-direction: column;
   gap: 1rem;
   max-width: 50vw;
+  min-height: 8vh;
   margin: 1rem 0;
 `;
 
