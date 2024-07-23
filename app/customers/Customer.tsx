@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 import colours from "@/app/lib/constants/colors";
 import { useState } from "react";
 import { CustomerProps } from "@/app/lib/definitions/customer/types/CustomerProps";
-import Input from "@/app/lib/common/formComponents/Input";
+import Input from "../lib/common/formComponents/Input/Input";
 
 const CustomersWrapper = styled.div<{ $isEditing?: boolean }>`
   display: flex;
@@ -46,32 +46,14 @@ export default function Customer({
   return isEditing ? (
     <CustomersWrapper $isEditing={isEditing}>
       <FirstName>
-        <Input
-          name="first_name"
-          value={customer.first_name}
-          onChange={(e) =>
-            onEditCustomer({ ...customer, first_name: e.target.value })
-          }
-        />
+        <Input id="first_name" name="first_name" placeholder="First Name" />
       </FirstName>
       <LastName>
-        <Input
-          name="last_name"
-          value={customer.last_name}
-          onChange={(e) =>
-            onEditCustomer({ ...customer, last_name: e.target.value })
-          }
-        />
+        <Input id="last_name" name="last_name" placeholder="Last Name" />
       </LastName>
 
       <Email>
-        <Input
-          name="email"
-          value={customer.email}
-          onChange={(e) =>
-            onEditCustomer({ ...customer, email: e.target.value })
-          }
-        />
+        <Input id="email" name="email" placeholder="Email" />
       </Email>
       <Button
         type="button"

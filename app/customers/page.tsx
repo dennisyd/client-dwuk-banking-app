@@ -6,7 +6,7 @@ import Customer from "./Customer";
 import colours from "../lib/constants/colors";
 import dimensions from "../lib/constants/dimensions";
 import { CustomerProps } from "../lib/definitions/customer/types/CustomerProps";
-import Input from "../lib/common/formComponents/Input";
+import Input from "../lib/common/formComponents/Input/Input";
 
 const Wrapper = styled.div`
   display: flex;
@@ -52,11 +52,7 @@ export default function Customers() {
   return (
     <Wrapper>
       <Search>
-        <Input
-          placeholder="Search"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
+        <Input id="search" name="search" placeholder="Search" />
       </Search>
       <CustomersWrapper>
         {filteredCustomers.slice(0, 5).map((customer) => (
