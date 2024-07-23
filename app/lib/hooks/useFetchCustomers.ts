@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { CustomerProps } from "../definitions/CustomerProps";
+import { CustomerProps } from "../definitions/customer/CustomerProps";
 import toast from "react-hot-toast";
 
 async function fetchCustomers(url: string): Promise<CustomerProps[]> {
