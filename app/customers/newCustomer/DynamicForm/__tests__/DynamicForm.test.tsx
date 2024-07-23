@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import DynamicForm from "../DynamicForm";
 import Chance from "chance";
-import userEvent from "@testing-library/user-event";
 import { CustomerPropsWithoutID } from "@/app/lib/definitions/customer/types/CustomerProps";
 
 const some = new Chance();
@@ -11,22 +10,15 @@ const inputs = Array.from({ length: 6 }, () => {
   const lastName = some.last();
   const email = some.email();
 
-  return [
-    firstName,
-    lastName,
-    email,
-    { firstName: firstName, lastName: lastName, email: email }
-  ];
+  const values: CustomerPropsWithoutID = {
+    first_name: firstName,
+    last_name: lastName,
+    email: email
+  };
+
+  return values;
 });
 
-test.each(inputs)(
-  "3 part form",
-  (
-    firstName: string,
-    lastName: string,
-    email: string,
-    customer: CustomerPropsWithoutID
-  ) => {
-    render(<DynamicForm />);
-  }
-);
+test.each(inputs)("3 part form", async (values: CustomerPropsWithoutID) => {
+  render(<DynamicForm />);
+});
