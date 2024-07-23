@@ -14,4 +14,5 @@ test.each(inputs)("3 part form", async (values: CustomerPropsWithoutID) => {
   const firstName = screen.getByPlaceholderText("First Name");
   const lastName = screen.getByPlaceholderText("Last Name");
   const email = screen.getByPlaceholderText("Email");
+  screen.debug();
 });
