@@ -1,24 +1,25 @@
 "use client";
-import { Form, Formik } from "formik";
 import toast from "react-hot-toast";
 import DynamicForm from "./DynamicForm/DynamicForm";
-
-interface NewCustomerFormProps {
-  first_name: string;
-  last_name: string;
-  email: string;
-}
+import { CustomerPropsWithoutID } from "@/app/lib/definitions/customer/types/CustomerProps";
 
 export default function NewCustomer() {
-  const initialValues: NewCustomerFormProps = {
+  const initialValues: CustomerPropsWithoutID = {
     first_name: "",
     last_name: "",
     email: ""
   };
 
+  function validate(){
+
+  }
+
+  function submit(){
+    
+  }
+
   return (
     <div>
-      <Formik
         initialValues={initialValues}
         onSubmit={async (values, actions) => {
           const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -45,10 +46,7 @@ export default function NewCustomer() {
           }
         }}
       >
-        <Form>
           <DynamicForm />
-        </Form>
-      </Formik>
     </div>
   );
 }

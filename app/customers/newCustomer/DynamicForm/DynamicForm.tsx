@@ -38,7 +38,12 @@ const submitButton = (
 
 const form = [firstName, lastName, email];
 
-export default function DynamicForm() {
+interface DynamicFormProps {
+  validate: () => {};
+  submit: () => {};
+}
+
+export default function DynamicForm({ validate, submit }: DynamicFormProps) {
   const [formSlide, setFormSlide] = useState(0);
   const [formData, setFormData] = useState();
 
