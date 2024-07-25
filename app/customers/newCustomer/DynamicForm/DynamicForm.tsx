@@ -8,6 +8,7 @@ import Button from "@/app/lib/common/Button";
 import colours from "@/app/lib/constants/colors";
 import { useState } from "react";
 import styled from "styled-components";
+import * as yup from "yup";
 
 const ButtonsWrapper = styled.div`
   display: flex;
@@ -39,8 +40,8 @@ const submitButton = (
 const form = [firstName, lastName, email];
 
 interface DynamicFormProps {
-  validate: () => {};
-  submit: () => {};
+  validate: (schema: yup.Schema, value: any) => void;
+  submit: () => void;
 }
 
 export default function DynamicForm({ validate, submit }: DynamicFormProps) {

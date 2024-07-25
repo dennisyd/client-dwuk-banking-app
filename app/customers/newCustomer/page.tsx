@@ -2,6 +2,7 @@
 import toast from "react-hot-toast";
 import DynamicForm from "./DynamicForm/DynamicForm";
 import { CustomerPropsWithoutID } from "@/app/lib/definitions/customer/types/CustomerProps";
+import * as yup from "yup";
 
 export default function NewCustomer() {
   const initialValues: CustomerPropsWithoutID = {
@@ -10,43 +11,25 @@ export default function NewCustomer() {
     email: ""
   };
 
-  function validate(){
+  const name = yup
+    .string()
+    .required()
+    .min(3, "Must be at least 3 characters long")
+    .defined("Must be defined");
 
-  }
+  const email = yup
+    .string()
+    .required()
+    .email("Must be a valid email")
+    .defined();
 
-  function submit(){
-    
-  }
+  
+
+  function submit() {}
 
   return (
     <div>
-        initialValues={initialValues}
-        onSubmit={async (values, actions) => {
-          const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
-          try {
-            const req = await fetch(apiBaseUrl + "/customers", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json"
-              },
-              body: JSON.stringify(values)
-            });
-
-            if (req.ok) {
-              toast.success(`${values.first_name} added successfully.`);
-              actions.resetForm();
-            } else {
-              throw new Error();
-            }
-          } catch (error) {
-            if (error instanceof Error) {
-              toast.error("Something went wrong.");
-            }
-          }
-        }}
-      >
-          <DynamicForm />
+      <DynamicForm validate={validate} submit={submit} />
     </div>
   );
 }
