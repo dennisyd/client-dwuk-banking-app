@@ -1,19 +1,19 @@
 import * as yup from "yup";
+import ResultGenerator from "result-generator";
 
 export default class FormValidator {
+  private resultGenerator = new ResultGenerator();
+
   async validate(schema: yup.Schema, value: any) {
     try {
       await schema.validate(value);
-      return true;
+      return this.resultGenerator.generateSuccess("Valid");
     } catch (e) {
+      let error = new Error("Unknown Error");
       if (e instanceof yup.ValidationError) {
-        const message = e.errors.toString();
-        const yupError = new Error(message);
-        return yupError;
-      } else {
-        const unknownError = new Error("Unknown Error");
-        return unknownError;
+        error = new Error(e.errors.toString());
       }
+      return this.resultGenerator.generateError(error);
     }
   }
 }
