@@ -6,7 +6,7 @@ export default class FormValidator {
 
   async validate(schema: yup.Schema, value: any) {
     try {
-      await schema.validate(value);
+      await schema.validate(value, { strict: true });
       return this.resultGenerator.generateSuccess("Valid");
     } catch (e) {
       let error = new Error("Unknown Error");
