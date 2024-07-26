@@ -13,7 +13,6 @@ test.each(inputs)(
   async (values: CustomerPropsWithoutID) => {
     const user = testing.setup();
 
-    const previousButton = screen.getByRole("button", { name: "Previous" });
     const nextButton = screen.getByRole("button", { name: "Next" });
 
     const firstName = screen.getByPlaceholderText("First Name");
