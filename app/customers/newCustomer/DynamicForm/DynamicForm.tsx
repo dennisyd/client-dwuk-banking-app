@@ -21,23 +21,17 @@ const Hidden = styled.div`
   display: none;
 `;
 
-const firstName = (
-  <Input id="first_name" name="first_name" placeholder="First Name" />
-);
-const lastName = (
-  <Input id="last_name" name="last_name" placeholder="Last Name" />
-);
-const email = <Input id="email" name="email" placeholder="Email" />;
-const submitButton = (
-  <Button
-    type="submit"
-    text="Submit"
-    onClick={() => {}}
-    primaryColor={colours.black}
-  />
-);
+const nameSchema = yup
+  .string()
+  .required()
+  .min(3, "Must be at least 3 characters long")
+  .defined("Must be defined");
 
-const form = [firstName, lastName, email];
+const emailSchema = yup
+  .string()
+  .required()
+  .email("Must be a valid email")
+  .defined();
 
 interface DynamicFormProps {
   validate: (schema: yup.Schema, value: any) => void;
@@ -47,8 +41,52 @@ interface DynamicFormProps {
 export default function DynamicForm({ validate, submit }: DynamicFormProps) {
   const [formSlide, setFormSlide] = useState(0);
   const [formData, setFormData] = useState();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
 
-  const forwards = () => setFormSlide(formSlide + 1);
+  const firstNameElement = (
+    <Input
+      id="first_name"
+      name="first_name"
+      placeholder="First Name"
+      value={firstName}
+      setValue={setFirstName}
+    />
+  );
+  const lastNameElement = (
+    <Input
+      id="last_name"
+      name="last_name"
+      placeholder="Last Name"
+      value={lastName}
+      setValue={setLastName}
+    />
+  );
+  const emailElement = (
+    <Input
+      id="email"
+      name="email"
+      placeholder="Email"
+      value={email}
+      setValue={setEmail}
+    />
+  );
+  const submitButton = (
+    <Button
+      type="submit"
+      text="Submit"
+      onClick={() => {}}
+      primaryColor={colours.black}
+    />
+  );
+
+  const form = [firstNameElement, lastNameElement, emailElement];
+
+  const forwards = () => {
+
+    setFormSlide(formSlide + 1);
+  };
   const backwards = () => setFormSlide(formSlide - 1);
   return (
     <FormWrapper>

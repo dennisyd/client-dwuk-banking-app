@@ -31,3 +31,7 @@ test.each(inputs)(
     expect(email).toHaveValue(values.email);
   }
 );
+
+test("if the input is valid (validation)", async () => {
+  const user = testing.setup();
+});

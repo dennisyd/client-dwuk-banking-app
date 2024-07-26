@@ -11,18 +11,6 @@ export default function NewCustomer() {
     email: ""
   };
 
-  const name = yup
-    .string()
-    .required()
-    .min(3, "Must be at least 3 characters long")
-    .defined("Must be defined");
-
-  const email = yup
-    .string()
-    .required()
-    .email("Must be a valid email")
-    .defined();
-
   function validate() {}
   function submit() {}
 
