@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import ResultGenerator from "result-generator";
+import { ResultGenerator } from "result-generator/dist/index.cjs";
 
 export default class FormValidator {
   private resultGenerator = new ResultGenerator();
