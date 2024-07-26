@@ -1,14 +1,6 @@
 import FormValidator from "../FormValidator";
-import Chance from "chance";
 import { nameSchema, emailSchema } from "./helpers/schemas";
-
-const some = new Chance();
-const validNames = Array.from({ length: 10 }, () => some.first());
-const undefinedAndIntegers = Array.from({ length: 10 }, (_, i) => {
-  if (i % 2) return some.integer();
-});
-
-const validEmails = Array.from({ length: 10 }, () => some.email());
+import { validNames, validEmails, undefinedAndIntegers } from "./helpers/data";
 
 const validator = new FormValidator();
 
