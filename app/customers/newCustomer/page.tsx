@@ -23,8 +23,7 @@ export default function NewCustomer() {
     .email("Must be a valid email")
     .defined();
 
-  
-
+  function validate() {}
   function submit() {}
 
   return (
