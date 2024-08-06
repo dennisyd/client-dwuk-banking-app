@@ -84,22 +84,13 @@ export default function DynamicForm({ validate, submit }: DynamicFormProps) {
   const form = [firstNameElement, lastNameElement, emailElement];
 
   const forwards = () => {
-
     setFormSlide(formSlide + 1);
   };
   const backwards = () => setFormSlide(formSlide - 1);
   return (
     <FormWrapper>
       <Header>New Customer</Header>
-      <FieldsWrapper>
-        {form.map((input, i) =>
-          i === formSlide ? (
-            <Visible key={i}>{input}</Visible>
-          ) : (
-            <Hidden key={i}>{input}</Hidden>
-          )
-        )}
-      </FieldsWrapper>
+      <FieldsWrapper>{form[formSlide]}</FieldsWrapper>
 
       <ButtonsWrapper>
         <Button type="button" text="Previous" secondary onClick={backwards} />
