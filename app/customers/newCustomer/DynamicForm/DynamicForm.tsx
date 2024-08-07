@@ -3,106 +3,79 @@ import {
   Header,
   FieldsWrapper
 } from "@/app/lib/common/formComponents/formComponents";
-import Input from "@/app/lib/common/formComponents/Input/Input";
 import Button from "@/app/lib/common/Button";
 import colours from "@/app/lib/constants/colors";
-import { useState } from "react";
-import styled from "styled-components";
 import * as yup from "yup";
+import { Result } from "../../../lib/utils/ResultGenerator/ResultGenerator";
+import { useForm } from "react-hook-form";
+import { CustomerPropsWithoutID } from "@/app/lib/definitions/customer/types/CustomerProps";
+import { yupResolver } from "@hookform/resolvers/yup";
+import styles from "../newCustomer.module.css";
 
-const ButtonsWrapper = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: space-evenly;
-`;
-
-const Visible = styled.div``;
-const Hidden = styled.div`
-  display: none;
-`;
-
-const nameSchema = yup
-  .string()
-  .required()
-  .min(3, "Must be at least 3 characters long")
-  .defined("Must be defined");
-
-const emailSchema = yup
-  .string()
-  .required()
-  .email("Must be a valid email")
-  .defined();
+const userSchema = yup.object().shape({
+  first_name: yup
+    .string()
+    .required("First Name is a required field")
+    .min(3, "Must be at least 3 characters long")
+    .defined("Must be defined"),
+  last_name: yup
+    .string()
+    .required("Last Name is a required field")
+    .min(3, "Must be at least 3 characters long")
+    .defined("Must be defined"),
+  email: yup
+    .string()
+    .required("Email is a required field")
+    .email("Must be a valid email")
+    .defined("Must be defined")
+});
 
 interface DynamicFormProps {
-  validate: (schema: yup.Schema, value: any) => void;
-  submit: () => void;
+  validate: (schema: yup.Schema, value: any) => Promise<Result>;
+  onSubmit: (user: CustomerPropsWithoutID) => void;
 }
 
-export default function DynamicForm({ validate, submit }: DynamicFormProps) {
-  const [formSlide, setFormSlide] = useState(0);
-  const [formData, setFormData] = useState();
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
+export default function DynamicForm({ validate, onSubmit }: DynamicFormProps) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({ resolver: yupResolver(userSchema) });
 
-  const firstNameElement = (
-    <Input
-      id="first_name"
-      name="first_name"
-      placeholder="First Name"
-      value={firstName}
-      setValue={setFirstName}
-    />
-  );
-  const lastNameElement = (
-    <Input
-      id="last_name"
-      name="last_name"
-      placeholder="Last Name"
-      value={lastName}
-      setValue={setLastName}
-    />
-  );
-  const emailElement = (
-    <Input
-      id="email"
-      name="email"
-      placeholder="Email"
-      value={email}
-      setValue={setEmail}
-    />
-  );
-  const submitButton = (
-    <Button
-      type="submit"
-      text="Submit"
-      onClick={() => {}}
-      primaryColor={colours.black}
-    />
-  );
-
-  const form = [firstNameElement, lastNameElement, emailElement];
-
-  const forwards = () => {
-    setFormSlide(formSlide + 1);
-  };
-  const backwards = () => setFormSlide(formSlide - 1);
   return (
-    <FormWrapper>
-      <Header>New Customer</Header>
-      <FieldsWrapper>{form[formSlide]}</FieldsWrapper>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <FormWrapper>
+        <Header>New Customer</Header>
+        <FieldsWrapper>
+          <input
+            {...register("first_name")}
+            placeholder="First Name"
+            className="input-element"
+          />
+          <p className={styles.error}>{errors.first_name?.message}</p>
 
-      <ButtonsWrapper>
-        <Button type="button" text="Previous" secondary onClick={backwards} />
-        <Button type="button" text="Next" onClick={forwards} />
-      </ButtonsWrapper>
+          <input
+            {...register("last_name")}
+            placeholder="Last Name"
+            className="input-element"
+          />
+          <p className={styles.error}>{errors.last_name?.message}</p>
 
-      <Button
-        type="submit"
-        text="Submit"
-        onClick={() => {}}
-        primaryColor={colours.black}
-      />
-    </FormWrapper>
+          <input
+            {...register("email")}
+            placeholder="Email"
+            className="input-element"
+          />
+          <p className={styles.error}>{errors.email?.message}</p>
+        </FieldsWrapper>
+
+        <Button
+          type="submit"
+          text="Submit"
+          onClick={() => {}}
+          primaryColor={colours.black}
+        />
+      </FormWrapper>
+    </form>
   );
 }

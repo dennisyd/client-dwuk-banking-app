@@ -1,7 +1,9 @@
-import { screen } from "@testing-library/react";
+import { screen, render } from "@testing-library/react";
 import { CustomerPropsWithoutID } from "@/app/lib/definitions/customer/types/CustomerProps";
 import RenderWithUserEvent from "./helpers/RenderWithUserEvent";
 import RandomInputs from "./helpers/RandomInputs";
+import userEvent from "@testing-library/user-event";
+import DynamicForm from "../DynamicForm";
 
 const random = new RandomInputs();
 const inputs = random.create();
@@ -13,15 +15,11 @@ test.each(inputs)(
   async (values: CustomerPropsWithoutID) => {
     const user = testing.setup();
 
-    const nextButton = screen.getByRole("button", { name: "Next" });
-
     const firstName = screen.getByPlaceholderText("First Name");
     await user.type(firstName, values.first_name);
-    await user.click(nextButton);
 
     const lastName = screen.getByPlaceholderText("Last Name");
     await user.type(lastName, values.last_name);
-    await user.click(nextButton);
 
     const email = screen.getByPlaceholderText("Email");
     await user.type(email, values.email);
@@ -32,6 +30,31 @@ test.each(inputs)(
   }
 );
 
-test("if the input is valid (validation)", async () => {
-  const user = testing.setup();
-});
+test.each(inputs)(
+  "if the submit function is called with correct arguments",
+  async (values) => {
+    const validate = jest.fn();
+    const submit = jest.fn();
+    render(<DynamicForm validate={validate} onSubmit={submit} />);
+    const user = userEvent.setup();
+
+    const firstName = screen.getByPlaceholderText("First Name");
+    await user.type(firstName, values.first_name);
+
+    const lastName = screen.getByPlaceholderText("Last Name");
+    await user.type(lastName, values.last_name);
+
+    const email = screen.getByPlaceholderText("Email");
+    await user.type(email, values.email);
+
+    const submitButton = screen.getByRole("button", { name: "Submit" });
+    await user.click(submitButton);
+
+    expect(submit.mock.calls).toHaveLength(1);
+    expect(submit.mock.calls[0][0]).toStrictEqual({
+      first_name: values.first_name,
+      last_name: values.last_name,
+      email: values.email
+    });
+  }
+);
