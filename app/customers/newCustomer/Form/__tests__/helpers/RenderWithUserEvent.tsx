@@ -2,7 +2,6 @@ import Form from "../../Form";
 import userEvent from "@testing-library/user-event";
 import { render } from "@testing-library/react";
 
-const validate = jest.fn();
 const submit = jest.fn();
 
 export default class RenderWithUserEvent {
@@ -18,6 +17,6 @@ export default class RenderWithUserEvent {
   }
 
   private renderForm() {
-    render(<Form validate={validate} onSubmit={submit} />);
+    render(<Form onSubmit={submit} />);
   }
 }

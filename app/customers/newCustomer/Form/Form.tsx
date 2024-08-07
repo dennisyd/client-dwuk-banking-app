@@ -31,11 +31,10 @@ const userSchema = yup.object().shape({
 });
 
 interface FormProps {
-  validate: (schema: yup.Schema, value: any) => Promise<Result>;
   onSubmit: (user: CustomerPropsWithoutID) => void;
 }
 
-export default function Form({ validate, onSubmit }: FormProps) {
+export default function Form({ onSubmit }: FormProps) {
   const {
     register,
     handleSubmit,

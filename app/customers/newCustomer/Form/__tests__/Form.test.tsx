@@ -33,9 +33,8 @@ test.each(inputs)(
 test.each(inputs)(
   "if the submit function is called with correct arguments",
   async (values) => {
-    const validate = jest.fn();
     const submit = jest.fn();
-    render(<Form validate={validate} onSubmit={submit} />);
+    render(<Form onSubmit={submit} />);
     const user = userEvent.setup();
 
     const firstName = screen.getByPlaceholderText("First Name");
