@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import CustomerProps from "../definitions/CustomerProps";
+import { CustomerProps } from "../definitions/customer/types/CustomerProps";
 import toast from "react-hot-toast";
 
 async function fetchCustomers(url: string): Promise<CustomerProps[]> {
@@ -8,7 +8,7 @@ async function fetchCustomers(url: string): Promise<CustomerProps[]> {
     toast.error("An error occurred while fetching the customers.");
   }
   const resBody = await res.json();
-  const customers: CustomerProps[] = await JSON.parse(resBody)
+  const customers: CustomerProps[] = await JSON.parse(resBody);
   return customers;
 }
 
