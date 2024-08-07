@@ -1,4 +1,4 @@
-import DynamicForm from "../../Form";
+import Form from "../../Form";
 import userEvent from "@testing-library/user-event";
 import { render } from "@testing-library/react";
 
@@ -7,7 +7,7 @@ const submit = jest.fn();
 
 export default class RenderWithUserEvent {
   setup() {
-    this.renderDynamicForm();
+    this.renderForm();
     const user = this.createUserEvent();
     return user;
   }
@@ -17,7 +17,7 @@ export default class RenderWithUserEvent {
     return user;
   }
 
-  private renderDynamicForm() {
-    render(<DynamicForm validate={validate} onSubmit={submit} />);
+  private renderForm() {
+    render(<Form validate={validate} onSubmit={submit} />);
   }
 }

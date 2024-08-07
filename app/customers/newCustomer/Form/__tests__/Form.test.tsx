@@ -3,7 +3,7 @@ import { CustomerPropsWithoutID } from "@/app/lib/definitions/customer/types/Cus
 import RenderWithUserEvent from "./helpers/RenderWithUserEvent";
 import RandomInputs from "./helpers/RandomInputs";
 import userEvent from "@testing-library/user-event";
-import DynamicForm from "../Form";
+import Form from "../Form";
 
 const random = new RandomInputs();
 const inputs = random.create();
@@ -35,7 +35,7 @@ test.each(inputs)(
   async (values) => {
     const validate = jest.fn();
     const submit = jest.fn();
-    render(<DynamicForm validate={validate} onSubmit={submit} />);
+    render(<Form validate={validate} onSubmit={submit} />);
     const user = userEvent.setup();
 
     const firstName = screen.getByPlaceholderText("First Name");

@@ -30,12 +30,12 @@ const userSchema = yup.object().shape({
     .defined("Must be defined")
 });
 
-interface DynamicFormProps {
+interface FormProps {
   validate: (schema: yup.Schema, value: any) => Promise<Result>;
   onSubmit: (user: CustomerPropsWithoutID) => void;
 }
 
-export default function DynamicForm({ validate, onSubmit }: DynamicFormProps) {
+export default function Form({ validate, onSubmit }: FormProps) {
   const {
     register,
     handleSubmit,
