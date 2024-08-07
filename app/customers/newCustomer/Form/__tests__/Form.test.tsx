@@ -3,7 +3,7 @@ import { CustomerPropsWithoutID } from "@/app/lib/definitions/customer/types/Cus
 import RenderWithUserEvent from "./helpers/RenderWithUserEvent";
 import RandomInputs from "./helpers/RandomInputs";
 import userEvent from "@testing-library/user-event";
-import DynamicForm from "../DynamicForm";
+import DynamicForm from "../Form";
 
 const random = new RandomInputs();
 const inputs = random.create();

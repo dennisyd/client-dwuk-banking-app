@@ -1,6 +1,6 @@
 "use client";
-import DynamicForm from "./DynamicForm/DynamicForm";
-import FormValidator from "./DynamicForm/FormValidator/FormValidator";
+import DynamicForm from "./Form/Form";
+import FormValidator from "./Form/FormValidator/FormValidator";
 import { SubmitHandler } from "react-hook-form";
 import { CustomerPropsWithoutID } from "@/app/lib/definitions/customer/types/CustomerProps";
 

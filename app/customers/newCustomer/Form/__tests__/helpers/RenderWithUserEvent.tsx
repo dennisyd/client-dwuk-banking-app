@@ -1,4 +1,4 @@
-import DynamicForm from "../../DynamicForm";
+import DynamicForm from "../../Form";
 import userEvent from "@testing-library/user-event";
 import { render } from "@testing-library/react";
 
@@ -18,6 +18,6 @@ export default class RenderWithUserEvent {
   }
 
   private renderDynamicForm() {
-    render(<DynamicForm validate={validate} submit={submit} />);
+    render(<DynamicForm validate={validate} onSubmit={submit} />);
   }
 }
