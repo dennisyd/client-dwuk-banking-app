@@ -6,7 +6,6 @@ import {
 import Button from "@/app/lib/common/Button";
 import colours from "@/app/lib/constants/colors";
 import * as yup from "yup";
-import { Result } from "../../../lib/utils/ResultGenerator/ResultGenerator";
 import { useForm } from "react-hook-form";
 import { CustomerPropsWithoutID } from "@/app/lib/definitions/customer/types/CustomerProps";
 import { yupResolver } from "@hookform/resolvers/yup";
