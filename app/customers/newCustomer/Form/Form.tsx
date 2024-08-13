@@ -38,7 +38,7 @@ export default function Form({ onSubmit }: FormProps) {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm({ resolver: yupResolver(userSchema) });
+  } = useForm<CustomerPropsWithoutID>({ resolver: yupResolver(userSchema) });
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
