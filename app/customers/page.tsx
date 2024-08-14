@@ -4,8 +4,8 @@ import { useState } from "react";
 import Customer from "./Customer";
 import colours from "../lib/constants/colors";
 import dimensions from "../lib/constants/dimensions";
-import Input from "../lib/common/formComponents/Input/Input";
 import { useCustomers } from "../lib/services/queries/queries";
+import toast from "react-hot-toast";
 
 const Wrapper = styled.div`
   display: flex;
@@ -34,7 +34,7 @@ export default function Customers() {
   }
 
   if (customers.isError) {
-    return <span>{`An error occurred: ${customers.error}`}</span>;
+    return toast.error("An error occurred when getting customers");
   }
 
   const filteredCustomers = customers.data.filter((customer) =>
