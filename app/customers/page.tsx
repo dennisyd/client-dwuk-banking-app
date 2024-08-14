@@ -1,7 +1,7 @@
 "use client";
 import styled from "styled-components";
 import { useState } from "react";
-import Customer from "./Customer";
+import Customer from "./Customer/Customer";
 import colours from "../lib/constants/colors";
 import dimensions from "../lib/constants/dimensions";
 import { useCustomers } from "../lib/services/queries/queries";
