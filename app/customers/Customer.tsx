@@ -4,6 +4,7 @@ import colours from "@/app/lib/constants/colors";
 import { useState } from "react";
 import { CustomerProps } from "@/app/lib/definitions/customer/types/CustomerProps";
 import Input from "../lib/common/formComponents/Input/Input";
+import { useForm, SubmitHandler } from "react-hook-form";
 
 const CustomersWrapper = styled.div<{ $isEditing?: boolean }>`
   display: flex;
@@ -42,27 +43,58 @@ export default function Customer({
   customer,
   onEditCustomer
 }: CustomerComponentProps) {
+  const { register, handleSubmit } = useForm<CustomerProps>();
   const [isEditing, setIsEditing] = useState(false);
+  const [firstName, setFirstName] = useState(customer.first_name);
+  const [lastName, setLastName] = useState(customer.last_name);
+  const [email, setEmail] = useState(customer.email);
+
+  const handlePutCustomerSubmit: SubmitHandler<CustomerProps> = (
+    editedCustomer
+  ) => {
+    console.log("editedCustomer", editedCustomer);
+    setIsEditing(!isEditing);
+  };
   return isEditing ? (
     <CustomersWrapper $isEditing={isEditing}>
-      <FirstName>
-        <input value={customer.first_name} onChange={() => }/>
-        <Input id="first_name" name="first_name" placeholder="First Name" />
-      </FirstName>
-      <LastName>
-        <Input id="last_name" name="last_name" placeholder="Last Name" />
-      </LastName>
+      <form onSubmit={handleSubmit(handlePutCustomerSubmit)}>
+        <FirstName>
+          <input
+            {...register("first_name")}
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+        </FirstName>
+        <LastName>
+          <input
+            {...register("last_name")}
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+          />
+        </LastName>
 
-      <Email>
-        <Input id="email" name="email" placeholder="Email" />
-      </Email>
-      <Button
-        type="button"
-        text="Save"
-        onClick={() => setIsEditing(!isEditing)}
-        secondary
-        secondaryColor={colours.black}
-      />
+        <Email>
+          <input
+            {...register("email")}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </Email>
+
+        <input
+          {...register("customer_id")}
+          hidden
+          value={customer.customer_id}
+        />
+        <input {...register("officer_id")} hidden defaultValue={1} />
+        <Button
+          type="submit"
+          text="Save"
+          onClick={() => {}}
+          secondary
+          secondaryColor={colours.black}
+        />
+      </form>
     </CustomersWrapper>
   ) : (
     <Wrapper>

@@ -9,3 +9,11 @@ export async function getCustomers() {
   const customers: CustomerProps[] = JSON.parse(response.data);
   return customers;
 }
+
+export async function putCustomer(editedCustomer: CustomerProps) {
+  const response = await axiosInstance.put(
+    `customers/${editedCustomer.customer_id}`,
+    editedCustomer
+  );
+  return response;
+}
