@@ -1,4 +1,4 @@
-import Button from "@/app/lib/common/Button";
+import Button from "@/app/lib/components/common/Button";
 import styled, { css } from "styled-components";
 import colours from "@/app/lib/constants/colors";
 import { useState } from "react";

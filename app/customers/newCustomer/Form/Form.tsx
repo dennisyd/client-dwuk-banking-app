@@ -2,8 +2,8 @@ import {
   FormWrapper,
   Header,
   FieldsWrapper
-} from "@/app/lib/common/formComponents/formComponents";
-import Button from "@/app/lib/common/Button";
+} from "@/app/lib/components/common/formComponents/formComponents";
+import Button from "@/app/lib/components/common/Button";
 import colours from "@/app/lib/constants/colors";
 import { useForm } from "react-hook-form";
 import { CustomerPropsWithoutID } from "@/app/lib/definitions/customer/types/CustomerProps";
