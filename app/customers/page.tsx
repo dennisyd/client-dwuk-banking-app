@@ -1,12 +1,11 @@
 "use client";
 import styled from "styled-components";
-import useFetchCustomers from "../lib/hooks/useFetchCustomers";
 import { useState } from "react";
 import Customer from "./Customer";
 import colours from "../lib/constants/colors";
 import dimensions from "../lib/constants/dimensions";
-import { CustomerProps } from "../lib/definitions/customer/types/CustomerProps";
 import Input from "../lib/common/formComponents/Input/Input";
+import { useCustomers } from "../lib/services/queries/queries";
 
 const Wrapper = styled.div`
   display: flex;
@@ -29,21 +28,30 @@ const CustomersWrapper = styled.div`
 export default function Customers() {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
   const fetchAllCustomersUrl = apiBaseUrl + "/customers";
-  const { customers, setCustomers } = useFetchCustomers(fetchAllCustomersUrl);
   const [searchTerm, setSearchTerm] = useState("");
+  const customers = useCustomers();
 
-  function handleEditCustomer(editedCustomer: CustomerProps) {
-    const editedCustomers = customers.map((customer) => {
-      if (editedCustomer.customer_id === customer.customer_id) {
-        return editedCustomer;
-      } else {
-        return customer;
-      }
-    });
-    setCustomers(editedCustomers);
+  // function handleEditCustomer(editedCustomer: CustomerProps) {
+  //   const editedCustomers = customers.map((customer) => {
+  //     if (editedCustomer.customer_id === customer.customer_id) {
+  //       return editedCustomer;
+  //     } else {
+  //       return customer;
+  //     }
+  //   });
+  //   setCustomers(editedCustomers);
+  // }
+  function handleEditCustomer() {}
+
+  if (customers.isPending) {
+    return <span>Loading ...</span>;
   }
 
-  const filteredCustomers = customers.filter((customer) =>
+  if (customers.isError) {
+    return <span>{`An error occurred: ${customers.error}`}</span>;
+  }
+
+  const filteredCustomers = customers.data.filter((customer) =>
     `${customer.first_name} ${customer.last_name}`
       .toLowerCase()
       .includes(searchTerm.toLowerCase())
@@ -52,7 +60,11 @@ export default function Customers() {
   return (
     <Wrapper>
       <Search>
-        <Input id="search" name="search" placeholder="Search" />
+        <input
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="input-element"
+        />
       </Search>
       <CustomersWrapper>
         {filteredCustomers.slice(0, 5).map((customer) => (

@@ -46,6 +46,7 @@ export default function Customer({
   return isEditing ? (
     <CustomersWrapper $isEditing={isEditing}>
       <FirstName>
+        <input value={customer.first_name} onChange={() => }/>
         <Input id="first_name" name="first_name" placeholder="First Name" />
       </FirstName>
       <LastName>
