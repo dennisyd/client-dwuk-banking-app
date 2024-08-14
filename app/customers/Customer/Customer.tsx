@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 import colours from "@/app/lib/constants/colors";
 import { useState } from "react";
 import { CustomerProps } from "@/app/lib/definitions/customer/types/CustomerProps";
-import Input from "../lib/common/formComponents/Input/Input";
+import PuttingCustomer from "../PuttingCustomer/PuttingCustomer";
 
 const CustomersWrapper = styled.div<{ $isEditing?: boolean }>`
   display: flex;
@@ -36,33 +36,17 @@ const Wrapper = styled.div``;
 
 interface CustomerComponentProps {
   customer: CustomerProps;
-  onEditCustomer: (editedAuthor: CustomerProps) => void;
 }
-export default function Customer({
-  customer,
-  onEditCustomer
-}: CustomerComponentProps) {
-  const [isEditing, setIsEditing] = useState(false);
-  return isEditing ? (
-    <CustomersWrapper $isEditing={isEditing}>
-      <FirstName>
-        <Input id="first_name" name="first_name" placeholder="First Name" />
-      </FirstName>
-      <LastName>
-        <Input id="last_name" name="last_name" placeholder="Last Name" />
-      </LastName>
 
-      <Email>
-        <Input id="email" name="email" placeholder="Email" />
-      </Email>
-      <Button
-        type="button"
-        text="Save"
-        onClick={() => setIsEditing(!isEditing)}
-        secondary
-        secondaryColor={colours.black}
-      />
-    </CustomersWrapper>
+export default function Customer({ customer }: CustomerComponentProps) {
+  const [isEditing, setIsEditing] = useState(false);
+
+  return isEditing ? (
+    <PuttingCustomer
+      customer={customer}
+      isEditing={isEditing}
+      setIsEditing={setIsEditing}
+    />
   ) : (
     <Wrapper>
       <CustomersWrapper>

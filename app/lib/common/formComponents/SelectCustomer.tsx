@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { CustomerProps } from "../../definitions/customer/types/CustomerProps";
-import inputStyle from "./inputStyle";
 
 interface SelectCustomerProps {
   customers: CustomerProps[];
@@ -12,7 +11,14 @@ interface SelectCustomerProps {
 
 const Wrapper = styled.div``;
 const Select = styled.select`
-  ${inputStyle}
+  margin-bottom: 0.5em;
+  border-radius: 7px;
+  border: 0.15em solid rgb(142, 0, 0);
+  padding: 0.5em;
+  &:focus {
+    outline: none;
+    box-shadow: 0px 0px 3px solid rgb(212, 0, 0);
+  }
 `;
 const Option = styled.option``;
 export default function SelectCustomer({
