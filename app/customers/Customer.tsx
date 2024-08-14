@@ -3,7 +3,6 @@ import styled, { css } from "styled-components";
 import colours from "@/app/lib/constants/colors";
 import { useState } from "react";
 import { CustomerProps } from "@/app/lib/definitions/customer/types/CustomerProps";
-import Input from "../lib/common/formComponents/Input/Input";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { usePutCustomer } from "../lib/services/mutations/mutations";
 
@@ -55,6 +54,11 @@ export default function Customer({ customer }: CustomerComponentProps) {
     putCustomerMutation.mutate(puttedCustomer);
     setIsEditing(!isEditing);
   };
+
+  if (putCustomerMutation.isPending) {
+    return <span>Updating...</span>;
+  }
+
   return isEditing ? (
     <CustomersWrapper $isEditing={isEditing}>
       <form onSubmit={handleSubmit(handlePutCustomerSubmit)}>
@@ -92,10 +96,11 @@ export default function Customer({ customer }: CustomerComponentProps) {
         <input {...register("officer_id")} hidden defaultValue={1} />
         <Button
           type="submit"
-          text="Save"
+          text={putCustomerMutation.isPending ? "Updating..." : "Save"}
           onClick={() => {}}
           secondary
           secondaryColor={colours.black}
+          disabled={putCustomerMutation.isPending}
         />
       </form>
     </CustomersWrapper>
