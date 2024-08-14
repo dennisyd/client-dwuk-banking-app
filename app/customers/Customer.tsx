@@ -5,6 +5,7 @@ import { useState } from "react";
 import { CustomerProps } from "@/app/lib/definitions/customer/types/CustomerProps";
 import Input from "../lib/common/formComponents/Input/Input";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { usePutCustomer } from "../lib/services/mutations/mutations";
 
 const CustomersWrapper = styled.div<{ $isEditing?: boolean }>`
   display: flex;
@@ -44,15 +45,18 @@ export default function Customer({
   onEditCustomer
 }: CustomerComponentProps) {
   const { register, handleSubmit } = useForm<CustomerProps>();
+
   const [isEditing, setIsEditing] = useState(false);
   const [firstName, setFirstName] = useState(customer.first_name);
   const [lastName, setLastName] = useState(customer.last_name);
   const [email, setEmail] = useState(customer.email);
 
+  const putCustomerMutation = usePutCustomer();
+
   const handlePutCustomerSubmit: SubmitHandler<CustomerProps> = (
-    editedCustomer
+    puttedCustomer
   ) => {
-    console.log("editedCustomer", editedCustomer);
+    putCustomerMutation.mutate(puttedCustomer)
     setIsEditing(!isEditing);
   };
   return isEditing ? (
