@@ -1,7 +1,7 @@
 import Button from "@/app/lib/common/Button";
 import styled, { css } from "styled-components";
 import colours from "@/app/lib/constants/colors";
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 import { CustomerProps } from "@/app/lib/definitions/customer/types/CustomerProps";
 import PuttingCustomer from "../PuttingCustomer";
 
