@@ -5,29 +5,11 @@ import {
 } from "@/app/lib/common/formComponents/formComponents";
 import Button from "@/app/lib/common/Button";
 import colours from "@/app/lib/constants/colors";
-import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { CustomerPropsWithoutID } from "@/app/lib/definitions/customer/types/CustomerProps";
 import { yupResolver } from "@hookform/resolvers/yup";
 import styles from "../newCustomer.module.css";
-
-const userSchema = yup.object().shape({
-  first_name: yup
-    .string()
-    .required("First Name is a required field")
-    .min(3, "Must be at least 3 characters long")
-    .defined("Must be defined"),
-  last_name: yup
-    .string()
-    .required("Last Name is a required field")
-    .min(3, "Must be at least 3 characters long")
-    .defined("Must be defined"),
-  email: yup
-    .string()
-    .required("Email is a required field")
-    .email("Must be a valid email")
-    .defined("Must be defined")
-});
+import { customerSchemaWithoutID } from "@/app/lib/schemas/customerSchema";
 
 interface FormProps {
   onSubmit: (user: CustomerPropsWithoutID) => void;
@@ -38,7 +20,9 @@ export default function Form({ onSubmit }: FormProps) {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm<CustomerPropsWithoutID>({ resolver: yupResolver(userSchema) });
+  } = useForm<CustomerPropsWithoutID>({
+    resolver: yupResolver(customerSchemaWithoutID)
+  });
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

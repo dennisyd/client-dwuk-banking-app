@@ -5,6 +5,9 @@ import { CustomerProps } from "@/app/lib/definitions/customer/types/CustomerProp
 import { Dispatch, SetStateAction, useState } from "react";
 import { usePutCustomer } from "@/app/lib/services/mutations/mutations";
 import Button from "@/app/lib/common/Button";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { customerSchemaWithID } from "@/app/lib/schemas/customerSchema";
+import styles from "../newCustomer/newCustomer.module.css";
 
 const CustomersWrapper = styled.div<{ $isEditing?: boolean }>`
   display: flex;
@@ -33,8 +36,18 @@ interface PuttingCustomerProps {
   setIsEditing: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function PuttingCustomer({ customer, isEditing, setIsEditing }: PuttingCustomerProps) {
-  const { register, handleSubmit } = useForm<CustomerProps>();
+export default function PuttingCustomer({
+  customer,
+  isEditing,
+  setIsEditing
+}: PuttingCustomerProps) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<CustomerProps>({
+    resolver: yupResolver(customerSchemaWithID)
+  });
 
   const [firstName, setFirstName] = useState(customer.first_name);
   const [lastName, setLastName] = useState(customer.last_name);
@@ -59,6 +72,7 @@ export default function PuttingCustomer({ customer, isEditing, setIsEditing }: P
             onChange={(e) => setFirstName(e.target.value)}
             className="input-element"
           />
+          <p className={styles.error}>{errors.first_name?.message}</p>
         </FirstName>
         <LastName>
           <input
@@ -67,6 +81,7 @@ export default function PuttingCustomer({ customer, isEditing, setIsEditing }: P
             onChange={(e) => setLastName(e.target.value)}
             className="input-element"
           />
+          <p className={styles.error}>{errors.last_name?.message}</p>
         </LastName>
 
         <Email>
@@ -76,6 +91,7 @@ export default function PuttingCustomer({ customer, isEditing, setIsEditing }: P
             onChange={(e) => setEmail(e.target.value)}
             className="input-element"
           />
+          <p className={styles.error}>{errors.email?.message}</p>
         </Email>
 
         <input
