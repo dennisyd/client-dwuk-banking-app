@@ -38,12 +38,8 @@ const Wrapper = styled.div``;
 
 interface CustomerComponentProps {
   customer: CustomerProps;
-  onEditCustomer: (editedAuthor: CustomerProps) => void;
 }
-export default function Customer({
-  customer,
-  onEditCustomer
-}: CustomerComponentProps) {
+export default function Customer({ customer }: CustomerComponentProps) {
   const { register, handleSubmit } = useForm<CustomerProps>();
 
   const [isEditing, setIsEditing] = useState(false);
@@ -56,7 +52,7 @@ export default function Customer({
   const handlePutCustomerSubmit: SubmitHandler<CustomerProps> = (
     puttedCustomer
   ) => {
-    putCustomerMutation.mutate(puttedCustomer)
+    putCustomerMutation.mutate(puttedCustomer);
     setIsEditing(!isEditing);
   };
   return isEditing ? (
@@ -67,6 +63,7 @@ export default function Customer({
             {...register("first_name")}
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
+            className="input-element"
           />
         </FirstName>
         <LastName>
@@ -74,6 +71,7 @@ export default function Customer({
             {...register("last_name")}
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
+            className="input-element"
           />
         </LastName>
 
@@ -82,6 +80,7 @@ export default function Customer({
             {...register("email")}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            className="input-element"
           />
         </Email>
 

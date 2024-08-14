@@ -26,22 +26,8 @@ const CustomersWrapper = styled.div`
 `;
 
 export default function Customers() {
-  const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
-  const fetchAllCustomersUrl = apiBaseUrl + "/customers";
   const [searchTerm, setSearchTerm] = useState("");
   const customers = useCustomers();
-
-  // function handleEditCustomer(editedCustomer: CustomerProps) {
-  //   const editedCustomers = customers.map((customer) => {
-  //     if (editedCustomer.customer_id === customer.customer_id) {
-  //       return editedCustomer;
-  //     } else {
-  //       return customer;
-  //     }
-  //   });
-  //   setCustomers(editedCustomers);
-  // }
-  function handleEditCustomer() {}
 
   if (customers.isPending) {
     return <span>Loading ...</span>;
@@ -68,11 +54,7 @@ export default function Customers() {
       </Search>
       <CustomersWrapper>
         {filteredCustomers.slice(0, 5).map((customer) => (
-          <Customer
-            key={customer.customer_id}
-            customer={customer}
-            onEditCustomer={handleEditCustomer}
-          />
+          <Customer key={customer.customer_id} customer={customer} />
         ))}
       </CustomersWrapper>
     </Wrapper>
