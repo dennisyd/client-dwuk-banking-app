@@ -3,8 +3,6 @@ import styled, { css } from "styled-components";
 import colours from "@/app/lib/constants/colors";
 import { useState } from "react";
 import { CustomerProps } from "@/app/lib/definitions/customer/types/CustomerProps";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { usePutCustomer } from "../lib/services/mutations/mutations";
 import PuttingCustomer from "./newCustomer/PuttingCustomer";
 
 const CustomersWrapper = styled.div<{ $isEditing?: boolean }>`
