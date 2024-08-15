@@ -1,5 +1,8 @@
 import axios from "axios";
-import { CustomerProps } from "../../definitions/customer/types/CustomerProps";
+import {
+  CustomerProps,
+  CustomerPropsWithoutID
+} from "../../definitions/customer/types/CustomerProps";
 
 const baseURL = process.env.NEXT_PUBLIC_API_URL;
 const axiosInstance = axios.create({ baseURL: baseURL });
@@ -16,4 +19,8 @@ export async function putCustomer(editedCustomer: CustomerProps) {
     editedCustomer
   );
   return response;
+}
+
+export async function postCustomer(customer: CustomerPropsWithoutID) {
+  return await axiosInstance.post("customers", customer);
 }
