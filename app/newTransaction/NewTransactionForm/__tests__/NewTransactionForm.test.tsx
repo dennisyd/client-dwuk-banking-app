@@ -43,20 +43,23 @@ test.each(customersWithTransactions)(
       <NewTransactionForm onSubmit={handleSubmitForm} customers={customers} />
     );
 
+    const stringCustomerID = String(customer.customer_id);
+    const stringTransactionAmount = String(transactionAmount);
+
     const fromAccount = screen.getByLabelText(
       /from customer/i
     ) as HTMLSelectElement;
-    await user.selectOptions(fromAccount, String(customer.customer_id));
+    await user.selectOptions(fromAccount, stringCustomerID);
 
     const toAccount = screen.getByLabelText(
       /to customer/i
     ) as HTMLSelectElement;
-    await user.selectOptions(toAccount, String(customer.customer_id));
+    await user.selectOptions(toAccount, stringCustomerID);
 
     const transactionAmountElement = screen.getByLabelText(
       /amount/i
     ) as HTMLInputElement;
-    await user.type(transactionAmountElement, String(transactionAmount));
-    expect(transactionAmountElement).toHaveValue(String(transactionAmount));
+    await user.type(transactionAmountElement, stringTransactionAmount);
+    expect(transactionAmountElement).toHaveValue(stringTransactionAmount);
   }
 );
