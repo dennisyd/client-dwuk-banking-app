@@ -3,10 +3,14 @@ import NewTransactionForm from "./NewTransactionForm/NewTransactionForm";
 import { useCustomers } from "../lib/services/queries/queries";
 import Spinner from "../lib/components/common/Spinner/Spinner";
 import toast from "react-hot-toast";
+import { SubmitHandler } from "react-hook-form";
+import { NewTransactionFormSubmitValues } from "../lib/definitions/transaction/types/NewTransactionFormSubmitValues";
 
 export default function NewTransaction() {
-  function handleSubmitNewTransactionForm() {}
-
+  const handleSubmitNewTransactionForm: SubmitHandler<
+    NewTransactionFormSubmitValues
+  > = (newTransaction) => {};
+  
   const customers = useCustomers();
 
   if (customers.isPending) {

@@ -2,12 +2,7 @@ import { transactionSchema } from "@/app/lib/schemas/transactionSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { CustomerProps } from "@/app/lib/definitions/customer/types/CustomerProps";
-
-interface NewTransactionFormSubmitValues {
-  from_customer: number;
-  to_customer: number;
-  amount: number;
-}
+import { NewTransactionFormSubmitValues } from "@/app/lib/definitions/transaction/types/NewTransactionFormSubmitValues";
 
 interface NewTransactionFormProps {
   customers: CustomerProps[];
