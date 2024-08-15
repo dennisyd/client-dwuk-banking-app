@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import colours from "../../constants/colors";
-import dimensions from "../../constants/dimensions";
-import { mobile, tablet } from "../../constants/devices";
+import colours from "@/app/lib/constants/colors";
+import dimensions from "@/app/lib/constants/dimensions";
+import { mobile, tablet } from "@/app/lib/constants/devices";
 
 const StatsWrapper = styled.div`
   border: 3px solid ${colours.black};

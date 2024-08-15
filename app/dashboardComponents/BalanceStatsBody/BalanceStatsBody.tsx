@@ -3,7 +3,7 @@ import AccountProps from "@/app/lib/definitions/AuthorProps";
 import Stat from "../Stat";
 import getHigherBalanceAccount from "@/app/lib/utils/balances/getHigherBalanceAccount";
 import getLowerBalanceAccount from "@/app/lib/utils/balances/getLowerBalanceAccount";
-import ScoresWrapper from "@/app/lib/common/dashboard/ScoresWrapper";
+import ScoresWrapper from "@/app/lib/components/common/dashboard/ScoresWrapper";
 
 interface BalanceStatsBodyProps {
   accounts: AccountProps[];

@@ -1,6 +1,6 @@
 import AccountProps from "@/app/lib/definitions/AuthorProps";
 import Stat from "../Stat";
-import ScoresWrapper from "@/app/lib/common/dashboard/ScoresWrapper";
+import ScoresWrapper from "@/app/lib/components/common/dashboard/ScoresWrapper";
 
 interface AccountStatsBodyProps {
   accounts: AccountProps[];
