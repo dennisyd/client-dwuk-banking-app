@@ -24,6 +24,8 @@ export default function NewTransactionForm({
   });
 
   return (
-    
+    <form onSubmit={handleSubmit(onSubmit)}>
+      
+    </form>
   )
 }
