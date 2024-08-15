@@ -6,6 +6,7 @@ import colours from "../lib/constants/colors";
 import dimensions from "../lib/constants/dimensions";
 import { useCustomers } from "../lib/services/queries/queries";
 import toast from "react-hot-toast";
+import Spinner from "../lib/components/common/Spinner/Spinner";
 
 const Wrapper = styled.div`
   display: flex;
@@ -32,7 +33,7 @@ export default function Customers() {
   const customers = useCustomers();
 
   if (customers.isPending) {
-    return <span>Loading ...</span>;
+    return <Spinner />;
   }
 
   if (customers.isError) {
