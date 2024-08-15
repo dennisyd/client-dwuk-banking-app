@@ -42,6 +42,9 @@ export default function NewTransactionForm({
           >{`${customer.first_name} ${customer.last_name}`}</option>
         ))}
       </select>
+
+      <label htmlFor="amount">Amount</label>
+      <input id="amount" {...register("amount")} />
     </form>
   );
 }

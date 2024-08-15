@@ -4,9 +4,13 @@ import userEvent from "@testing-library/user-event";
 import Chance from "chance";
 import { CustomerProps } from "@/app/lib/definitions/customer/types/CustomerProps";
 
-const some = new Chance();
+type Amount = number;
+type CustomersWithTransactions = [CustomerProps, Amount][];
 
-const customers: CustomerProps[] = Array.from({ length: 10 }, () => {
+const some = new Chance();
+const nrOfCustomers = 10;
+
+const customers: CustomerProps[] = Array.from({ length: nrOfCustomers }, () => {
   const customer: CustomerProps = {
     customer_id: some.integer({ min: 1, max: 32000 }),
     officer_id: 1,
@@ -14,12 +18,24 @@ const customers: CustomerProps[] = Array.from({ length: 10 }, () => {
     last_name: some.last(),
     email: some.email()
   };
+
   return customer;
 });
 
-test.each(customers)(
+const transactionAmounts = Array.from({ length: nrOfCustomers }, () => {
+  const amount: Amount = some.integer({ min: 1, max: 20000 });
+  return amount;
+});
+
+const customersWithTransactions: CustomersWithTransactions = Array.from(
+  { length: nrOfCustomers },
+  (_, i) => {
+    return [customers[i], transactionAmounts[i]];
+  }
+);
+test.each(customersWithTransactions)(
   "if input value changes when user operates the form",
-  async (customer) => {
+  async (customer, transactionAmount) => {
     const user = userEvent.setup();
     const handleSubmitForm = jest.fn();
 
@@ -32,7 +48,15 @@ test.each(customers)(
     ) as HTMLSelectElement;
     await user.selectOptions(fromAccount, String(customer.customer_id));
 
-    const toAccount = screen.getByLabelText(/to customer/i) as HTMLSelectElement;
+    const toAccount = screen.getByLabelText(
+      /to customer/i
+    ) as HTMLSelectElement;
     await user.selectOptions(toAccount, String(customer.customer_id));
+
+    const transactionAmountElement = screen.getByLabelText(
+      /amount/i
+    ) as HTMLInputElement;
+    await user.type(transactionAmountElement, String(transactionAmount));
+    expect(transactionAmountElement).toHaveValue(String(transactionAmount));
   }
 );
