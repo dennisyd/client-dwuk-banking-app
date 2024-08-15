@@ -1,7 +1,7 @@
 import useFetchAccounts from "../lib/hooks/useFetchAccounts";
-import StatsHeader from "../lib/common/dashboard/StatsHeader";
 import AccountStatsBody from "./AccountStatsBody/AccountStatsBody";
-import StatsWrapper from "../lib/common/dashboard/StatsWrapper";
+import StatsWrapper from "../lib/components/common/dashboard/StatsWrapper";
+import StatsHeader from "../lib/components/common/dashboard/StatsHeader";
 
 export default function AccountStats() {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;

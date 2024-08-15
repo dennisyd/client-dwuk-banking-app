@@ -1,7 +1,7 @@
 import useFetchAccounts from "../lib/hooks/useFetchAccounts";
-import StatsHeader from "../lib/common/dashboard/StatsHeader";
-import StatsWrapper from "../lib/common/dashboard/StatsWrapper";
 import BalanceStatsBody from "./BalanceStatsBody/BalanceStatsBody";
+import StatsWrapper from "../lib/components/common/dashboard/StatsWrapper";
+import StatsHeader from "../lib/components/common/dashboard/StatsHeader";
 
 export default function BalanceStats() {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;

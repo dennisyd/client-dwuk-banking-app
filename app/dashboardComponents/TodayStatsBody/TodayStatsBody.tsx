@@ -4,7 +4,7 @@ import Stat from "../Stat";
 import getTodaysTransactions from "@/app/lib/utils/transactions/getTodaysTransactions";
 import getTotalTransferredToday from "@/app/lib/utils/transactions/getTotalTransferredToday";
 import getTopTransactionAmount from "@/app/lib/utils/transactions/getTopTransactionAmount";
-import ScoresWrapper from "@/app/lib/common/dashboard/ScoresWrapper";
+import ScoresWrapper from "@/app/lib/components/common/dashboard/ScoresWrapper";
 
 interface TodayStatsBodyProps {
   transactions: TransactionProps[];

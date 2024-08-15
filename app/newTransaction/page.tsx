@@ -1,15 +1,15 @@
 "use client";
 import { Formik, Form } from "formik";
 import toast from "react-hot-toast";
-import Button from "@/app/lib/common/Button";
+import Button from "../lib/components/common/Button";
 import colours from "@/app/lib/constants/colors";
 import {
   FormWrapper,
   Header,
   FieldsWrapper
-} from "@/app/lib/common/formComponents/formComponents";
+} from "../lib/components/common/formComponents/formComponents";
 import useFetchCustomers from "../lib/hooks/useFetchCustomers";
-import SelectCustomer from "../lib/common/formComponents/SelectCustomer";
+import SelectCustomer from "../lib/components/common/formComponents/SelectCustomer";
 import React, { useState } from "react";
 import AccountProps from "../lib/definitions/AuthorProps";
 

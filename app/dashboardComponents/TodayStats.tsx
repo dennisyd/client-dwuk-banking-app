@@ -1,7 +1,7 @@
 import useFetchTransactions from "../lib/hooks/useFetchTransactions";
-import StatsWrapper from "../lib/common/dashboard/StatsWrapper";
-import StatsHeader from "../lib/common/dashboard/StatsHeader";
 import TodayStatsBody from "./TodayStatsBody/TodayStatsBody";
+import StatsWrapper from "../lib/components/common/dashboard/StatsWrapper";
+import StatsHeader from "../lib/components/common/dashboard/StatsHeader";
 
 export default function TodayStats() {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;

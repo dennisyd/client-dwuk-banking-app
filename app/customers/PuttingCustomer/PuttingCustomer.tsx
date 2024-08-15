@@ -4,7 +4,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { CustomerProps } from "@/app/lib/definitions/customer/types/CustomerProps";
 import { Dispatch, SetStateAction, useState } from "react";
 import { usePutCustomer } from "@/app/lib/services/mutations/mutations";
-import Button from "@/app/lib/common/Button";
+import Button from "@/app/lib/components/common/Button";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { customerSchemaWithID } from "@/app/lib/schemas/customerSchema";
 import styles from "../newCustomer/newCustomer.module.css";
