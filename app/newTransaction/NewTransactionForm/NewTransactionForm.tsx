@@ -23,8 +23,8 @@ export default function NewTransactionForm({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <label htmlFor="from-account">From Account</label>
-      <select id="from-account">
+      <label htmlFor="from-customer">From Customer</label>
+      <select id="from-customer" {...register("from_customer")}>
         {customers.map((customer) => (
           <option
             key={customer.customer_id}
@@ -33,8 +33,15 @@ export default function NewTransactionForm({
         ))}
       </select>
 
-      <label htmlFor="to-account">To Account</label>
-      <select id="to-account"></select>
+      <label htmlFor="to-customer">To Customer</label>
+      <select id="to-customer" {...register("to_customer")}>
+        {customers.map((customer) => (
+          <option
+            key={customer.customer_id}
+            value={customer.customer_id}
+          >{`${customer.first_name} ${customer.last_name}`}</option>
+        ))}
+      </select>
     </form>
   );
 }

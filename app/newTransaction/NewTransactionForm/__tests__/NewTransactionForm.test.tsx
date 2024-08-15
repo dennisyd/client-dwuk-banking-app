@@ -28,11 +28,11 @@ test.each(customers)(
     );
 
     const fromAccount = screen.getByLabelText(
-      /from account/i
+      /from customer/i
     ) as HTMLSelectElement;
     await user.selectOptions(fromAccount, String(customer.customer_id));
 
-    const toAccount = screen.getByLabelText(/to account/i) as HTMLSelectElement;
+    const toAccount = screen.getByLabelText(/to customer/i) as HTMLSelectElement;
     await user.selectOptions(toAccount, String(customer.customer_id));
   }
 );
