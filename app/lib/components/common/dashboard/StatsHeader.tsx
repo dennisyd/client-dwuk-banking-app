@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import colours from "../../constants/colors";
+import colours from "@/app/lib/constants/colors";
 
 const Wrapper = styled.div``;
 const StatsTitle = styled.div`
