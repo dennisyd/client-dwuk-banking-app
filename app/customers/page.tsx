@@ -28,7 +28,6 @@ const CustomersWrapper = styled.div`
 
 export default function Customers() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [isEditing, setIsEditing] = useState(false);
 
   const customers = useCustomers();
 
