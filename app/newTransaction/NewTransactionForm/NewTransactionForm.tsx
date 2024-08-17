@@ -1,20 +1,20 @@
 import { transactionSchema } from "@/app/lib/schemas/transactionSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { CustomerProps } from "@/app/lib/definitions/customer/types/CustomerProps";
 import { NewTransactionFormSubmitValues } from "@/app/lib/definitions/transaction/types/NewTransactionFormSubmitValues";
 import styles from "../newTransaction.module.css";
 import Button from "@/app/lib/components/common/Button";
 import stylesShared from "../../lib/styles/shared.module.css";
 import colours from "@/app/lib/constants/colors";
+import { AccountWithCustomer } from "@/app/lib/definitions/account/types/accountWithCustomer";
 
 interface NewTransactionFormProps {
-  customers: CustomerProps[];
+  accountsWithCustomers: AccountWithCustomer[];
   onSubmit: (transaction: NewTransactionFormSubmitValues) => void;
 }
 
 export default function NewTransactionForm({
-  customers,
+  accountsWithCustomers,
   onSubmit
 }: NewTransactionFormProps) {
   const {
@@ -38,11 +38,11 @@ export default function NewTransactionForm({
               {...register("from_account_id")}
               className={stylesShared.inputElement}
             >
-              {customers.map((customer) => (
+              {accountsWithCustomers.map((accountWithCustomer) => (
                 <option
-                  key={customer.customer_id}
-                  value={customer.customer_id}
-                >{`${customer.first_name} ${customer.last_name}`}</option>
+                  key={accountWithCustomer.account_id}
+                  value={accountWithCustomer.account_id}
+                >{`${accountWithCustomer.first_name} ${accountWithCustomer.last_name}`}</option>
               ))}
             </select>
           </div>
@@ -56,11 +56,11 @@ export default function NewTransactionForm({
               {...register("to_account_id")}
               className={stylesShared.inputElement}
             >
-              {customers.map((customer) => (
+              {accountsWithCustomers.map((accountWithCustomer) => (
                 <option
-                  key={customer.customer_id}
-                  value={customer.customer_id}
-                >{`${customer.first_name} ${customer.last_name}`}</option>
+                  key={accountWithCustomer.account_id}
+                  value={accountWithCustomer.account_id}
+                >{`${accountWithCustomer.first_name} ${accountWithCustomer.last_name}`}</option>
               ))}
             </select>
           </div>

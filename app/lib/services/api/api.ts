@@ -17,9 +17,9 @@ export async function getCustomers() {
 
 export async function getAccountsWithCustomers() {
   const response = await axiosInstance.get<string>(
-    "customers/accountsWithCustomers"
+    "accounts/accountsWithCustomers"
   );
-  const accountsWithCustomers: AccountWithCustomer = JSON.parse(response.data);
+  const accountsWithCustomers: AccountWithCustomer[] = JSON.parse(response.data);
   return accountsWithCustomers;
 }
 
