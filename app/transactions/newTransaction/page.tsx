@@ -27,11 +27,17 @@ export default function NewTransaction() {
   if (accountsWithCustomers.isError) {
     return toast.error("An error occurred while fetching accounts");
   }
+
+  const activeAccountsWithCustomers = accountsWithCustomers.data.filter(
+    (accountWithCustomer) => accountWithCustomer.status === "ACTIVE"
+  );
+
+
   return (
     <div className={styles.pageContainer}>
       <Header>New Transaction</Header>
       <NewTransactionForm
-        accountsWithCustomers={accountsWithCustomers.data}
+        accountsWithCustomers={activeAccountsWithCustomers}
         onSubmit={handleSubmitNewTransactionForm}
       />
     </div>
