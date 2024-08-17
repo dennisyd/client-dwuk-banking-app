@@ -45,6 +45,7 @@ export default function NewTransactionForm({
                 >{`${accountWithCustomer.first_name} ${accountWithCustomer.last_name}`}</option>
               ))}
             </select>
+            {errors.from_account_id?.message}
           </div>
 
           <div className={styles.inputGroup}>
@@ -63,6 +64,7 @@ export default function NewTransactionForm({
                 >{`${accountWithCustomer.first_name} ${accountWithCustomer.last_name}`}</option>
               ))}
             </select>
+            {errors.to_account_id?.message}
           </div>
 
           <div className={styles.inputGroup}>
@@ -74,6 +76,7 @@ export default function NewTransactionForm({
               {...register("amount")}
               className={stylesShared.inputElement}
             />
+            {errors.amount?.message}
           </div>
 
           <Button
