@@ -6,7 +6,7 @@ export default function NavBar() {
       <div className="nav-bar-container">
         <LinkWrapper href="/" link="Dashboard" />
         <LinkWrapper href="/customers" link="Customers" />
-        <LinkWrapper href="/newTransaction" link="New Transaction" />
+        <LinkWrapper href="/transactions" link="Transactions" />
       </div>
     </nav>
   );

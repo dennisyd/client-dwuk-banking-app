@@ -1,13 +1,13 @@
 "use client";
 import NewTransactionForm from "./NewTransactionForm/NewTransactionForm";
-import Spinner from "../lib/components/common/Spinner/Spinner";
+import Spinner from "../../lib/components/common/Spinner/Spinner";
 import toast from "react-hot-toast";
 import { SubmitHandler } from "react-hook-form";
-import { NewTransactionFormSubmitValues } from "../lib/definitions/transaction/types/NewTransactionFormSubmitValues";
+import { NewTransactionFormSubmitValues } from "../../lib/definitions/transaction/types/NewTransactionFormSubmitValues";
 import styles from "./newTransaction.module.css";
-import { Header } from "../lib/components/common/formComponents/formComponents";
-import { usePostTransaction } from "../lib/services/mutations/mutations";
-import { useAccountsWithCustomers } from "../lib/services/queries/queries";
+import { Header } from "../../lib/components/common/formComponents/formComponents";
+import { usePostTransaction } from "../../lib/services/mutations/mutations";
+import { useAccountsWithCustomers } from "../../lib/services/queries/queries";
 
 export default function NewTransaction() {
   const postTransactionMutation = usePostTransaction();
