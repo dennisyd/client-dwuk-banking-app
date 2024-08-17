@@ -7,11 +7,17 @@ import { SubmitHandler } from "react-hook-form";
 import { NewTransactionFormSubmitValues } from "../lib/definitions/transaction/types/NewTransactionFormSubmitValues";
 import styles from "./newTransaction.module.css";
 import { Header } from "../lib/components/common/formComponents/formComponents";
+import { usePostTransaction } from "../lib/services/mutations/mutations";
 
 export default function NewTransaction() {
+  const postTransactionMutation = usePostTransaction();
+
   const handleSubmitNewTransactionForm: SubmitHandler<
     NewTransactionFormSubmitValues
-  > = (newTransaction) => {};
+  > = (newTransaction) => {
+    console.log("newTransaction", newTransaction);
+    postTransactionMutation.mutate(newTransaction);
+  };
 
   const customers = useCustomers();
 
