@@ -1,9 +1,11 @@
+import CustomersNavbar from "./CustomersNavbar/CustomersNavbar";
+
 export default function CustomersLayout({
   children
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <section>
-      <h4>Customers Layout</h4>
+      <CustomersNavbar />
       {children}
     </section>
   );
