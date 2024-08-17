@@ -6,7 +6,7 @@ import styles from "../newTransaction.module.css";
 import Button from "@/app/lib/components/common/Button";
 import stylesShared from "../../lib/styles/shared.module.css";
 import colours from "@/app/lib/constants/colors";
-import { AccountWithCustomer } from "@/app/lib/definitions/account/types/accountWithCustomer";
+import { AccountWithCustomer } from "@/app/lib/definitions/account/types/AccountWithCustomer";
 
 interface NewTransactionFormProps {
   accountsWithCustomers: AccountWithCustomer[];
