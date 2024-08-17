@@ -1,12 +1,12 @@
 import * as yup from "yup";
 
 export const transactionSchema = yup.object().shape({
-  from_customer: yup
+  from_account_id: yup
     .number()
     .required("From Customer Account is a required field")
     .integer()
     .positive(),
-  to_customer: yup
+  to_account_id: yup
     .number()
     .required("To Customer Account is a required field")
     .integer()

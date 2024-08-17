@@ -1,5 +1,5 @@
 export interface NewTransactionFormSubmitValues {
-  from_customer: number;
-  to_customer: number;
+  from_account_id: number;
+  to_account_id: number;
   amount: number;
 }

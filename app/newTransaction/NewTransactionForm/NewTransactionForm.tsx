@@ -30,12 +30,12 @@ export default function NewTransactionForm({
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.formInnerContainer}>
           <div className={styles.inputGroup}>
-            <label htmlFor="from-customer" className={styles.label}>
+            <label htmlFor="from_account_id" className={styles.label}>
               From Customer
             </label>
             <select
-              id="from-customer"
-              {...register("from_customer")}
+              id="from_account_id"
+              {...register("from_account_id")}
               className={stylesShared.inputElement}
             >
               {customers.map((customer) => (
@@ -48,12 +48,12 @@ export default function NewTransactionForm({
           </div>
 
           <div className={styles.inputGroup}>
-            <label htmlFor="to-customer" className={styles.label}>
+            <label htmlFor="to_account_id" className={styles.label}>
               To Customer
             </label>
             <select
-              id="to-customer"
-              {...register("to_customer")}
+              id="to_account_id"
+              {...register("to_account_id")}
               className={stylesShared.inputElement}
             >
               {customers.map((customer) => (
