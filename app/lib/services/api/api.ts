@@ -4,7 +4,7 @@ import {
   CustomerPropsWithoutID
 } from "../../definitions/customer/types/CustomerProps";
 import { NewTransactionFormSubmitValues } from "../../definitions/transaction/types/NewTransactionFormSubmitValues";
-import { AccountWithCustomer } from "../../definitions/account/types/accountWithCustomer";
+import { AccountWithCustomer } from "../../definitions/account/types/AccountWithCustomer";
 
 const baseURL = process.env.NEXT_PUBLIC_API_URL;
 const axiosInstance = axios.create({ baseURL: baseURL });
