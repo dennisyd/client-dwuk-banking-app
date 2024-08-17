@@ -7,7 +7,7 @@ import { usePutCustomer } from "@/app/lib/services/mutations/mutations";
 import Button from "@/app/lib/components/common/Button";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { customerSchemaWithID } from "@/app/lib/schemas/customerSchema";
-import styles from "../newCustomer/newCustomer.module.css";
+import sharedStyles from "../../lib/styles/shared.module.css";
 
 const CustomersWrapper = styled.div<{ $isEditing?: boolean }>`
   display: flex;
@@ -72,7 +72,7 @@ export default function PuttingCustomer({
             onChange={(e) => setFirstName(e.target.value)}
             className="input-element"
           />
-          <p className={styles.error}>{errors.first_name?.message}</p>
+          <p className={sharedStyles.error}>{errors.first_name?.message}</p>
         </FirstName>
         <LastName>
           <input
@@ -81,7 +81,7 @@ export default function PuttingCustomer({
             onChange={(e) => setLastName(e.target.value)}
             className="input-element"
           />
-          <p className={styles.error}>{errors.last_name?.message}</p>
+          <p className={sharedStyles.error}>{errors.last_name?.message}</p>
         </LastName>
 
         <Email>
@@ -91,7 +91,7 @@ export default function PuttingCustomer({
             onChange={(e) => setEmail(e.target.value)}
             className="input-element"
           />
-          <p className={styles.error}>{errors.email?.message}</p>
+          <p className={sharedStyles.error}>{errors.email?.message}</p>
         </Email>
 
         <input

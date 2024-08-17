@@ -7,6 +7,8 @@ import {
 import { useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { postCustomer } from "../api/api";
+import { NewTransactionFormSubmitValues } from "../../definitions/transaction/types/NewTransactionFormSubmitValues";
+import { postTransaction } from "../api/api";
 
 export function usePutCustomer() {
   const queryClient = useQueryClient();
@@ -29,6 +31,19 @@ export function usePostCustomer() {
     onSuccess: () => toast.success("Customer added successfully"),
     onSettled: async () => {
       await queryClient.invalidateQueries({ queryKey: ["get-all-customers"] });
+    }
+  });
+}
+
+export function usePostTransaction() {
+  return useMutation({
+    mutationFn: (transaction: NewTransactionFormSubmitValues) =>
+      postTransaction(transaction),
+    onError: () => {
+      toast.error("An error occurred when creating a new transaction");
+    },
+    onSuccess: () => {
+      toast.success("New transaction created successfully");
     }
   });
 }

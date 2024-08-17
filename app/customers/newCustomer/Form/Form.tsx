@@ -8,7 +8,7 @@ import colours from "@/app/lib/constants/colors";
 import { useForm } from "react-hook-form";
 import { CustomerPropsWithoutID } from "@/app/lib/definitions/customer/types/CustomerProps";
 import { yupResolver } from "@hookform/resolvers/yup";
-import styles from "../newCustomer.module.css";
+import sharedStyles from "../../../lib/styles/shared.module.css";
 import { customerSchemaWithoutID } from "@/app/lib/schemas/customerSchema";
 
 interface FormProps {
@@ -34,21 +34,21 @@ export default function Form({ onSubmit }: FormProps) {
             placeholder="First Name"
             className="input-element"
           />
-          <p className={styles.error}>{errors.first_name?.message}</p>
+          <p className={sharedStyles.error}>{errors.first_name?.message}</p>
 
           <input
             {...register("last_name")}
             placeholder="Last Name"
             className="input-element"
           />
-          <p className={styles.error}>{errors.last_name?.message}</p>
+          <p className={sharedStyles.error}>{errors.last_name?.message}</p>
 
           <input
             {...register("email")}
             placeholder="Email"
             className="input-element"
           />
-          <p className={styles.error}>{errors.email?.message}</p>
+          <p className={sharedStyles.error}>{errors.email?.message}</p>
         </FieldsWrapper>
 
         <Button
