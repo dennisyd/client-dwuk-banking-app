@@ -23,6 +23,7 @@ export const transactionSchema = yup.object().shape({
     }),
   amount: yup
     .number()
+    .typeError("Required filed")
     .defined("Transaction Amount is a required filed")
     .min(1, "Must be at least £1")
     .max(20000, "Max transaction amount is £20,000")
