@@ -31,7 +31,7 @@ export default function NewTransactionForm({
         <div className={styles.formInnerContainer}>
           <div className={styles.inputGroup}>
             <label htmlFor="from_account_id" className={styles.label}>
-              From Customer
+              From Account
             </label>
             <select
               id="from_account_id"
@@ -49,7 +49,7 @@ export default function NewTransactionForm({
 
           <div className={styles.inputGroup}>
             <label htmlFor="to_account_id" className={styles.label}>
-              To Customer
+              To Account
             </label>
             <select
               id="to_account_id"
