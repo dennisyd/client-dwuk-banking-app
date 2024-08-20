@@ -10,10 +10,13 @@ export default function AccountCard({
   last_activity_date,
   status
 }: AccountWithCustomer) {
-  const openDateObject = new Date(open_date);
-  const britishDateFormat = new Intl.DateTimeFormat('en-GB',{
+  const openDate = new Intl.DateTimeFormat("en-GB", {
     dateStyle: "long"
-  }).format(openDateObject);
+  }).format(new Date(open_date));
+
+  const lastActiveDate = new Intl.DateTimeFormat("en-GB", {
+    dateStyle: "long"
+  }).format(new Date(last_activity_date));
   return (
     <div className={accountStyles.accountCard}>
       <div className={accountStyles.customerName}>
@@ -26,8 +29,12 @@ export default function AccountCard({
       </div>
 
       <div className={accountStyles.dataContainer}>
-        {`Opened Since: ${britishDateFormat}`}
+        {`Opened Since: ${openDate}`}
       </div>
+
+      <div
+        className={accountStyles.dataContainer}
+      >{`Last Active: ${lastActiveDate}`}</div>
     </div>
   );
 }
