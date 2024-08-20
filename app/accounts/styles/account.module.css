@@ -1,5 +1,8 @@
 .accountCard {
   --accountCard-bg-color: hsl(0, 78%, 98%);
   background-color: var(--accountCard-bg-color);
-  
+  min-width: 30vw;
+  max-width: 40vw;
+  min-height: 40vh;
+  max-height: 50vh;
 }
