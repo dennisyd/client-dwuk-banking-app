@@ -2,6 +2,7 @@ import { AccountWithCustomer } from "@/app/lib/definitions/account/types/Account
 import accountStyles from "../../styles/account.module.css";
 import DateTimeFormatter from "@/app/lib/utils/DateTimeFormatter/DateTimeFormatter";
 import CssClassGenerator from "@/app/lib/utils/CssClassGenerator/CssClassGenerator";
+import { useState } from "react";
 
 export default function AccountCard({
   account_id,
@@ -12,6 +13,8 @@ export default function AccountCard({
   last_activity_date,
   status
 }: AccountWithCustomer) {
+  const [accountSelected, setAccountSelected] = useState(false);
+
   const dateTimeFormatter = new DateTimeFormatter();
 
   const openDate = dateTimeFormatter.gbDayMonthYearLongFormat(open_date);
@@ -28,7 +31,10 @@ export default function AccountCard({
     cssClassGenerator.generateStatusBubbleClass(status);
 
   return (
-    <div className={accountStyles.accountCard}>
+    <div
+      className={accountStyles.accountCard}
+      onClick={() => setAccountSelected(!accountSelected)}
+    >
       <div>
         <div className={accountStyles.customerName}>
           <h3>{`${first_name} ${last_name}`}</h3>
@@ -41,6 +47,7 @@ export default function AccountCard({
           <span className={accountStyles.balanceAmount}>{`£${balance.toFixed(
             2
           )}`}</span>
+          {accountSelected && <button>Top-Up Balance</button>}
         </div>
 
         <div className={accountStyles.dataContainer}>
@@ -57,6 +64,7 @@ export default function AccountCard({
         <span className={`${statusBubbleClassName} ${accountStyles.bubble}`}>
           {status}
         </span>
+        {accountSelected && <button>Update Status</button>}
       </div>
     </div>
   );
