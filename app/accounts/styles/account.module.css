@@ -41,7 +41,7 @@
 .status {
   display: flex;
   flex-wrap: wrap;
-  min-height: 10vw;
+  min-height: 10vh;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -63,7 +63,7 @@
   border: 2px solid var(--accountStatus-frozen-border-color);
 }
 
-.bubble{
+.bubble {
   color: white;
   padding: 0.2rem 0.5rem;
   border-radius: 30px;
