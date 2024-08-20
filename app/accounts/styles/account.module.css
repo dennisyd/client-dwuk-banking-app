@@ -50,3 +50,7 @@
 .closedStatus {
   background-color: var(--accountStatus-closed-bg-color);
 }
+
+.frozenStatus {
+  background-color: var(--accountStatus-frozen-bg-color);
+}
