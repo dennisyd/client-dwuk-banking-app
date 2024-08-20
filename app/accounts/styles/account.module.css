@@ -1,0 +1,99 @@
+.accountCardsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4rem;
+  @media (max-width: 450px) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.accountCard {
+  --accountCard-bg-color: hsl(0, 78%, 98%);
+  --accountStatus-active-bg-color: hsl(120, 61%, 80%);
+  --accountStatus-active-border-color: hsl(120, 61%, 60%);
+  --accountStatus-active-bubble-color: hsl(120, 61%, 30%);
+  --accountStatus-closed-bg-color: hsl(12, 100%, 80%);
+  --accountStatus-closed-border-color: hsl(12, 100%, 60%);
+  --accountStatus-closed-bubble-color: hsl(12, 100%, 30%);
+  --accountStatus-frozen-bg-color: hsl(48, 100%, 80%);
+  --accountStatus-frozen-border-color: hsl(48, 100%, 60%);
+  --accountStatus-frozen-bubble-color: hsl(48, 100%, 30%);
+  flex: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--accountCard-bg-color);
+  min-width: 30vw;
+  max-width: 40vw;
+  min-height: 40vh;
+  max-height: 50vh;
+  border-radius: var(--container-border-radius);
+}
+
+.customerName {
+  display: flex;
+  min-width: inherit;
+  min-height: 10vh;
+  max-height: 15vh;
+  border-bottom: 2px solid black;
+  align-items: center;
+  justify-content: center;
+}
+
+.dataContainer {
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.balanceAmount {
+  font-weight: bold;
+}
+
+.status {
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 10vh;
+  max-height: max-content;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-weight: bold;
+  border-radius: var(--container-border-radius);
+}
+
+.activeStatus {
+  background-color: var(--accountStatus-active-bg-color);
+  border: 2px solid var(--accountStatus-active-border-color);
+}
+
+.closedStatus {
+  background-color: var(--accountStatus-closed-bg-color);
+  border: 2px solid var(--accountStatus-closed-border-color);
+}
+
+.frozenStatus {
+  background-color: var(--accountStatus-frozen-bg-color);
+  border: 2px solid var(--accountStatus-frozen-border-color);
+}
+
+.bubble {
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 30px;
+  font-size: 0.9em;
+  font-weight: normal;
+}
+
+.activeBubble {
+  background-color: var(--accountStatus-active-bubble-color);
+}
+
+.closedBubble {
+  background-color: var(--accountStatus-closed-bubble-color);
+}
+
+.frozenBubble {
+  background-color: var(--accountStatus-frozen-bubble-color);
+}
