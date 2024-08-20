@@ -18,7 +18,7 @@ export default function Accounts() {
 
   return (
     <div>
-      {oneAccountWithCustomer.map((accountWithCustomer) => (
+      {accountsWithCustomers.data.map((accountWithCustomer) => (
         <AccountCard
           key={accountWithCustomer.account_id}
           account_id={accountWithCustomer.account_id}
