@@ -1,4 +1,4 @@
-import AccountsNavbar from "./AccountsNavbar/AccountsNavbar";
+import AccountsNavbar from "./components/AccountsNavbar/AccountsNavbar";
 
 export default function AccountsLayout({
   children

@@ -2,7 +2,7 @@
 import { useAccountsWithCustomers } from "../lib/services/queries/queries";
 import Spinner from "../lib/components/common/Spinner/Spinner";
 import toast from "react-hot-toast";
-import AccountCard from "./AccountCard/AccountCard";
+import AccountCard from "./components/AccountCard/AccountCard";
 
 export default function Accounts() {
   const accountsWithCustomers = useAccountsWithCustomers();
