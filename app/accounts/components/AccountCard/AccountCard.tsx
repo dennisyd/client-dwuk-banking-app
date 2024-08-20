@@ -43,7 +43,9 @@ export default function AccountCard({
       <div>
         <div className={accountStyles.dataContainer}>
           {"Balance:"}{" "}
-          <span className={accountStyles.balanceAmount}>{`£${balance}`}</span>
+          <span className={accountStyles.balanceAmount}>{`£${balance.toFixed(
+            2
+          )}`}</span>
         </div>
 
         <div className={accountStyles.dataContainer}>
