@@ -6,6 +6,9 @@
   --accountStatus-closed-bg-color: hsl(12, 100%, 80%);
   --accountStatus-closed-text-and-border-color: hsl(12, 100%, 60%);
   --accountStatus-closed-bubble-color: hsl(12, 100%, 30%);
+  --accountStatus-frozen-bg-color: hsl(48, 100%, 80%);
+  --accountStatus-frozen-text-and-border-color: hsl(48, 100%, 60%);
+  --accountStatus-frozen-bubble-color: hsl(48, 100%, 30%);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
