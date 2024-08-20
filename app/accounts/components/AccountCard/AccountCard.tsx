@@ -1,4 +1,5 @@
 import { AccountWithCustomer } from "@/app/lib/definitions/account/types/AccountWithCustomer";
+import accountStyles from "../../styles/account.module.css";
 
 export default function AccountCard({
   account_id,
@@ -9,5 +10,9 @@ export default function AccountCard({
   last_activity_date,
   status
 }: AccountWithCustomer) {
-  return <h3>{`${first_name} ${last_name}`}</h3>;
+  return (
+    <div className={accountStyles.accountCard}>
+      <h3>{`${first_name} ${last_name}`}</h3>
+    </div>
+  );
 }

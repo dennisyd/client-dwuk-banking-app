@@ -14,10 +14,11 @@ export default function Accounts() {
   if (accountsWithCustomers.isError) {
     return toast.error("An error occurred while fetching accounts");
   }
+  const oneAccountWithCustomer = accountsWithCustomers.data.slice(0, 1);
 
   return (
     <div>
-      {accountsWithCustomers.data.map((accountWithCustomer) => (
+      {oneAccountWithCustomer.map((accountWithCustomer) => (
         <AccountCard
           key={accountWithCustomer.account_id}
           account_id={accountWithCustomer.account_id}

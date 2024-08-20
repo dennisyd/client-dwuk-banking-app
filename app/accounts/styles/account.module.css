@@ -1,0 +1,5 @@
+.accountCard {
+  --accountCard-bg-color: hsl(0, 78%, 98%);
+  background-color: var(--accountCard-bg-color);
+  
+}
