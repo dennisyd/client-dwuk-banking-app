@@ -2,12 +2,6 @@ import { AccountWithCustomer } from "@/app/lib/definitions/account/types/Account
 import accountStyles from "../../styles/account.module.css";
 import DateTimeFormatter from "@/app/lib/utils/DateTimeFormatter/DateTimeFormatter";
 import CssClassGenerator from "@/app/lib/utils/CssClassGenerator/CssClassGenerator";
-import { Dispatch, SetStateAction } from "react";
-
-interface AccountCard extends AccountWithCustomer {
-  accountSelected: boolean;
-  setAccountSelected: Dispatch<SetStateAction<boolean>>;
-}
 
 export default function AccountCard({
   account_id,
@@ -17,7 +11,7 @@ export default function AccountCard({
   open_date,
   last_activity_date,
   status
-}: AccountCard) {
+}: AccountWithCustomer) {
   const dateTimeFormatter = new DateTimeFormatter();
 
   const openDate = dateTimeFormatter.gbDayMonthYearLongFormat(open_date);
