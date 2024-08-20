@@ -10,15 +10,23 @@ export default function AccountCard({
   last_activity_date,
   status
 }: AccountWithCustomer) {
+  const openDateObject = new Date(open_date);
+  const britishDateFormat = new Intl.DateTimeFormat('en-GB',{
+    dateStyle: "long"
+  }).format(openDateObject);
   return (
     <div className={accountStyles.accountCard}>
       <div className={accountStyles.customerName}>
         <h3>{`${first_name} ${last_name}`}</h3>
       </div>
 
-      <div className={accountStyles.balance}>
+      <div className={accountStyles.dataContainer}>
         {"Balance:"}{" "}
         <span className={accountStyles.balanceAmount}>{`£${balance}`}</span>
+      </div>
+
+      <div className={accountStyles.dataContainer}>
+        {`Opened Since: ${britishDateFormat}`}
       </div>
     </div>
   );
