@@ -63,30 +63,22 @@
   border: 2px solid var(--accountStatus-frozen-border-color);
 }
 
-.activeBubble {
-  background-color: var(--accountStatus-active-bubble-color);
+.bubble{
   color: white;
   padding: 0.2rem 0.5rem;
   border-radius: 30px;
   font-size: 0.9em;
-  letter-spacing: 0.05rem;
+  font-weight: normal;
+}
 
+.activeBubble {
+  background-color: var(--accountStatus-active-bubble-color);
 }
 
 .closedBubble {
   background-color: var(--accountStatus-closed-bubble-color);
-  color: white;
-  padding: 0.2rem 0.5rem;
-  border-radius: 30px;
-  font-size: 0.9em;
-  letter-spacing: 0.05rem;
 }
 
 .frozenBubble {
   background-color: var(--accountStatus-frozen-bubble-color);
-  color: white;
-  padding: 0.2rem 0.5rem;
-  border-radius: 30px;
-  font-size: 0.9em;
-  letter-spacing: 0.05rem;
 }
