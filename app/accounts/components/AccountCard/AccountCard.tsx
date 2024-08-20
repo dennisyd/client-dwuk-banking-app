@@ -15,6 +15,11 @@ export default function AccountCard({
       <div className={accountStyles.customerName}>
         <h3>{`${first_name} ${last_name}`}</h3>
       </div>
+
+      <div className={accountStyles.balance}>
+        {"Balance:"}{" "}
+        <span className={accountStyles.balanceAmount}>{`£${balance}`}</span>
+      </div>
     </div>
   );
 }
