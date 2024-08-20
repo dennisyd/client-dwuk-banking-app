@@ -45,24 +45,22 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  font-weight: bold;
 }
 
 .activeStatus {
   background-color: var(--accountStatus-active-bg-color);
   border: 2px solid var(--accountStatus-active-border-color);
-  font-weight: bold;
 }
 
 .closedStatus {
   background-color: var(--accountStatus-closed-bg-color);
   border: 2px solid var(--accountStatus-closed-border-color);
-  font-weight: bold;
 }
 
 .frozenStatus {
   background-color: var(--accountStatus-frozen-bg-color);
   border: 2px solid var(--accountStatus-frozen-border-color);
-  font-weight: bold;
 }
 
 .activeBubble {
