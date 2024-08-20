@@ -40,6 +40,9 @@
 
 .status {
   min-height: 10vw;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .activeStatus {
@@ -61,4 +64,29 @@
   border: 2px solid var(--accountStatus-frozen-text-and-border-color);
   color: var(--accountStatus-frozen-text-and-border-color);
   font-weight: bold;
+}
+
+.activeBubble {
+  background-color: var(--accountStatus-active-bubble-color);
+  color: white;
+  border-radius: 30px;
+  font-size: 0.9em;
+  letter-spacing: 0.05rem;
+}
+
+.closedBubble {
+  background-color: var(--accountStatus-closed-bubble-color);
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 30px;
+  font-size: 0.9em;
+  letter-spacing: 0.05rem;
+}
+
+.frozenBubble {
+  background-color: var(--accountStatus-frozen-bubble-color);
+  color: white;
+  border-radius: 30px;
+  font-size: 0.9em;
+  letter-spacing: 0.05rem;
 }

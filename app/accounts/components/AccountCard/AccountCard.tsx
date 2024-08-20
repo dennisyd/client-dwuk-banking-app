@@ -25,6 +25,13 @@ export default function AccountCard({
       ? accountStyles.closedStatus
       : accountStyles.frozenStatus;
 
+  const statusBubbleClassName =
+    status === "ACTIVE"
+      ? accountStyles.activeBubble
+      : status === "CLOSED"
+      ? accountStyles.closedBubble
+      : accountStyles.frozenBubble;
+
   return (
     <div className={accountStyles.accountCard}>
       <div>
@@ -49,7 +56,7 @@ export default function AccountCard({
       </div>
 
       <div className={`${statusContainerClassName} ${accountStyles.status}`}>
-        {"Status:"} <span>{status}</span>
+        {"Status:"} <span className={`${statusBubbleClassName}`}>{status}</span>
       </div>
     </div>
   );
