@@ -1,8 +1,11 @@
 .accountCard {
   --accountCard-bg-color: hsl(0, 78%, 98%);
   --accountStatus-active-bg-color: hsl(120, 61%, 80%);
-  --accountStatus-text-and-border-color: hsl(120, 61%, 60%);
-  --accountStatus-bubble-color: hsl(120, 61%, 30%);
+  --accountStatus-active-text-and-border-color: hsl(120, 61%, 60%);
+  --accountStatus-active-bubble-color: hsl(120, 61%, 30%);
+  --accountStatus-closed-bg-color: hsl(12, 100%, 80%);
+  --accountStatus-closed-text-and-border-color: hsl(12, 100%, 60%);
+  --accountStatus-closed-bubble-color: hsl(12, 100%, 30%);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -39,4 +42,8 @@
 
 .activeStatus {
   background-color: var(--accountStatus-active-bg-color);
+}
+
+.closedStatus {
+  background-color: var(--accountStatus-closed-bg-color);
 }

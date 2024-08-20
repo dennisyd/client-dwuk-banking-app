@@ -40,17 +40,14 @@ export default function AccountCard({
         >{`Last Active: ${lastActiveDate}`}</div>
       </div>
 
-      <div className={accountStyles.status}>
+      <div
+        className={`${status} === "ACTIVE"
+              ? ${accountStyles.activeStatus}
+              : ${status} === "CLOSED"
+              ? ${accountStyles.closedStatus}
+              : ${accountStyles.frozenStatus} ${accountStyles.status}`}
+      >
         {`Status: ${status}`}
-        <div
-          className={
-            status === "ACTIVE"
-              ? accountStyles.activeStatus
-              : status === "CLOSED"
-              ? accountStyles.closedStatus
-              : accountStyles.frozenStatus
-          }
-        ></div>
       </div>
     </div>
   );
