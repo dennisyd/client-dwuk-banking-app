@@ -1,5 +1,8 @@
 .accountCard {
   --accountCard-bg-color: hsl(0, 78%, 98%);
+  --accountStatus-active-bg-color: hsl(120, 61%, 80%);
+  --accountStatus-text-and-border-color: hsl(120, 61%, 60%);
+  --accountStatus-bubble-color: hsl(120, 61%, 30%);
   display: flex;
   flex-direction: column;
   background-color: var(--accountCard-bg-color);
