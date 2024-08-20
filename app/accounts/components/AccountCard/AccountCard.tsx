@@ -58,7 +58,7 @@ export default function AccountCard({
       </div>
 
       <div className={`${statusContainerClassName} ${accountStyles.status}`}>
-        {"Status:"}{" "}
+        {"Account Status:"}{" "}
         <span className={`${statusBubbleClassName} ${accountStyles.bubble}`}>
           {status}
         </span>
