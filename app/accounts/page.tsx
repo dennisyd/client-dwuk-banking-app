@@ -3,6 +3,7 @@ import { useAccountsWithCustomers } from "../lib/services/queries/queries";
 import Spinner from "../lib/components/common/Spinner/Spinner";
 import toast from "react-hot-toast";
 import AccountCard from "./components/AccountCard/AccountCard";
+import accountStyles from "./styles/account.module.css";
 
 export default function Accounts() {
   const accountsWithCustomers = useAccountsWithCustomers();
@@ -15,7 +16,7 @@ export default function Accounts() {
     return toast.error("An error occurred while fetching accounts");
   }
   return (
-    <div>
+    <div className={accountStyles.accountCardsContainer}>
       {accountsWithCustomers.data.map((accountWithCustomer) => (
         <AccountCard
           key={accountWithCustomer.account_id}

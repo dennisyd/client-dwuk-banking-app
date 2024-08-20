@@ -1,3 +1,14 @@
+.accountCardsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4rem;
+  @media (max-width: 450px) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
 .accountCard {
   --accountCard-bg-color: hsl(0, 78%, 98%);
   --accountStatus-active-bg-color: hsl(120, 61%, 80%);
@@ -9,6 +20,7 @@
   --accountStatus-frozen-bg-color: hsl(48, 100%, 80%);
   --accountStatus-frozen-border-color: hsl(48, 100%, 60%);
   --accountStatus-frozen-bubble-color: hsl(48, 100%, 30%);
+  flex: 50%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
