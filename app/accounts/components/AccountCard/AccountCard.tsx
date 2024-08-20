@@ -17,6 +17,14 @@ export default function AccountCard({
   const lastActiveDate = new Intl.DateTimeFormat("en-GB", {
     dateStyle: "long"
   }).format(new Date(last_activity_date));
+
+  const statusContainerClassName =
+    status === "ACTIVE"
+      ? accountStyles.activeStatus
+      : status === "CLOSED"
+      ? accountStyles.closedStatus
+      : accountStyles.frozenStatus;
+
   return (
     <div className={accountStyles.accountCard}>
       <div>
@@ -40,14 +48,8 @@ export default function AccountCard({
         >{`Last Active: ${lastActiveDate}`}</div>
       </div>
 
-      <div
-        className={`${status} === "ACTIVE"
-              ? ${accountStyles.activeStatus}
-              : ${status} === "CLOSED"
-              ? ${accountStyles.closedStatus}
-              : ${accountStyles.frozenStatus} ${accountStyles.status}`}
-      >
-        {`Status: ${status}`}
+      <div className={`${statusContainerClassName} ${accountStyles.status}`}>
+        {"Status:"} <span>{status}</span>
       </div>
     </div>
   );

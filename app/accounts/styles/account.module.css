@@ -40,17 +40,25 @@
 
 .status {
   min-height: 10vw;
-  border: 2px solid greenyellow;
 }
 
 .activeStatus {
   background-color: var(--accountStatus-active-bg-color);
+  border: 2px solid var(--accountStatus-active-text-and-border-color);
+  color: var(--accountStatus-active-text-and-border-color);
+  font-weight: bold;
 }
 
 .closedStatus {
   background-color: var(--accountStatus-closed-bg-color);
+  border: 2px solid var(--accountStatus-closed-text-and-border-color);
+  color: var(--accountStatus-closed-text-and-border-color);
+  font-weight: bold;
 }
 
 .frozenStatus {
   background-color: var(--accountStatus-frozen-bg-color);
+  border: 2px solid var(--accountStatus-frozen-text-and-border-color);
+  color: var(--accountStatus-frozen-text-and-border-color);
+  font-weight: bold;
 }
