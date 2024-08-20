@@ -1,6 +1,7 @@
 import { AccountWithCustomer } from "@/app/lib/definitions/account/types/AccountWithCustomer";
 import accountStyles from "../../styles/account.module.css";
 import DateTimeFormatter from "@/app/lib/utils/DateTimeFormatter/DateTimeFormatter";
+import CssClassGenerator from "@/app/lib/utils/CssClassGenerator/CssClassGenerator";
 
 export default function AccountCard({
   account_id,
@@ -18,19 +19,13 @@ export default function AccountCard({
   const lastActiveDate =
     dateTimeFormatter.gbDayMonthYearLongFormat(last_activity_date);
 
+  const cssClassGenerator = new CssClassGenerator();
+  
   const statusContainerClassName =
-    status === "ACTIVE"
-      ? accountStyles.activeStatus
-      : status === "CLOSED"
-      ? accountStyles.closedStatus
-      : accountStyles.frozenStatus;
+    cssClassGenerator.generateStatusContainerClass(status);
 
   const statusBubbleClassName =
-    status === "ACTIVE"
-      ? accountStyles.activeBubble
-      : status === "CLOSED"
-      ? accountStyles.closedBubble
-      : accountStyles.frozenBubble;
+    cssClassGenerator.generateStatusBubbleClass(status);
 
   return (
     <div className={accountStyles.accountCard}>
