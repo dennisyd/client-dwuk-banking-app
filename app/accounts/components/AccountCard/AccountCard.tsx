@@ -1,5 +1,6 @@
 import { AccountWithCustomer } from "@/app/lib/definitions/account/types/AccountWithCustomer";
 import accountStyles from "../../styles/account.module.css";
+import DateTimeFormatter from "@/app/lib/utils/DateTimeFormatter/DateTimeFormatter";
 
 export default function AccountCard({
   account_id,
@@ -10,13 +11,12 @@ export default function AccountCard({
   last_activity_date,
   status
 }: AccountWithCustomer) {
-  const openDate = new Intl.DateTimeFormat("en-GB", {
-    dateStyle: "long"
-  }).format(new Date(open_date));
+  const dateTimeFormatter = new DateTimeFormatter();
 
-  const lastActiveDate = new Intl.DateTimeFormat("en-GB", {
-    dateStyle: "long"
-  }).format(new Date(last_activity_date));
+  const openDate = dateTimeFormatter.gbDayMonthYearLongFormat(open_date);
+
+  const lastActiveDate =
+    dateTimeFormatter.gbDayMonthYearLongFormat(last_activity_date);
 
   const statusContainerClassName =
     status === "ACTIVE"
