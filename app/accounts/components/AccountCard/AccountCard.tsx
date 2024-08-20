@@ -12,7 +12,9 @@ export default function AccountCard({
 }: AccountWithCustomer) {
   return (
     <div className={accountStyles.accountCard}>
-      <h3>{`${first_name} ${last_name}`}</h3>
+      <div className={accountStyles.customerName}>
+        <h3>{`${first_name} ${last_name}`}</h3>
+      </div>
     </div>
   );
 }
