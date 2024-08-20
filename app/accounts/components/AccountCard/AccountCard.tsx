@@ -19,22 +19,39 @@ export default function AccountCard({
   }).format(new Date(last_activity_date));
   return (
     <div className={accountStyles.accountCard}>
-      <div className={accountStyles.customerName}>
-        <h3>{`${first_name} ${last_name}`}</h3>
+      <div>
+        <div className={accountStyles.customerName}>
+          <h3>{`${first_name} ${last_name}`}</h3>
+        </div>
       </div>
 
-      <div className={accountStyles.dataContainer}>
-        {"Balance:"}{" "}
-        <span className={accountStyles.balanceAmount}>{`£${balance}`}</span>
+      <div>
+        <div className={accountStyles.dataContainer}>
+          {"Balance:"}{" "}
+          <span className={accountStyles.balanceAmount}>{`£${balance}`}</span>
+        </div>
+
+        <div className={accountStyles.dataContainer}>
+          {`Opened Since: ${openDate}`}
+        </div>
+
+        <div
+          className={accountStyles.dataContainer}
+        >{`Last Active: ${lastActiveDate}`}</div>
       </div>
 
-      <div className={accountStyles.dataContainer}>
-        {`Opened Since: ${openDate}`}
+      <div className={accountStyles.status}>
+        {`Status: ${status}`}
+        <div
+          className={
+            status === "ACTIVE"
+              ? accountStyles.activeStatus
+              : status === "CLOSED"
+              ? accountStyles.closedStatus
+              : accountStyles.frozenStatus
+          }
+        ></div>
       </div>
-
-      <div
-        className={accountStyles.dataContainer}
-      >{`Last Active: ${lastActiveDate}`}</div>
     </div>
   );
 }

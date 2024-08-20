@@ -5,6 +5,7 @@
   --accountStatus-bubble-color: hsl(120, 61%, 30%);
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   background-color: var(--accountCard-bg-color);
   min-width: 30vw;
   max-width: 40vw;
@@ -29,4 +30,13 @@
 
 .balanceAmount {
   font-weight: bold;
+}
+
+.status {
+  min-height: 10vw;
+  border: 2px solid greenyellow;
+}
+
+.activeStatus {
+  background-color: var(--accountStatus-active-bg-color);
 }
