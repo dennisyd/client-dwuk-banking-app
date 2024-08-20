@@ -29,6 +29,7 @@
   max-width: 40vw;
   min-height: 40vh;
   max-height: 50vh;
+  border-radius: var(--container-border-radius);
 }
 
 .customerName {
@@ -59,6 +60,7 @@
   justify-content: space-evenly;
   align-items: center;
   font-weight: bold;
+  border-radius: var(--container-border-radius);
 }
 
 .activeStatus {
