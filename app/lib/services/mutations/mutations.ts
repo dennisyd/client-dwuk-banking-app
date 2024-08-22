@@ -57,10 +57,10 @@ export function usePutAccountsStatus() {
     mutationFn: ({ accountIds, status }: PutAccountStatus) =>
       putAccountStatus({ accountIds, status }),
     onError: () => {
-      toast.error("An error occurred when creating a new transaction");
+      toast.error("An error occurred when updating an account status");
     },
     onSuccess: () => {
-      toast.success("New transaction created successfully");
+      toast.success("Account status updated successfully");
     },
     onSettled: async () => {
       await queryClient.invalidateQueries({
