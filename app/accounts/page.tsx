@@ -24,6 +24,7 @@ export default function Accounts() {
 
   return (
     <div>
+      {selectedAccountsId.length > 1 ? <button>Account Actions</button> : null}
       <div className={accountStyles.accountCardsContainer}>
         {accountsWithCustomers.data.map((accountWithCustomer) => (
           <AccountCard
