@@ -18,7 +18,7 @@ export default function Accounts() {
     return toast.error("An error occurred while fetching accounts");
   }
 
-  function updateSelectedAccountsId(accountId: number) {
+  function addSelectedAccountsId(accountId: number) {
     setSelectedAccountsId([...selectedAccountsId, accountId]);
   }
 
