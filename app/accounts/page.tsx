@@ -32,6 +32,11 @@ export default function Accounts() {
     setSelectedAccountsId(newSelectedAccountsId);
   }
 
+  function updateAccountStatus(
+    accountIds: number[],
+    newStatus: "ACTIVE" | "CLOSED" | "FROZEN"
+  ) {}
+
   return (
     <div>
       {selectedAccountsId.length > 1 ? <UpdateAccountsStatus /> : null}

@@ -7,3 +7,5 @@ export interface AccountWithCustomer {
   last_activity_date: string;
   status: "ACTIVE" | "CLOSED" | "FROZEN";
 }
+
+export type AccountStatus = "ACTIVE" | "CLOSED" | "FROZEN";

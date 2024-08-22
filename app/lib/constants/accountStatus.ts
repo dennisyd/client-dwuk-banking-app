@@ -1,2 +1,3 @@
-const accountStatus = ["ACTIVE", "CLOSED", "FROZEN"] as const;
-export default accountStatus;
+const accountStatuses = ["ACTIVE", "CLOSED", "FROZEN"] as const;
+
+export default accountStatuses;
