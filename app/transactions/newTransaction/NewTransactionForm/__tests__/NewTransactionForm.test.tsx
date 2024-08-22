@@ -3,40 +3,29 @@ import NewTransactionForm from "../NewTransactionForm";
 import userEvent from "@testing-library/user-event";
 import Chance from "chance";
 import { AccountWithCustomer } from "@/app/lib/definitions/account/types/AccountWithCustomer";
+import RandomAccountWithCustomerGenerator from "@/app/lib/tests/RandomAccountWithCustomerGenerator/RandomAccountWithCustomerGenerator";
 
 type Amount = number;
 type AccountsWithCustomersAndTransactions = [AccountWithCustomer, Amount][];
 
 const some = new Chance();
-const nrOfCustomers = 10;
+const nrOfAccounts = 10;
 
-const accountStatus = ["ACTIVE", "CLOSED", "FROZEN"] as const;
-
-const accountsWithCustomers: AccountWithCustomer[] = Array.from(
-  { length: nrOfCustomers },
-  () => {
-    const accountWithCustomer: AccountWithCustomer = {
-      account_id: some.integer({ min: 1, max: 32000 }),
-      first_name: some.first(),
-      last_name: some.last(),
-      balance: some.floating({ min: 1, max: 20000, fixed: 2 }),
-      open_date: some.date().toISOString(),
-      last_activity_date: some.date().toISOString(),
-      status: accountStatus[some.integer({ min: 0, max: 2 })]
-    };
-    return accountWithCustomer;
-  }
+const accountsWithCustomersGenerator = new RandomAccountWithCustomerGenerator(
+  nrOfAccounts
 );
+const accountsWithCustomers = accountsWithCustomersGenerator.generate();
 
-const transactionAmounts = Array.from({ length: nrOfCustomers }, () => {
+const transactionAmounts = Array.from({ length: nrOfAccounts }, () => {
   const amount: Amount = some.integer({ min: 1, max: 20000 });
   return amount;
 });
 
 const accountsWithCustomersAndTransactions: AccountsWithCustomersAndTransactions =
-  Array.from({ length: nrOfCustomers }, (_, i) => {
+  Array.from({ length: nrOfAccounts }, (_, i) => {
     return [accountsWithCustomers[i], transactionAmounts[i]];
   });
+  
 test.each(accountsWithCustomersAndTransactions)(
   "if input value changes when user operates the form",
   async (accountWithCustomer, transactionAmount) => {
