@@ -1,8 +1,8 @@
 import Chance from "chance";
 import { AccountWithCustomer } from "../../definitions/account/types/AccountWithCustomer";
+import accountStatus from "../../constants/accountStatus";
 
 const some = new Chance();
-const accountStatus = ["ACTIVE", "CLOSED", "FROZEN"] as const;
 
 export default class RandomAccountWithCustomerGenerator {
   private length: number;
