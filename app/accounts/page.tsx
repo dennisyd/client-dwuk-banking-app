@@ -7,9 +7,11 @@ import accountStyles from "./styles/accountCard.module.css";
 import { useState } from "react";
 import UpdateAccountsStatus from "./components/UpdateAccountsStatus/UpdateAccountsStatus";
 import { AccountStatus } from "../lib/definitions/account/types/AccountWithCustomer";
+import { usePutAccountsStatus } from "../lib/services/mutations/mutations";
 
 export default function Accounts() {
   const accountsWithCustomers = useAccountsWithCustomers();
+  const putAccountStatusMutation = usePutAccountsStatus();
   const [selectedAccountsId, setSelectedAccountsId] = useState<number[]>([]);
 
   if (accountsWithCustomers.isPending) {
@@ -33,7 +35,12 @@ export default function Accounts() {
     setSelectedAccountsId(newSelectedAccountsId);
   }
 
-  function updateAccountStatus(newStatus: AccountStatus) {}
+  function updateAccountStatus(newStatus: AccountStatus) {
+    putAccountStatusMutation.mutate({
+      accountIds: selectedAccountsId,
+      status: newStatus
+    });
+  }
 
   return (
     <div>

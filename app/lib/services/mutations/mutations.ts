@@ -52,7 +52,12 @@ export function usePostTransaction() {
 
 export function usePutAccountsStatus() {
   return useMutation({
-    mutationFn: (accountIds: number[], status: AccountStatus) =>
-      putAccountStatus(accountIds, status)
+    mutationFn: ({
+      accountIds,
+      status
+    }: {
+      accountIds: number[];
+      status: AccountStatus;
+    }) => putAccountStatus(accountIds, status)
   });
 }
