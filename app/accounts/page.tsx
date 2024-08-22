@@ -6,6 +6,7 @@ import AccountCard from "./components/AccountCard/AccountCard";
 import accountStyles from "./styles/accountCard.module.css";
 import { useState } from "react";
 import UpdateAccountsStatus from "./components/UpdateAccountsStatus/UpdateAccountsStatus";
+import { AccountStatus } from "../lib/definitions/account/types/AccountWithCustomer";
 
 export default function Accounts() {
   const accountsWithCustomers = useAccountsWithCustomers();
@@ -34,7 +35,7 @@ export default function Accounts() {
 
   function updateAccountStatus(
     accountIds: number[],
-    newStatus: "ACTIVE" | "CLOSED" | "FROZEN"
+    newStatus: AccountStatus
   ) {}
 
   return (
