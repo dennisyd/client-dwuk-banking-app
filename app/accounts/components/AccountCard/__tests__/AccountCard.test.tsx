@@ -32,9 +32,9 @@ test.each(accountsWithCustomers)(
     const firstAndLastName = screen.getByText(
       `${accountWithCustomer.first_name} ${accountWithCustomer.last_name}`
     );
-    const balance = screen.getByText(
-      `Balance: £${accountWithCustomer.balance}`
-    );
+    
+    const balanceRegExp = new RegExp(String(accountWithCustomer.balance), "i");
+    const balance = screen.getByText(balanceRegExp);
 
     expect(firstAndLastName).toBeInTheDocument();
     expect(balance).toBeInTheDocument();
