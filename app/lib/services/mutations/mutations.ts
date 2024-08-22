@@ -11,6 +11,7 @@ import { NewTransactionFormSubmitValues } from "../../definitions/transaction/ty
 import { postTransaction } from "../api/api";
 import { AccountStatus } from "../../definitions/account/types/AccountWithCustomer";
 import { putAccountStatus } from "../api/api";
+import PutAccountStatus from "../../definitions/account/types/PutAccountStatus";
 
 export function usePutCustomer() {
   const queryClient = useQueryClient();
@@ -52,12 +53,13 @@ export function usePostTransaction() {
 
 export function usePutAccountsStatus() {
   return useMutation({
-    mutationFn: ({
-      accountIds,
-      status
-    }: {
-      accountIds: number[];
-      status: AccountStatus;
-    }) => putAccountStatus(accountIds, status)
+    mutationFn: ({ accountIds, status }: PutAccountStatus) =>
+      putAccountStatus({ accountIds, status }),
+    onError: () => {
+      toast.error("An error occurred when creating a new transaction");
+    },
+    onSuccess: () => {
+      toast.success("New transaction created successfully");
+    }
   });
 }

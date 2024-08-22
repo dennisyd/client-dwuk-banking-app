@@ -8,6 +8,7 @@ import { useState } from "react";
 import UpdateAccountsStatus from "./components/UpdateAccountsStatus/UpdateAccountsStatus";
 import { AccountStatus } from "../lib/definitions/account/types/AccountWithCustomer";
 import { usePutAccountsStatus } from "../lib/services/mutations/mutations";
+import PutAccountStatus from "../lib/definitions/account/types/PutAccountStatus";
 
 export default function Accounts() {
   const accountsWithCustomers = useAccountsWithCustomers();
@@ -36,7 +37,8 @@ export default function Accounts() {
   }
 
   function updateAccountStatus(newStatus: AccountStatus) {
-    putAccountStatusMutation.mutate({
+    putAccountStatusMutation.mutate(
+      {
       accountIds: selectedAccountsId,
       status: newStatus
     });
