@@ -17,7 +17,7 @@ const accountsWithCustomersGenerator = new RandomAccountWithCustomerGenerator(
 const accountsWithCustomers = accountsWithCustomersGenerator.generate();
 
 const transactionAmounts = Array.from({ length: nrOfAccounts }, () => {
-  const amount: Amount = some.integer({ min: 1, max: 20000 });
+  const amount: Amount = some.floating({ min: 1, max: 20000, fixed: 2 });
   return amount;
 });
 
@@ -25,7 +25,7 @@ const accountsWithCustomersAndTransactions: AccountsWithCustomersAndTransactions
   Array.from({ length: nrOfAccounts }, (_, i) => {
     return [accountsWithCustomers[i], transactionAmounts[i]];
   });
-  
+
 test.each(accountsWithCustomersAndTransactions)(
   "if input value changes when user operates the form",
   async (accountWithCustomer, transactionAmount) => {
