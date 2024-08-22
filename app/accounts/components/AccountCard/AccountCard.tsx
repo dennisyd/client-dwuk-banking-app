@@ -38,7 +38,10 @@ export default function AccountCard({
   return (
     <div
       className={accountStyles.accountCard}
-      onClick={() => setAccountSelected(!accountSelected)}
+      onClick={() => {
+        setAccountSelected(!accountSelected);
+        onAddSelectedAccountId(account_id);
+      }}
     >
       <div>
         <div className={accountStyles.customerName}>
