@@ -2,26 +2,13 @@ import { render, screen } from "@testing-library/react";
 import NewTransactionForm from "../NewTransactionForm";
 import userEvent from "@testing-library/user-event";
 import Chance from "chance";
-import { CustomerProps } from "@/app/lib/definitions/customer/types/CustomerProps";
 import { AccountWithCustomer } from "@/app/lib/definitions/account/types/AccountWithCustomer";
 
 type Amount = number;
-type CustomersWithTransactions = [CustomerProps, Amount][];
+type AccountsWithCustomersAndTransactions = [AccountWithCustomer, Amount][];
 
 const some = new Chance();
 const nrOfCustomers = 10;
-
-const customers: CustomerProps[] = Array.from({ length: nrOfCustomers }, () => {
-  const customer: CustomerProps = {
-    customer_id: some.integer({ min: 1, max: 32000 }),
-    officer_id: 1,
-    first_name: some.first(),
-    last_name: some.last(),
-    email: some.email()
-  };
-
-  return customer;
-});
 
 const accountStatus = ["ACTIVE", "CLOSED", "FROZEN"] as const;
 
@@ -46,15 +33,13 @@ const transactionAmounts = Array.from({ length: nrOfCustomers }, () => {
   return amount;
 });
 
-const customersWithTransactions: CustomersWithTransactions = Array.from(
-  { length: nrOfCustomers },
-  (_, i) => {
-    return [customers[i], transactionAmounts[i]];
-  }
-);
-test.each(customersWithTransactions)(
+const accountsWithCustomersAndTransactions: AccountsWithCustomersAndTransactions =
+  Array.from({ length: nrOfCustomers }, (_, i) => {
+    return [accountsWithCustomers[i], transactionAmounts[i]];
+  });
+test.each(accountsWithCustomersAndTransactions)(
   "if input value changes when user operates the form",
-  async (customer, transactionAmount) => {
+  async (accountWithCustomer, transactionAmount) => {
     const user = userEvent.setup();
     const handleSubmitForm = jest.fn();
 
@@ -65,18 +50,16 @@ test.each(customersWithTransactions)(
       />
     );
 
-    const stringCustomerID = String(customer.customer_id);
+    const stringAccountID = String(accountWithCustomer.account_id);
     const stringTransactionAmount = String(transactionAmount);
 
     const fromAccount = screen.getByLabelText(
       /from account/i
     ) as HTMLSelectElement;
-    await user.selectOptions(fromAccount, stringCustomerID);
+    await user.selectOptions(fromAccount, stringAccountID);
 
-    const toAccount = screen.getByLabelText(
-      /to account/i
-    ) as HTMLSelectElement;
-    await user.selectOptions(toAccount, stringCustomerID);
+    const toAccount = screen.getByLabelText(/to account/i) as HTMLSelectElement;
+    await user.selectOptions(toAccount, stringAccountID);
 
     const transactionAmountElement = screen.getByLabelText(
       /amount/i
