@@ -1,5 +1,6 @@
 import accountStatus from "@/app/lib/constants/accountStatus";
 import stylesChangeAccountStatus from "../../styles/changeAccountStatus.module.css";
+import Button from "@/app/lib/components/common/Button";
 
 export default function ChangeAccountsStatus() {
   return (
@@ -8,7 +9,7 @@ export default function ChangeAccountsStatus() {
 
       <div className={stylesChangeAccountStatus.actionButtonsContainer}>
         {accountStatus.map((status, i) => (
-          <button key={i}>{status}</button>
+          <Button key={i} type="button" text={status} onClick={() => {}} />
         ))}
       </div>
     </div>
