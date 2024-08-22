@@ -4,6 +4,10 @@ import DateTimeFormatter from "@/app/lib/utils/DateTimeFormatter/DateTimeFormatt
 import CssClassGenerator from "@/app/lib/utils/CssClassGenerator/CssClassGenerator";
 import { useState } from "react";
 
+interface AccountCardProps extends AccountWithCustomer {
+  onAddSelectedAccountId: (accountId: number) => void;
+}
+
 export default function AccountCard({
   account_id,
   first_name,
@@ -11,8 +15,9 @@ export default function AccountCard({
   balance,
   open_date,
   last_activity_date,
-  status
-}: AccountWithCustomer) {
+  status,
+  onAddSelectedAccountId
+}: AccountCardProps) {
   const [accountSelected, setAccountSelected] = useState(false);
 
   const dateTimeFormatter = new DateTimeFormatter();

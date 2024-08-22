@@ -35,6 +35,7 @@ export default function Accounts() {
             open_date={accountWithCustomer.open_date}
             last_activity_date={accountWithCustomer.last_activity_date}
             status={accountWithCustomer.status}
+            onAddSelectedAccountId={addSelectedAccountsId}
           />
         ))}
       </div>
