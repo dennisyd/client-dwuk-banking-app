@@ -4,9 +4,11 @@ import Spinner from "../lib/components/common/Spinner/Spinner";
 import toast from "react-hot-toast";
 import AccountCard from "./components/AccountCard/AccountCard";
 import accountStyles from "./styles/account.module.css";
+import { useState } from "react";
 
 export default function Accounts() {
   const accountsWithCustomers = useAccountsWithCustomers();
+  const [selectedAccountsId, setSelectedAccountsId] = useState<number[]>([]);
 
   if (accountsWithCustomers.isPending) {
     return <Spinner />;
@@ -14,6 +16,10 @@ export default function Accounts() {
 
   if (accountsWithCustomers.isError) {
     return toast.error("An error occurred while fetching accounts");
+  }
+
+  function updateSelectedAccountsId(accountId: number) {
+    setSelectedAccountsId([...selectedAccountsId, accountId]);
   }
 
   return (
