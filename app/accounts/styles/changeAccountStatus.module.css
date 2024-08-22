@@ -5,3 +5,7 @@
   margin-bottom: 3rem;
 }
 
+.actionButtonsContainer{
+  display: flex;
+  gap: 0.5rem;
+}
