@@ -33,14 +33,13 @@ export default function Accounts() {
     setSelectedAccountsId(newSelectedAccountsId);
   }
 
-  function updateAccountStatus(
-    accountIds: number[],
-    newStatus: AccountStatus
-  ) {}
+  function updateAccountStatus(newStatus: AccountStatus) {}
 
   return (
     <div>
-      {selectedAccountsId.length > 1 ? <UpdateAccountsStatus /> : null}
+      {selectedAccountsId.length > 1 ? (
+        <UpdateAccountsStatus onUpdateAccountStatus={updateAccountStatus} />
+      ) : null}
       <div className={accountStyles.accountCardsContainer}>
         {accountsWithCustomers.data.map((accountWithCustomer) => (
           <AccountCard

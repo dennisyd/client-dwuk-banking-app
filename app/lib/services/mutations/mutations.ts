@@ -9,6 +9,8 @@ import toast from "react-hot-toast";
 import { postCustomer } from "../api/api";
 import { NewTransactionFormSubmitValues } from "../../definitions/transaction/types/NewTransactionFormSubmitValues";
 import { postTransaction } from "../api/api";
+import { AccountStatus } from "../../definitions/account/types/AccountWithCustomer";
+import { putAccountStatus } from "../api/api";
 
 export function usePutCustomer() {
   const queryClient = useQueryClient();
@@ -48,8 +50,9 @@ export function usePostTransaction() {
   });
 }
 
-export function usePutAccountsStatus(){
+export function usePutAccountsStatus() {
   return useMutation({
-    mutationFn: (accountIds: number[]) => 
-  })
+    mutationFn: (accountIds: number[], status: AccountStatus) =>
+      putAccountStatus(accountIds, status)
+  });
 }

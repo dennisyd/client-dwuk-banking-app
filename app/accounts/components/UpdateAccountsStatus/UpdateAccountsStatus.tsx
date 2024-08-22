@@ -2,8 +2,15 @@ import accountStatus from "@/app/lib/constants/accountStatus";
 import stylesChangeAccountStatus from "../../styles/changeAccountStatus.module.css";
 import Button from "@/app/lib/components/common/Button";
 import colours from "@/app/lib/constants/colors";
+import { AccountStatus } from "@/app/lib/definitions/account/types/AccountWithCustomer";
 
-export default function UpdateAccountsStatus() {
+interface UpdateAccountsStatusProps {
+  onUpdateAccountStatus: (status: AccountStatus) => void;
+}
+
+export default function UpdateAccountsStatus({
+  onUpdateAccountStatus
+}: UpdateAccountsStatusProps) {
   return (
     <div className={stylesChangeAccountStatus.accountActionsOuterContainer}>
       <div>Change Accounts Status to:</div>
@@ -20,7 +27,9 @@ export default function UpdateAccountsStatus() {
                 ? "Close"
                 : "Freeze"
             }
-            onClick={() => {}}
+            onClick={() => {
+              onUpdateAccountStatus(status);
+            }}
             primaryColor={
               status === "ACTIVE"
                 ? colours.activeBubbleColor
