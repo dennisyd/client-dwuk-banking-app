@@ -40,7 +40,11 @@ export default function AccountCard({
       className={accountStyles.accountCard}
       onClick={() => {
         setAccountSelected(!accountSelected);
-        onAddSelectedAccountId(account_id);
+        if (!accountSelected) {
+          onAddSelectedAccountId(account_id);
+        } else {
+          
+        }
       }}
     >
       <div>

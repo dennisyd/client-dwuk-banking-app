@@ -22,6 +22,15 @@ export default function Accounts() {
     setSelectedAccountsId([...selectedAccountsId, accountId]);
   }
 
+  function deleteSelectedAccountsIs(accountId: number) {
+    const newSelectedAccountsId = selectedAccountsId.filter(
+      (selectedAccountId) => {
+        if (selectedAccountId !== accountId) return selectedAccountId;
+      }
+    );
+    setSelectedAccountsId(newSelectedAccountsId);
+  }
+
   return (
     <div>
       {selectedAccountsId.length > 1 ? <button>Account Actions</button> : null}
