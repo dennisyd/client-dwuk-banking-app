@@ -9,7 +9,6 @@ import toast from "react-hot-toast";
 import { postCustomer } from "../api/api";
 import { NewTransactionFormSubmitValues } from "../../definitions/transaction/types/NewTransactionFormSubmitValues";
 import { postTransaction } from "../api/api";
-import { AccountStatus } from "../../definitions/account/types/AccountWithCustomer";
 import { putAccountStatus } from "../api/api";
 import PutAccountStatus from "../../definitions/account/types/PutAccountStatus";
 
@@ -52,6 +51,8 @@ export function usePostTransaction() {
 }
 
 export function usePutAccountsStatus() {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: ({ accountIds, status }: PutAccountStatus) =>
       putAccountStatus({ accountIds, status }),
@@ -60,6 +61,11 @@ export function usePutAccountsStatus() {
     },
     onSuccess: () => {
       toast.success("New transaction created successfully");
+    },
+    onSettled: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ["get-accounts-with-customers"]
+      });
     }
   });
 }
