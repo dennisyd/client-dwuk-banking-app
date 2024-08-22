@@ -30,10 +30,12 @@ export default function Accounts() {
     );
     setSelectedAccountsId(newSelectedAccountsId);
   }
-  console.log("selectedAccounts", selectedAccountsId);
+
   return (
     <div>
-      {selectedAccountsId.length > 1 ? <button>Account Actions</button> : null}
+      {selectedAccountsId.length > 1 ? (
+        <div>Change Accounts Status to:</div>
+      ) : null}
       <div className={accountStyles.accountCardsContainer}>
         {accountsWithCustomers.data.map((accountWithCustomer) => (
           <AccountCard
