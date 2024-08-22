@@ -1,5 +1,5 @@
 import { AccountWithCustomer } from "@/app/lib/definitions/account/types/AccountWithCustomer";
-import accountStyles from "../../styles/account.module.css";
+import accountStyles from "../../styles/accountCard.module.css";
 import DateTimeFormatter from "@/app/lib/utils/DateTimeFormatter/DateTimeFormatter";
 import CssClassGenerator from "@/app/lib/utils/CssClassGenerator/CssClassGenerator";
 import { useState } from "react";

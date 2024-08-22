@@ -1,4 +1,4 @@
-import accountStyles from "../../../accounts/styles/account.module.css";
+import accountStyles from "../../../accounts/styles/accountCard.module.css";
 
 export default class CssClassGenerator {
   generateStatusContainerClass(status: "ACTIVE" | "CLOSED" | "FROZEN") {

@@ -3,7 +3,7 @@ import { useAccountsWithCustomers } from "../lib/services/queries/queries";
 import Spinner from "../lib/components/common/Spinner/Spinner";
 import toast from "react-hot-toast";
 import AccountCard from "./components/AccountCard/AccountCard";
-import accountStyles from "./styles/account.module.css";
+import accountStyles from "./styles/accountCard.module.css";
 import { useState } from "react";
 import ChangeAccountsStatus from "./components/ChangeAccountsStatus/ChangeAccountsStatus";
 
