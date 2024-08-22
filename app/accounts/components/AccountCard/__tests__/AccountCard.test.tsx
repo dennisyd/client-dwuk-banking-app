@@ -22,6 +22,9 @@ const accountsWithCustomers: AccountWithCustomer[] = Array.from(
     return accountWithCustomer;
   }
 );
+
+const addSelectedAccountsId = jest.fn();
+
 test.each(accountsWithCustomers)(
   "if the AccountCard component displays the data correctly",
   (accountWithCustomer) => {
@@ -34,6 +37,7 @@ test.each(accountsWithCustomers)(
         open_date={accountWithCustomer.open_date}
         last_activity_date={accountWithCustomer.last_activity_date}
         status={accountWithCustomer.status}
+        onAddSelectedAccountId={addSelectedAccountsId}
       />
     );
 
