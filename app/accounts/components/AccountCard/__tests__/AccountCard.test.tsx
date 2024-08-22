@@ -32,7 +32,7 @@ test.each(accountsWithCustomers)(
     const firstAndLastName = screen.getByText(
       `${accountWithCustomer.first_name} ${accountWithCustomer.last_name}`
     );
-    
+
     const balanceRegExp = new RegExp(String(accountWithCustomer.balance), "i");
     const balance = screen.getByText(balanceRegExp);
 
@@ -41,8 +41,14 @@ test.each(accountsWithCustomers)(
 
     const user = userEvent.setup();
     const accountCard = screen.getByTestId("account-card") as HTMLDivElement;
+
     await user.click(accountCard);
     expect(addSelectedAccountsId.mock.calls[0][0]).toBe(
+      accountWithCustomer.account_id
+    );
+
+    await user.click(accountCard);
+    expect(deleteSelectedAccountId.mock.calls[0][0]).toBe(
       accountWithCustomer.account_id
     );
   }
