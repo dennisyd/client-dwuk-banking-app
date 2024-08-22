@@ -31,6 +31,10 @@ export async function putCustomer(editedCustomer: CustomerProps) {
   return response;
 }
 
+export async function putAccountStatus(accountIds: number[]){
+  return await axiosInstance.put('accounts')
+}
+
 export async function postCustomer(customer: CustomerPropsWithoutID) {
   return await axiosInstance.post("customers", customer);
 }

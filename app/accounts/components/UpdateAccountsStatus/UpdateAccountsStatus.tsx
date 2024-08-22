@@ -3,7 +3,7 @@ import stylesChangeAccountStatus from "../../styles/changeAccountStatus.module.c
 import Button from "@/app/lib/components/common/Button";
 import colours from "@/app/lib/constants/colors";
 
-export default function ChangeAccountsStatus() {
+export default function UpdateAccountsStatus() {
   return (
     <div className={stylesChangeAccountStatus.accountActionsOuterContainer}>
       <div>Change Accounts Status to:</div>

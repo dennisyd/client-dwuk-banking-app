@@ -47,3 +47,9 @@ export function usePostTransaction() {
     }
   });
 }
+
+export function usePutAccountsStatus(){
+  return useMutation({
+    mutationFn: (accountIds: number[]) => 
+  })
+}

@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import AccountCard from "./components/AccountCard/AccountCard";
 import accountStyles from "./styles/accountCard.module.css";
 import { useState } from "react";
-import ChangeAccountsStatus from "./components/ChangeAccountsStatus/ChangeAccountsStatus";
+import UpdateAccountsStatus from "./components/UpdateAccountsStatus/UpdateAccountsStatus";
 
 export default function Accounts() {
   const accountsWithCustomers = useAccountsWithCustomers();
@@ -34,7 +34,7 @@ export default function Accounts() {
 
   return (
     <div>
-      {selectedAccountsId.length > 1 ? <ChangeAccountsStatus /> : null}
+      {selectedAccountsId.length > 1 ? <UpdateAccountsStatus /> : null}
       <div className={accountStyles.accountCardsContainer}>
         {accountsWithCustomers.data.map((accountWithCustomer) => (
           <AccountCard
