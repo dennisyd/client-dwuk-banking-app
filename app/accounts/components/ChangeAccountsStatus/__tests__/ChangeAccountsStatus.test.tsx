@@ -4,5 +4,5 @@ import ChangeAccountsStatus from "../ChangeAccountsStatus";
 test("if it renders account statuses as buttons", () => {
   render(<ChangeAccountsStatus />);
 
-  const activeButton = screen.getByRole('button', {name: 'ACTIVE'});
+  const activeButton = screen.getByRole('button', {name: 'Activate'});
 });

@@ -13,7 +13,13 @@ export default function ChangeAccountsStatus() {
           <Button
             key={i}
             type="button"
-            text={status}
+            text={
+              status === "ACTIVE"
+                ? "Activate"
+                : status === "CLOSED"
+                ? "Close"
+                : "Freeze"
+            }
             onClick={() => {}}
             primaryColor={
               status === "ACTIVE"
