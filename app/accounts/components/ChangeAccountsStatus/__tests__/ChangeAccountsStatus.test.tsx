@@ -5,4 +5,6 @@ test("if it renders account statuses as buttons", () => {
   render(<ChangeAccountsStatus />);
 
   const activeButton = screen.getByRole('button', {name: 'Activate'});
+  const closeButton = screen.getByRole('button', {name: 'Close'});
+  const freezeButton = screen.getByRole('button', {name: 'Freeze'});
 });
