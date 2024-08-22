@@ -30,7 +30,7 @@ export default function Accounts() {
     );
     setSelectedAccountsId(newSelectedAccountsId);
   }
-
+  console.log("selectedAccounts", selectedAccountsId);
   return (
     <div>
       {selectedAccountsId.length > 1 ? <button>Account Actions</button> : null}
@@ -46,6 +46,7 @@ export default function Accounts() {
             last_activity_date={accountWithCustomer.last_activity_date}
             status={accountWithCustomer.status}
             onAddSelectedAccountId={addSelectedAccountsId}
+            onDeleteSelectedAccountId={deleteSelectedAccountsIs}
           />
         ))}
       </div>

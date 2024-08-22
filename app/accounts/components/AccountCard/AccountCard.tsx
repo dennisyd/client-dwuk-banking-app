@@ -6,6 +6,7 @@ import { useState } from "react";
 
 interface AccountCardProps extends AccountWithCustomer {
   onAddSelectedAccountId: (accountId: number) => void;
+  onDeleteSelectedAccountId: (accountId: number) => void;
 }
 
 export default function AccountCard({
@@ -16,7 +17,8 @@ export default function AccountCard({
   open_date,
   last_activity_date,
   status,
-  onAddSelectedAccountId
+  onAddSelectedAccountId,
+  onDeleteSelectedAccountId
 }: AccountCardProps) {
   const [accountSelected, setAccountSelected] = useState(false);
 
@@ -43,7 +45,7 @@ export default function AccountCard({
         if (!accountSelected) {
           onAddSelectedAccountId(account_id);
         } else {
-          
+          onDeleteSelectedAccountId(account_id);
         }
       }}
     >
