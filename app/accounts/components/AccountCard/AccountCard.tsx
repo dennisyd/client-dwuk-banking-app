@@ -50,6 +50,7 @@ export default function AccountCard({
         }
       }}
     >
+      <p>{`Account ID: ${account_id}`}</p>
       <div>
         <div className={accountStyles.customerName}>
           <h3>{`${first_name} ${last_name}`}</h3>

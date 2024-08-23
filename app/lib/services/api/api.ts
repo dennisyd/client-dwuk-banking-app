@@ -36,13 +36,13 @@ export async function putCustomer(editedCustomer: CustomerProps) {
 }
 
 export async function putAccountStatus({
-  accountIds,
+  accountIDs,
   status
 }: PutAccountStatus) {
   const accountStatusPathAdapter = new AccountStatusPathAdapter();
   const action = accountStatusPathAdapter.adaptPath(status);
 
-  return await axiosInstance.put(`accounts/${action}`, accountIds);
+  return await axiosInstance.put(`accounts/${action}`, accountIDs);
 }
 
 export async function postCustomer(customer: CustomerPropsWithoutID) {

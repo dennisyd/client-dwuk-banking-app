@@ -54,8 +54,8 @@ export function usePutAccountsStatus() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ accountIds, status }: PutAccountStatus) =>
-      putAccountStatus({ accountIds, status }),
+    mutationFn: ({ accountIDs, status }: PutAccountStatus) =>
+      putAccountStatus({ accountIDs, status }),
     onError: () => {
       toast.error("An error occurred when updating accounts status");
     },
