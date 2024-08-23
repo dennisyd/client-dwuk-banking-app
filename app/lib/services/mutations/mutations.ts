@@ -57,7 +57,7 @@ export function usePutAccountsStatus() {
     mutationFn: ({ accountIds, status }: PutAccountStatus) =>
       putAccountStatus({ accountIds, status }),
     onError: () => {
-      toast.error("An error occurred when updating an account status");
+      toast.error("An error occurred when updating accounts status");
     },
     onSuccess: () => {
       toast.success("Account status updated successfully");
