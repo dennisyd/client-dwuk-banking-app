@@ -1,0 +1,12 @@
+.accountActionsOuterContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.actionButtonsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem;
+}

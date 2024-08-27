@@ -1,30 +1,20 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import AccountCard from "../AccountCard";
-import Chance from "chance";
-import { AccountWithCustomer } from "@/app/lib/definitions/account/types/AccountWithCustomer";
+import RandomAccountWithCustomerGenerator from "@/app/lib/tests/RandomAccountWithCustomerGenerator/RandomAccountWithCustomerGenerator";
 
-const some = new Chance();
-const accountStatus = ["ACTIVE", "CLOSED", "FROZEN"] as const;
-
-const accountsWithCustomers: AccountWithCustomer[] = Array.from(
-  { length: 10 },
-  () => {
-    const someDate = new Date(some.date({ year: 2024 })).toISOString();
-    const accountWithCustomer: AccountWithCustomer = {
-      account_id: some.integer({ min: 1, max: 32000 }),
-      first_name: some.first(),
-      last_name: some.last(),
-      balance: some.integer({ min: 100, max: 1000 }),
-      open_date: someDate,
-      last_activity_date: someDate,
-      status: accountStatus[some.integer({ min: 0, max: 2 })]
-    };
-    return accountWithCustomer;
-  }
+const nrOfAccounts = 10;
+const accountsWithCustomersGenerator = new RandomAccountWithCustomerGenerator(
+  nrOfAccounts
 );
+const accountsWithCustomers = accountsWithCustomersGenerator.generate();
+
+const addSelectedAccountsId = jest.fn();
+const deleteSelectedAccountId = jest.fn();
+
 test.each(accountsWithCustomers)(
   "if the AccountCard component displays the data correctly",
-  (accountWithCustomer) => {
+  async (accountWithCustomer) => {
     render(
       <AccountCard
         account_id={accountWithCustomer.account_id}
@@ -34,16 +24,32 @@ test.each(accountsWithCustomers)(
         open_date={accountWithCustomer.open_date}
         last_activity_date={accountWithCustomer.last_activity_date}
         status={accountWithCustomer.status}
+        onAddSelectedAccountId={addSelectedAccountsId}
+        onDeleteSelectedAccountId={deleteSelectedAccountId}
       />
     );
 
     const firstAndLastName = screen.getByText(
       `${accountWithCustomer.first_name} ${accountWithCustomer.last_name}`
     );
-    const balance = screen.getByText(
-      `Balance: £${accountWithCustomer.balance}`
-    );
+
+    const balanceRegExp = new RegExp(String(accountWithCustomer.balance), "i");
+    const balance = screen.getByText(balanceRegExp);
+
     expect(firstAndLastName).toBeInTheDocument();
     expect(balance).toBeInTheDocument();
+
+    const user = userEvent.setup();
+    const accountCard = screen.getByTestId("account-card") as HTMLDivElement;
+
+    await user.click(accountCard);
+    expect(addSelectedAccountsId.mock.calls[0][0]).toBe(
+      accountWithCustomer.account_id
+    );
+
+    await user.click(accountCard);
+    expect(deleteSelectedAccountId.mock.calls[0][0]).toBe(
+      accountWithCustomer.account_id
+    );
   }
 );

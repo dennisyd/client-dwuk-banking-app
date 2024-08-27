@@ -5,6 +5,8 @@ import {
 } from "../../definitions/customer/types/CustomerProps";
 import { NewTransactionFormSubmitValues } from "../../definitions/transaction/types/NewTransactionFormSubmitValues";
 import { AccountWithCustomer } from "../../definitions/account/types/AccountWithCustomer";
+import PutAccountStatus from "../../definitions/account/types/PutAccountStatus";
+import AccountStatusPathAdapter from "../../utils/AccountStatusPathAdapter/AccountStatusPathAdapter";
 
 const baseURL = process.env.NEXT_PUBLIC_API_URL;
 const axiosInstance = axios.create({ baseURL: baseURL });
@@ -19,7 +21,9 @@ export async function getAccountsWithCustomers() {
   const response = await axiosInstance.get<string>(
     "accounts/accountsWithCustomers"
   );
-  const accountsWithCustomers: AccountWithCustomer[] = JSON.parse(response.data);
+  const accountsWithCustomers: AccountWithCustomer[] = JSON.parse(
+    response.data
+  );
   return accountsWithCustomers;
 }
 
@@ -29,6 +33,16 @@ export async function putCustomer(editedCustomer: CustomerProps) {
     editedCustomer
   );
   return response;
+}
+
+export async function putAccountStatus({
+  accountIDs,
+  status
+}: PutAccountStatus) {
+  const accountStatusPathAdapter = new AccountStatusPathAdapter();
+  const action = accountStatusPathAdapter.adaptPath(status);
+
+  return await axiosInstance.put(`accounts/${action}`, { accountIDs });
 }
 
 export async function postCustomer(customer: CustomerPropsWithoutID) {

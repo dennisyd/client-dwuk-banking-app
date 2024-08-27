@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { CustomerProps } from "../../definitions/customer/types/CustomerProps";
+import { CustomerProps } from "@/app/lib/definitions/customer/types/CustomerProps";
 
 interface SelectCustomerProps {
   customers: CustomerProps[];

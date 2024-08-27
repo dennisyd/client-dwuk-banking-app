@@ -1,7 +1,13 @@
 import { AccountWithCustomer } from "@/app/lib/definitions/account/types/AccountWithCustomer";
-import accountStyles from "../../styles/account.module.css";
+import accountStyles from "../../styles/accountCard.module.css";
 import DateTimeFormatter from "@/app/lib/utils/DateTimeFormatter/DateTimeFormatter";
 import CssClassGenerator from "@/app/lib/utils/CssClassGenerator/CssClassGenerator";
+import { useState } from "react";
+
+interface AccountCardProps extends AccountWithCustomer {
+  onAddSelectedAccountId: (accountId: number) => void;
+  onDeleteSelectedAccountId: (accountId: number) => void;
+}
 
 export default function AccountCard({
   account_id,
@@ -10,8 +16,12 @@ export default function AccountCard({
   balance,
   open_date,
   last_activity_date,
-  status
-}: AccountWithCustomer) {
+  status,
+  onAddSelectedAccountId,
+  onDeleteSelectedAccountId
+}: AccountCardProps) {
+  const [accountSelected, setAccountSelected] = useState(false);
+
   const dateTimeFormatter = new DateTimeFormatter();
 
   const openDate = dateTimeFormatter.gbDayMonthYearLongFormat(open_date);
@@ -20,7 +30,7 @@ export default function AccountCard({
     dateTimeFormatter.gbDayMonthYearLongFormat(last_activity_date);
 
   const cssClassGenerator = new CssClassGenerator();
-  
+
   const statusContainerClassName =
     cssClassGenerator.generateStatusContainerClass(status);
 
@@ -28,7 +38,19 @@ export default function AccountCard({
     cssClassGenerator.generateStatusBubbleClass(status);
 
   return (
-    <div className={accountStyles.accountCard}>
+    <div
+      data-testid="account-card"
+      className={accountStyles.accountCard}
+      onClick={() => {
+        setAccountSelected(!accountSelected);
+        if (!accountSelected) {
+          onAddSelectedAccountId(account_id);
+        } else {
+          onDeleteSelectedAccountId(account_id);
+        }
+      }}
+    >
+      <p>{`Account ID: ${account_id}`}</p>
       <div>
         <div className={accountStyles.customerName}>
           <h3>{`${first_name} ${last_name}`}</h3>
@@ -41,6 +63,7 @@ export default function AccountCard({
           <span className={accountStyles.balanceAmount}>{`£${balance.toFixed(
             2
           )}`}</span>
+          {accountSelected && <button>Top-Up Balance</button>}
         </div>
 
         <div className={accountStyles.dataContainer}>
@@ -57,6 +80,7 @@ export default function AccountCard({
         <span className={`${statusBubbleClassName} ${accountStyles.bubble}`}>
           {status}
         </span>
+        {accountSelected && <button>Update Status</button>}
       </div>
     </div>
   );

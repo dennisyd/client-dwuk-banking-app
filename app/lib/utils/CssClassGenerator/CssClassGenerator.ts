@@ -1,7 +1,8 @@
-import accountStyles from "../../../accounts/styles/account.module.css";
+import accountStyles from "../../../accounts/styles/accountCard.module.css";
+import { AccountStatus } from "../../definitions/account/types/AccountWithCustomer";
 
 export default class CssClassGenerator {
-  generateStatusContainerClass(status: "ACTIVE" | "CLOSED" | "FROZEN") {
+  generateStatusContainerClass(status: AccountStatus) {
     return status === "ACTIVE"
       ? accountStyles.activeStatus
       : status === "CLOSED"
@@ -9,7 +10,7 @@ export default class CssClassGenerator {
       : accountStyles.frozenStatus;
   }
 
-  generateStatusBubbleClass(status: "ACTIVE" | "CLOSED" | "FROZEN") {
+  generateStatusBubbleClass(status: AccountStatus) {
     return status === "ACTIVE"
       ? accountStyles.activeBubble
       : status === "CLOSED"
