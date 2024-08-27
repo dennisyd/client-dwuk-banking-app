@@ -43,7 +43,7 @@ export async function putAccountStatus({
   const action = accountStatusPathAdapter.adaptPath(status);
 
   return await axiosInstance.put(`accounts/${action}`, {
-    accountIDs: accountIDs
+    accountIDs: JSON.stringify(accountIDs)
   });
 }
 
