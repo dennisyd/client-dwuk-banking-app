@@ -42,7 +42,9 @@ export async function putAccountStatus({
   const accountStatusPathAdapter = new AccountStatusPathAdapter();
   const action = accountStatusPathAdapter.adaptPath(status);
 
-  return await axiosInstance.put(`accounts/${action}`, { accountIDs });
+  return await axiosInstance.put(`accounts/${action}`, {
+    accountIDs: accountIDs
+  });
 }
 
 export async function postCustomer(customer: CustomerPropsWithoutID) {
