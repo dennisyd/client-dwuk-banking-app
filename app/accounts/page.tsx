@@ -37,14 +37,12 @@ export default function Accounts() {
 
   function updateAccountStatus(newStatus: AccountStatus) {
     putAccountStatusMutation.mutate({
-      accountIds: selectedAccountsId,
+      accountIDs: selectedAccountsId,
       status: newStatus
     });
   }
 
-  function activateAccount(){
-    
-  }
+  function activateAccount() {}
 
   return (
     <div>
