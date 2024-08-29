@@ -42,8 +42,6 @@ export default function Accounts() {
     });
   }
 
-  function activateAccount() {}
-
   return (
     <div>
       {selectedAccountsId.length > 1 ? (
