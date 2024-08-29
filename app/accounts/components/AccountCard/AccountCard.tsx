@@ -80,7 +80,7 @@ export default function AccountCard({
         <span className={`${statusBubbleClassName} ${accountStyles.bubble}`}>
           {status}
         </span>
-        {accountSelected && <button>Update Status</button>}
+        {accountSelected && <button>Show Actions</button>}
       </div>
     </div>
   );
