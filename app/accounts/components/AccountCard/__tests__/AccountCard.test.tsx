@@ -11,6 +11,7 @@ const accountsWithCustomers = accountsWithCustomersGenerator.generate();
 
 const addSelectedAccountsId = jest.fn();
 const deleteSelectedAccountId = jest.fn();
+const handleUpdateAccountStatus = jest.fn();
 
 test.each(accountsWithCustomers)(
   "if the AccountCard component displays the data correctly",
@@ -18,7 +19,8 @@ test.each(accountsWithCustomers)(
     const accountCardComponentRenderer = new AccountCardComponentRenderer({
       accountWithCustomer,
       addSelectedAccountsId,
-      deleteSelectedAccountId
+      deleteSelectedAccountId,
+      handleUpdateAccountStatus
     });
     accountCardComponentRenderer.render();
 
@@ -40,7 +42,8 @@ test.each(accountsWithCustomers)(
     const accountCardComponentRenderer = new AccountCardComponentRenderer({
       accountWithCustomer,
       addSelectedAccountsId,
-      deleteSelectedAccountId
+      deleteSelectedAccountId,
+      handleUpdateAccountStatus
     });
     accountCardComponentRenderer.render();
 
@@ -66,7 +69,8 @@ test("if account status changes as required", async () => {
   const accountCardComponentRenderer = new AccountCardComponentRenderer({
     accountWithCustomer,
     addSelectedAccountsId,
-    deleteSelectedAccountId
+    deleteSelectedAccountId,
+    handleUpdateAccountStatus
   });
 
   accountCardComponentRenderer.render();
@@ -78,10 +82,6 @@ test("if account status changes as required", async () => {
   const user = userEvent.setup();
   await user.click(accountCard);
 
-  const showActionsButton = screen.getByRole("button", {
-    name: "Show Actions"
-  });
-  await user.click(showActionsButton);
-
   const activateButton = screen.getByRole("button", { name: "Activate" });
+  await user.click(activateButton);
 });

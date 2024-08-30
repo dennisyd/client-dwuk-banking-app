@@ -6,21 +6,27 @@ interface AccountCardComponentRendererConstructor {
   accountWithCustomer: AccountWithCustomer;
   addSelectedAccountsId: jest.Mock;
   deleteSelectedAccountId: jest.Mock;
+  handleUpdateAccountStatus: jest.Mock;
 }
 
-export default class AccountCardComponentRenderer {
+export default class AccountCardComponentRenderer
+  implements AccountCardComponentRenderer
+{
   private accountWithCustomer: AccountWithCustomer;
   private addSelectedAccountsId: jest.Mock;
   private deleteSelectedAccountId: jest.Mock;
+  private handleUpdateAccountStatus: jest.Mock;
 
   constructor({
     accountWithCustomer,
     addSelectedAccountsId,
-    deleteSelectedAccountId
+    deleteSelectedAccountId,
+    handleUpdateAccountStatus
   }: AccountCardComponentRendererConstructor) {
     this.accountWithCustomer = accountWithCustomer;
     this.addSelectedAccountsId = addSelectedAccountsId;
     this.deleteSelectedAccountId = deleteSelectedAccountId;
+    this.handleUpdateAccountStatus = handleUpdateAccountStatus;
   }
 
   render() {
@@ -35,6 +41,7 @@ export default class AccountCardComponentRenderer {
         status={this.accountWithCustomer.status}
         onAddSelectedAccountId={this.addSelectedAccountsId}
         onDeleteSelectedAccountId={this.deleteSelectedAccountId}
+        onUpdateAccountStatus={this.handleUpdateAccountStatus}
       />
     );
   }
