@@ -32,6 +32,18 @@ test.each(accountsWithCustomers)(
 
     expect(firstAndLastName).toBeInTheDocument();
     expect(balance).toBeInTheDocument();
+  }
+);
+
+test.each(accountsWithCustomers)(
+  "if accounts selection works as intended",
+  async (accountWithCustomer) => {
+    const accountCardComponentRenderer = new AccountCardComponentRenderer({
+      accountWithCustomer,
+      addSelectedAccountsId,
+      deleteSelectedAccountId
+    });
+    accountCardComponentRenderer.render();
 
     const user = userEvent.setup();
     const accountCard = screen.getByTestId("account-card") as HTMLDivElement;
