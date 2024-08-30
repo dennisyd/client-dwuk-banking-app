@@ -7,7 +7,6 @@ import DateTimeFormatter from "@/app/lib/utils/DateTimeFormatter/DateTimeFormatt
 import CssClassGenerator from "@/app/lib/utils/CssClassGenerator/CssClassGenerator";
 import { useState } from "react";
 import UpdateAccountsStatus from "../UpdateAccountsStatus/UpdateAccountsStatus";
-import Button from "@/app/lib/components/common/Button";
 
 interface AccountCardProps extends AccountWithCustomer {
   onAddSelectedAccountId: (accountId: number) => void;
@@ -84,7 +83,10 @@ export default function AccountCard({
 
       <div className={`${statusContainerClassName} ${accountStyles.status}`}>
         {"Account Status:"}{" "}
-        <span className={`${statusBubbleClassName} ${accountStyles.bubble}`}>
+        <span
+          className={`${statusBubbleClassName} ${accountStyles.bubble}`}
+          data-testid={`account-status-${account_id}`}
+        >
           {status}
         </span>
         {accountSelected && (
