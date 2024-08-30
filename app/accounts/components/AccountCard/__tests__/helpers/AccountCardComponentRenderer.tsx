@@ -2,16 +2,22 @@ import { render } from "@testing-library/react";
 import AccountCard from "../../AccountCard";
 import { AccountWithCustomer } from "@/app/lib/definitions/account/types/AccountWithCustomer";
 
+interface AccountCardComponentRendererConstructor {
+  accountWithCustomer: AccountWithCustomer;
+  addSelectedAccountsId: jest.Mock;
+  deleteSelectedAccountId: jest.Mock;
+}
+
 export default class AccountCardComponentRenderer {
   private accountWithCustomer: AccountWithCustomer;
   private addSelectedAccountsId: jest.Mock;
   private deleteSelectedAccountId: jest.Mock;
 
-  constructor(
-    accountWithCustomer: AccountWithCustomer,
-    addSelectedAccountsId: jest.Mock,
-    deleteSelectedAccountId: jest.Mock
-  ) {
+  constructor({
+    accountWithCustomer,
+    addSelectedAccountsId,
+    deleteSelectedAccountId
+  }: AccountCardComponentRendererConstructor) {
     this.accountWithCustomer = accountWithCustomer;
     this.addSelectedAccountsId = addSelectedAccountsId;
     this.deleteSelectedAccountId = deleteSelectedAccountId;

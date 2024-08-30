@@ -16,11 +16,11 @@ const deleteSelectedAccountId = jest.fn();
 test.each(accountsWithCustomers)(
   "if the AccountCard component displays the data correctly",
   async (accountWithCustomer) => {
-    const accountCardComponentRenderer = new AccountCardComponentRenderer(
+    const accountCardComponentRenderer = new AccountCardComponentRenderer({
       accountWithCustomer,
       addSelectedAccountsId,
       deleteSelectedAccountId
-    );
+    });
     accountCardComponentRenderer.render();
 
     const firstAndLastName = screen.getByText(
