@@ -17,7 +17,7 @@ export default class AccountCardComponentRenderer {
     this.deleteSelectedAccountId = deleteSelectedAccountId;
   }
 
-  renderComponent() {
+  render() {
     render(
       <AccountCard
         account_id={this.accountWithCustomer.account_id}

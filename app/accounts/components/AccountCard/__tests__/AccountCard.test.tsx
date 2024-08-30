@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import AccountCard from "../AccountCard";
 import RandomAccountWithCustomerGenerator from "@/app/lib/tests/RandomAccountWithCustomerGenerator/RandomAccountWithCustomerGenerator";
+import AccountCardComponentRenderer from "./helpers/AccountCardComponentRenderer";
 
 const nrOfAccounts = 10;
 const accountsWithCustomersGenerator = new RandomAccountWithCustomerGenerator(
@@ -15,19 +16,12 @@ const deleteSelectedAccountId = jest.fn();
 test.each(accountsWithCustomers)(
   "if the AccountCard component displays the data correctly",
   async (accountWithCustomer) => {
-    render(
-      <AccountCard
-        account_id={accountWithCustomer.account_id}
-        first_name={accountWithCustomer.first_name}
-        last_name={accountWithCustomer.last_name}
-        balance={accountWithCustomer.balance}
-        open_date={accountWithCustomer.open_date}
-        last_activity_date={accountWithCustomer.last_activity_date}
-        status={accountWithCustomer.status}
-        onAddSelectedAccountId={addSelectedAccountsId}
-        onDeleteSelectedAccountId={deleteSelectedAccountId}
-      />
+    const accountCardComponentRenderer = new AccountCardComponentRenderer(
+      accountWithCustomer,
+      addSelectedAccountsId,
+      deleteSelectedAccountId
     );
+    accountCardComponentRenderer.render();
 
     const firstAndLastName = screen.getByText(
       `${accountWithCustomer.first_name} ${accountWithCustomer.last_name}`
