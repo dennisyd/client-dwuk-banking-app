@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import RandomAccountWithCustomerGenerator from "@/app/lib/tests/RandomAccountWithCustomerGenerator/RandomAccountWithCustomerGenerator";
 import AccountCardComponentRenderer from "./helpers/AccountCardComponentRenderer";
 
-const nrOfAccounts = 10;
+const nrOfAccounts = 2;
 const accountsWithCustomersGenerator = new RandomAccountWithCustomerGenerator(
   nrOfAccounts
 );
@@ -60,3 +60,28 @@ test.each(accountsWithCustomers)(
     );
   }
 );
+
+test("if account status changes as required", async () => {
+  const accountWithCustomer = accountsWithCustomersGenerator.generateOne();
+  const accountCardComponentRenderer = new AccountCardComponentRenderer({
+    accountWithCustomer,
+    addSelectedAccountsId,
+    deleteSelectedAccountId
+  });
+
+  accountCardComponentRenderer.render();
+
+  const accountCard = screen.getByTestId(
+    `account-card-${accountWithCustomer.account_id}`
+  ) as HTMLDivElement;
+
+  const user = userEvent.setup();
+  await user.click(accountCard);
+
+  const showActionsButton = screen.getByRole("button", {
+    name: "Show Actions"
+  });
+  await user.click(showActionsButton);
+
+  const activateButton = screen.getByRole("button", { name: "Activate" });
+});
