@@ -46,7 +46,9 @@ test.each(accountsWithCustomers)(
     accountCardComponentRenderer.render();
 
     const user = userEvent.setup();
-    const accountCard = screen.getByTestId("account-card") as HTMLDivElement;
+    const accountCard = screen.getByTestId(
+      `account-card-${accountWithCustomer.account_id}`
+    ) as HTMLDivElement;
 
     await user.click(accountCard);
     expect(addSelectedAccountsId.mock.calls[0][0]).toBe(

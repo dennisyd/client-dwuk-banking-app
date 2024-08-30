@@ -39,7 +39,7 @@ export default function AccountCard({
 
   return (
     <div
-      data-testid="account-card"
+      data-testid={`account-card-${account_id}`}
       className={accountStyles.accountCard}
       onClick={() => {
         setAccountSelected(!accountSelected);
