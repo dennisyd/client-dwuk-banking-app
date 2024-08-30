@@ -3,6 +3,8 @@ import accountStyles from "../../styles/accountCard.module.css";
 import DateTimeFormatter from "@/app/lib/utils/DateTimeFormatter/DateTimeFormatter";
 import CssClassGenerator from "@/app/lib/utils/CssClassGenerator/CssClassGenerator";
 import { useState } from "react";
+import UpdateAccountsStatus from "../UpdateAccountsStatus/UpdateAccountsStatus";
+import Button from "@/app/lib/components/common/Button";
 
 interface AccountCardProps extends AccountWithCustomer {
   onAddSelectedAccountId: (accountId: number) => void;
@@ -21,6 +23,8 @@ export default function AccountCard({
   onDeleteSelectedAccountId
 }: AccountCardProps) {
   const [accountSelected, setAccountSelected] = useState(false);
+  const [accountActionsVisibility, setAccountActionsVisibility] =
+    useState(false);
 
   const dateTimeFormatter = new DateTimeFormatter();
 
@@ -80,7 +84,9 @@ export default function AccountCard({
         <span className={`${statusBubbleClassName} ${accountStyles.bubble}`}>
           {status}
         </span>
-        {accountSelected && <button>Show Actions</button>}
+        {accountSelected && (
+          <UpdateAccountsStatus onUpdateAccountStatus={() => {}} />
+        )}
       </div>
     </div>
   );
