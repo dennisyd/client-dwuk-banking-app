@@ -1,9 +1,9 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import AccountCard from "../AccountCard";
 import RandomAccountWithCustomerGenerator from "@/app/lib/tests/RandomAccountWithCustomerGenerator/RandomAccountWithCustomerGenerator";
+import AccountCardComponentRenderer from "./helpers/AccountCardComponentRenderer";
 
-const nrOfAccounts = 10;
+const nrOfAccounts = 2;
 const accountsWithCustomersGenerator = new RandomAccountWithCustomerGenerator(
   nrOfAccounts
 );
@@ -11,23 +11,18 @@ const accountsWithCustomers = accountsWithCustomersGenerator.generate();
 
 const addSelectedAccountsId = jest.fn();
 const deleteSelectedAccountId = jest.fn();
+const handleUpdateAccountStatus = jest.fn();
 
 test.each(accountsWithCustomers)(
   "if the AccountCard component displays the data correctly",
   async (accountWithCustomer) => {
-    render(
-      <AccountCard
-        account_id={accountWithCustomer.account_id}
-        first_name={accountWithCustomer.first_name}
-        last_name={accountWithCustomer.last_name}
-        balance={accountWithCustomer.balance}
-        open_date={accountWithCustomer.open_date}
-        last_activity_date={accountWithCustomer.last_activity_date}
-        status={accountWithCustomer.status}
-        onAddSelectedAccountId={addSelectedAccountsId}
-        onDeleteSelectedAccountId={deleteSelectedAccountId}
-      />
-    );
+    const accountCardComponentRenderer = new AccountCardComponentRenderer({
+      accountWithCustomer,
+      addSelectedAccountsId,
+      deleteSelectedAccountId,
+      handleUpdateAccountStatus
+    });
+    accountCardComponentRenderer.render();
 
     const firstAndLastName = screen.getByText(
       `${accountWithCustomer.first_name} ${accountWithCustomer.last_name}`
@@ -38,9 +33,24 @@ test.each(accountsWithCustomers)(
 
     expect(firstAndLastName).toBeInTheDocument();
     expect(balance).toBeInTheDocument();
+  }
+);
+
+test.each(accountsWithCustomers)(
+  "if accounts selection works as intended",
+  async (accountWithCustomer) => {
+    const accountCardComponentRenderer = new AccountCardComponentRenderer({
+      accountWithCustomer,
+      addSelectedAccountsId,
+      deleteSelectedAccountId,
+      handleUpdateAccountStatus
+    });
+    accountCardComponentRenderer.render();
 
     const user = userEvent.setup();
-    const accountCard = screen.getByTestId("account-card") as HTMLDivElement;
+    const accountCard = screen.getByTestId(
+      `account-card-${accountWithCustomer.account_id}`
+    ) as HTMLDivElement;
 
     await user.click(accountCard);
     expect(addSelectedAccountsId.mock.calls[0][0]).toBe(
@@ -53,3 +63,36 @@ test.each(accountsWithCustomers)(
     );
   }
 );
+
+test("if account status changes as required", async () => {
+  const accountWithCustomer = accountsWithCustomersGenerator.generateOne();
+  const accountCardComponentRenderer = new AccountCardComponentRenderer({
+    accountWithCustomer,
+    addSelectedAccountsId,
+    deleteSelectedAccountId,
+    handleUpdateAccountStatus
+  });
+
+  accountCardComponentRenderer.render();
+
+  const accountCard = screen.getByTestId(
+    `account-card-${accountWithCustomer.account_id}`
+  ) as HTMLDivElement;
+
+  const user = userEvent.setup();
+
+  await user.click(accountCard);
+  const activateButton = screen.getByRole("button", { name: "Activate" });
+  await user.click(activateButton);
+  expect(handleUpdateAccountStatus.mock.calls[0][0]).toBe("ACTIVE");
+
+  await user.click(accountCard);
+  const closeButton = screen.getByRole("button", { name: "Close" });
+  await user.click(closeButton);
+  expect(handleUpdateAccountStatus.mock.calls[1][0]).toBe("CLOSED");
+
+  await user.click(accountCard);
+  const freezeButton = screen.getByRole("button", { name: "Freeze" });
+  await user.click(freezeButton);
+  expect(handleUpdateAccountStatus.mock.calls[2][0]).toBe("FROZEN");
+});

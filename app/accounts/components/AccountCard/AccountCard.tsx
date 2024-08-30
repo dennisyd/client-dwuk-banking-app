@@ -1,12 +1,17 @@
-import { AccountWithCustomer } from "@/app/lib/definitions/account/types/AccountWithCustomer";
+import {
+  AccountStatus,
+  AccountWithCustomer
+} from "@/app/lib/definitions/account/types/AccountWithCustomer";
 import accountStyles from "../../styles/accountCard.module.css";
 import DateTimeFormatter from "@/app/lib/utils/DateTimeFormatter/DateTimeFormatter";
 import CssClassGenerator from "@/app/lib/utils/CssClassGenerator/CssClassGenerator";
 import { useState } from "react";
+import UpdateAccountsStatus from "../UpdateAccountsStatus/UpdateAccountsStatus";
 
 interface AccountCardProps extends AccountWithCustomer {
   onAddSelectedAccountId: (accountId: number) => void;
   onDeleteSelectedAccountId: (accountId: number) => void;
+  onUpdateAccountStatus: (newStatus: AccountStatus) => void;
 }
 
 export default function AccountCard({
@@ -18,7 +23,8 @@ export default function AccountCard({
   last_activity_date,
   status,
   onAddSelectedAccountId,
-  onDeleteSelectedAccountId
+  onDeleteSelectedAccountId,
+  onUpdateAccountStatus
 }: AccountCardProps) {
   const [accountSelected, setAccountSelected] = useState(false);
 
@@ -39,7 +45,7 @@ export default function AccountCard({
 
   return (
     <div
-      data-testid="account-card"
+      data-testid={`account-card-${account_id}`}
       className={accountStyles.accountCard}
       onClick={() => {
         setAccountSelected(!accountSelected);
@@ -77,10 +83,15 @@ export default function AccountCard({
 
       <div className={`${statusContainerClassName} ${accountStyles.status}`}>
         {"Account Status:"}{" "}
-        <span className={`${statusBubbleClassName} ${accountStyles.bubble}`}>
+        <span
+          className={`${statusBubbleClassName} ${accountStyles.bubble}`}
+          data-testid={`account-status-${account_id}`}
+        >
           {status}
         </span>
-        {accountSelected && <button>Update Status</button>}
+        {accountSelected && (
+          <UpdateAccountsStatus onUpdateAccountStatus={onUpdateAccountStatus} />
+        )}
       </div>
     </div>
   );

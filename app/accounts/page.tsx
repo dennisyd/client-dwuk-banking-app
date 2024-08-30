@@ -42,8 +42,6 @@ export default function Accounts() {
     });
   }
 
-  function activateAccount() {}
-
   return (
     <div>
       {selectedAccountsId.length > 1 ? (
@@ -62,6 +60,7 @@ export default function Accounts() {
             status={accountWithCustomer.status}
             onAddSelectedAccountId={addSelectedAccountsId}
             onDeleteSelectedAccountId={deleteSelectedAccountsIs}
+            onUpdateAccountStatus={updateAccountStatus}
           />
         ))}
       </div>

@@ -1,5 +1,5 @@
 import accountStatus from "@/app/lib/constants/accountStatus";
-import stylesChangeAccountStatus from "../../styles/changeAccountStatus.module.css";
+import stylesChangeAccountStatus from "../../styles/updateAccountStatus.module.css";
 import Button from "@/app/lib/components/common/Button";
 import colours from "@/app/lib/constants/colors";
 import { AccountStatus } from "@/app/lib/definitions/account/types/AccountWithCustomer";
@@ -13,8 +13,6 @@ export default function UpdateAccountsStatus({
 }: UpdateAccountsStatusProps) {
   return (
     <div className={stylesChangeAccountStatus.accountActionsOuterContainer}>
-      <div>Update Accounts Status to:</div>
-
       <div className={stylesChangeAccountStatus.actionButtonsContainer}>
         {accountStatus.map((status, i) => (
           <Button
