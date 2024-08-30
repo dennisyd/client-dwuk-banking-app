@@ -60,6 +60,7 @@ export default function Accounts() {
             status={accountWithCustomer.status}
             onAddSelectedAccountId={addSelectedAccountsId}
             onDeleteSelectedAccountId={deleteSelectedAccountsIs}
+            onUpdateAccountStatus={updateAccountStatus}
           />
         ))}
       </div>

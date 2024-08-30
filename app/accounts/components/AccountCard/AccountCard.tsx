@@ -1,4 +1,7 @@
-import { AccountWithCustomer } from "@/app/lib/definitions/account/types/AccountWithCustomer";
+import {
+  AccountStatus,
+  AccountWithCustomer
+} from "@/app/lib/definitions/account/types/AccountWithCustomer";
 import accountStyles from "../../styles/accountCard.module.css";
 import DateTimeFormatter from "@/app/lib/utils/DateTimeFormatter/DateTimeFormatter";
 import CssClassGenerator from "@/app/lib/utils/CssClassGenerator/CssClassGenerator";
@@ -9,6 +12,7 @@ import Button from "@/app/lib/components/common/Button";
 interface AccountCardProps extends AccountWithCustomer {
   onAddSelectedAccountId: (accountId: number) => void;
   onDeleteSelectedAccountId: (accountId: number) => void;
+  onUpdateAccountStatus: (newStatus: AccountStatus) => void;
 }
 
 export default function AccountCard({
@@ -20,11 +24,10 @@ export default function AccountCard({
   last_activity_date,
   status,
   onAddSelectedAccountId,
-  onDeleteSelectedAccountId
+  onDeleteSelectedAccountId,
+  onUpdateAccountStatus
 }: AccountCardProps) {
   const [accountSelected, setAccountSelected] = useState(false);
-  const [accountActionsVisibility, setAccountActionsVisibility] =
-    useState(false);
 
   const dateTimeFormatter = new DateTimeFormatter();
 
@@ -85,7 +88,7 @@ export default function AccountCard({
           {status}
         </span>
         {accountSelected && (
-          <UpdateAccountsStatus onUpdateAccountStatus={() => {}} />
+          <UpdateAccountsStatus onUpdateAccountStatus={onUpdateAccountStatus} />
         )}
       </div>
     </div>
