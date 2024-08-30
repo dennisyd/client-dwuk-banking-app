@@ -80,8 +80,19 @@ test("if account status changes as required", async () => {
   ) as HTMLDivElement;
 
   const user = userEvent.setup();
-  await user.click(accountCard);
 
+  await user.click(accountCard);
   const activateButton = screen.getByRole("button", { name: "Activate" });
   await user.click(activateButton);
+  expect(handleUpdateAccountStatus.mock.calls[0][0]).toBe("ACTIVE");
+
+  await user.click(accountCard);
+  const closeButton = screen.getByRole("button", { name: "Close" });
+  await user.click(closeButton);
+  expect(handleUpdateAccountStatus.mock.calls[1][0]).toBe("CLOSED");
+
+  await user.click(accountCard);
+  const freezeButton = screen.getByRole("button", { name: "Freeze" });
+  await user.click(freezeButton);
+  expect(handleUpdateAccountStatus.mock.calls[2][0]).toBe("FROZEN");
 });
