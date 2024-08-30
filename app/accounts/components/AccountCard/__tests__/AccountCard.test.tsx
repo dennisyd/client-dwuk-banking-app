@@ -1,6 +1,5 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import AccountCard from "../AccountCard";
 import RandomAccountWithCustomerGenerator from "@/app/lib/tests/RandomAccountWithCustomerGenerator/RandomAccountWithCustomerGenerator";
 import AccountCardComponentRenderer from "./helpers/AccountCardComponentRenderer";
 
