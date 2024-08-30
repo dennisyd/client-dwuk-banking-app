@@ -13,8 +13,6 @@ export default function UpdateAccountsStatus({
 }: UpdateAccountsStatusProps) {
   return (
     <div className={stylesChangeAccountStatus.accountActionsOuterContainer}>
-      <div>Update Accounts Status to:</div>
-
       <div className={stylesChangeAccountStatus.actionButtonsContainer}>
         {accountStatus.map((status, i) => (
           <Button
